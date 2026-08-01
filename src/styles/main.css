@@ -13,7 +13,13 @@
 @import './components/spine.css';
 @import './components/media.css';
 @import './components/hero.css';
+@import './components/page-hero.css';
 @import './components/marquee.css';
+@import './components/filter.css';
+@import './components/video-facade.css';
+@import './components/lightbox.css';
+@import './components/article.css';
+@import './components/contacts.css';
 @import './components/service-card.css';
 @import './components/work-card.css';
 @import './components/journal-card.css';

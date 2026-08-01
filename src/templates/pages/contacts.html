@@ -1,0 +1,66 @@
+<section class="wrap page-hero" data-keyframe="Контакты">
+  {{> breadcrumbs }}
+  <p class="slug page-hero__slug" style="margin-top:var(--sp-6)">
+    <span class="slug__mark" aria-hidden="true">◆</span>
+    <span>Контакты</span><span>{{ site.city }}</span>
+  </p>
+  <h1 class="h1 page-hero__title">Напишите нам</h1>
+  <p class="lead page-hero__lead">
+    Отвечаем в течение рабочего дня. Если проект срочный — Telegram
+    быстрее почты. Для сметы достаточно пары предложений о задаче и сроках.
+  </p>
+</section>
+
+<div class="wrap">
+  <div class="contact-list reveal">
+    <a class="contact-list__item" href="https://t.me/{{ site.contacts.telegram }}" data-track="click_telegram">
+      <div class="contact-list__label">Telegram — быстрее всего</div>
+      <div class="contact-list__value">@{{ site.contacts.telegram }}</div>
+    </a>
+    <a class="contact-list__item" href="mailto:{{ site.contacts.email }}" data-track="click_email">
+      <div class="contact-list__label">Почта</div>
+      <div class="contact-list__value">{{ site.contacts.email }}</div>
+    </a>
+    <a class="contact-list__item" href="tel:{{ site.contacts.phoneHref }}" data-track="click_phone">
+      <div class="contact-list__label">Телефон</div>
+      <div class="contact-list__value">{{ site.contacts.phone }}</div>
+    </a>
+    <a class="contact-list__item" href="https://wa.me/{{ site.contacts.whatsapp }}" data-track="click_whatsapp">
+      <div class="contact-list__label">WhatsApp</div>
+      <div class="contact-list__value">{{ site.contacts.phone }}</div>
+    </a>
+  </div>
+</div>
+
+<section class="wrap band band--tight" data-keyframe="Студия">
+  <div class="split reveal">
+    <div>
+      <h2 class="h2" style="margin-bottom:var(--sp-5)">Где нас найти</h2>
+      <div class="spec-list">
+        <span class="spec-list__item">{{ site.contacts.address }}</span>
+        <span class="spec-list__item">{{ site.contacts.hours }}</span>
+        <span class="spec-list__item">Съёмки по России и за её пределами</span>
+      </div>
+
+      <p class="slug" style="margin-top:var(--sp-7);margin-bottom:var(--sp-4)">
+        <span class="slug__mark" aria-hidden="true">◆</span><span>Соцсети</span>
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:var(--sp-3)">
+        {{#each site.socials}}
+        <a class="btn" href="{{ url }}">{{ name }}</a>
+        {{/each}}
+      </div>
+    </div>
+
+    <!-- Карта фасадом: живой iframe Яндекса тянет сотни килобайт скриптов
+         на страницу, где карту откроют единицы -->
+    <a class="map-facade" href="https://yandex.ru/maps/?text={{ site.contacts.address }}"
+       aria-label="Открыть адрес в Яндекс Картах">
+      <span class="map-facade__grid" aria-hidden="true"></span>
+      <span class="map-facade__pin" aria-hidden="true"></span>
+      <span class="map-facade__label">{{ site.contacts.address }} →</span>
+    </a>
+  </div>
+</section>
+
+{{> cta-section }}

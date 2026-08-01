@@ -19,6 +19,16 @@
   .pos-6{grid-column:5/13}
 }
 
+/* При активном фильтре явная раскладка не годится: часть карточек скрыта,
+   и закреплённые за ними колонки со строками оставляют дыры. Переходим
+   на равные колонки — соотношения сторон карточек при этом сохраняются. */
+@media (min-width:760px){
+  .works--filtered .work-card{grid-column:span 6;grid-row:auto}
+}
+@media (min-width:1240px){
+  .works--filtered .work-card{grid-column:span 4}
+}
+
 /* display:block обязателен — на inline-элементе aspect-ratio не работает,
    и карточка схлопывается в нулевую высоту. */
 .work-card__media{

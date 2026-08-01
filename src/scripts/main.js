@@ -8,9 +8,12 @@ import * as analytics from './modules/analytics.js';
 import * as nav from './modules/nav.js';
 import * as spine from './modules/spine.js';
 import * as heroCuts from './modules/hero-cuts.js';
+import * as worksFilter from './modules/works-filter.js';
+import * as videoFacade from './modules/video-facade.js';
+import * as lightbox from './modules/lightbox.js';
 import * as reveal from './modules/reveal.js';
 
-const MODULES = [analytics, nav, spine, heroCuts, reveal];
+const MODULES = [analytics, nav, spine, heroCuts, worksFilter, videoFacade, lightbox, reveal];
 
 for (const mod of MODULES) {
   try {

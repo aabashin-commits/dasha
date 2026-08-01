@@ -1,0 +1,133 @@
+<section class="wrap page-hero" data-keyframe="{{ service.title }}">
+  {{> breadcrumbs }}
+  <p class="slug page-hero__slug" style="margin-top:var(--sp-6)">
+    <span class="slug__mark" aria-hidden="true">◆</span>
+    <span>{{ service.format.ratio }}</span>
+    <span>{{ service.format.duration }}</span>
+    {{#if service.priceFrom}}<span>от {{ service.priceFrom | money }} ₽</span>{{/if}}
+  </p>
+  <h1 class="h1 page-hero__title">{{ service.title }}</h1>
+  <p class="lead page-hero__lead">{{ service.tagline }}</p>
+
+  <div class="page-hero__actions">
+    <a class="btn btn--primary" href="#contact">Обсудить проект <span class="btn__arrow" aria-hidden="true">→</span></a>
+    <a class="btn" href="/works/?service={{ service.slug }}">Работы направления <span class="btn__arrow" aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="meta-row reveal">
+    <div class="meta-row__cell">
+      <div class="meta-row__label">Формат</div>
+      <div class="meta-row__value">{{ service.format.ratio }}</div>
+    </div>
+    <div class="meta-row__cell">
+      <div class="meta-row__label">Хронометраж</div>
+      <div class="meta-row__value">{{ service.format.duration }}</div>
+    </div>
+    <div class="meta-row__cell">
+      <div class="meta-row__label">Стоимость</div>
+      <div class="meta-row__value">
+        {{#if service.priceFrom}}от {{ service.priceFrom | money }} ₽{{else}}по расчёту{{/if}}
+      </div>
+    </div>
+    <div class="meta-row__cell">
+      <div class="meta-row__label">{{#if service.priceFrom}}Что входит в цену{{else}}Как считаем{{/if}}</div>
+      <div class="meta-row__value">{{ service.priceNote }}</div>
+    </div>
+  </div>
+</div>
+
+<section class="wrap band band--tight" data-keyframe="Задача">
+  <div class="split split--wide-left reveal">
+    <div>
+      <h2 class="h2" style="margin-bottom:var(--sp-5)">Какую задачу решает</h2>
+      <div class="prose"><p class="lead">{{ service.description }}</p></div>
+    </div>
+    <div>
+      <p class="slug" style="margin-bottom:var(--sp-5)">
+        <span class="slug__mark" aria-hidden="true">◆</span><span>Что входит</span>
+      </p>
+      <div class="spec-list">
+        {{#each service.features}}
+        <span class="spec-list__item">{{ this }}</span>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section class="wrap band" data-keyframe="Процесс">
+  <div class="section-head reveal">
+    <div class="section-head__text">
+      <p class="slug">
+        <span class="slug__mark" aria-hidden="true">◆</span>
+        <span>Процесс</span><span>{{ service.process.length }} этапа</span>
+      </p>
+      <h2 class="h2 section-head__title">Как проходит работа</h2>
+    </div>
+  </div>
+
+  <div class="process reveal">
+    {{#each service.process}}
+    <div class="process__item">
+      <span class="process__number">{{ @number }}</span>
+      <h3 class="h3">{{ title }}</h3>
+      <p class="process__text">{{ text }}</p>
+    </div>
+    {{/each}}
+  </div>
+</section>
+
+<section class="wrap band band--flush-top" data-keyframe="Результат">
+  <div class="split reveal">
+    <div>
+      <h2 class="h2" style="margin-bottom:var(--sp-5)">Что вы получите</h2>
+      <div class="spec-list">
+        {{#each service.deliverables}}
+        <span class="spec-list__item">{{ this }}</span>
+        {{/each}}
+      </div>
+    </div>
+    {{#if service.faq}}
+    <div>
+      <h2 class="h2" style="margin-bottom:var(--sp-5)">Вопросы по направлению</h2>
+      <div class="faq">
+        {{#each service.faq}}
+        <details class="faq__item">
+          <summary class="faq__q">{{ q }}<span class="faq__sign" aria-hidden="true"></span></summary>
+          <div class="faq__a">{{ a }}</div>
+        </details>
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+  </div>
+</section>
+
+{{#if works}}
+<hr class="rule">
+
+<section class="wrap band" data-keyframe="Работы">
+  <div class="section-head reveal">
+    <div class="section-head__text">
+      <p class="slug">
+        <span class="slug__mark" aria-hidden="true">◆</span>
+        <span>Работы направления</span>
+      </p>
+      <h2 class="h2 section-head__title">{{ service.title }} на практике</h2>
+    </div>
+    <a class="btn" href="/works/?service={{ service.slug }}">Все работы направления <span class="btn__arrow" aria-hidden="true">→</span></a>
+  </div>
+
+  <div class="works reveal">
+    {{#each works}}
+    {{> work-card }}
+    {{/each}}
+  </div>
+</section>
+{{/if}}
+
+{{> cta-section }}

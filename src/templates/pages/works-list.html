@@ -1,0 +1,39 @@
+<section class="wrap page-hero" data-keyframe="Работы">
+  {{> breadcrumbs }}
+  <p class="slug page-hero__slug" style="margin-top:var(--sp-6)">
+    <span class="slug__mark" aria-hidden="true">◆</span>
+    <span>Работы</span><span>{{ works.length }} проекта</span>
+  </p>
+  <h1 class="h1 page-hero__title">Каждая работа&nbsp;— в своём формате</h1>
+  <p class="lead page-hero__lead">
+    Сетка не приводит всё к 16:9: вертикаль остаётся вертикалью, а широкий
+    кадр — широким. Формат здесь содержание, а не оформление.
+  </p>
+</section>
+
+<div class="wrap band band--flush-top">
+  <!-- Фильтр скрывает карточки, но не удаляет: все работы остаются
+       в разметке, иначе фильтрация съедает индексацию -->
+  <div class="filter reveal" data-works-filter role="group" aria-label="Фильтр по направлению">
+    <button class="filter__btn" type="button" data-filter="all" aria-pressed="true">
+      Все<span class="filter__count">{{ works.length }}</span>
+    </button>
+    {{#each filters}}
+    <button class="filter__btn" type="button" data-filter="{{ slug }}" aria-pressed="false">
+      {{ title }}
+    </button>
+    {{/each}}
+  </div>
+
+  <div class="works">
+    {{#each works}}
+    {{> work-card }}
+    {{/each}}
+  </div>
+
+  <p class="filter__empty" data-filter-empty hidden>
+    В этом направлении работ пока нет. Посмотрите остальные или напишите нам.
+  </p>
+</div>
+
+{{> cta-section }}

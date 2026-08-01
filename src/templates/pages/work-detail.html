@@ -1,0 +1,142 @@
+<section class="wrap page-hero" data-keyframe="{{ work.title }}">
+  {{> breadcrumbs }}
+  <p class="slug page-hero__slug" style="margin-top:var(--sp-6)">
+    <span class="slug__mark" aria-hidden="true">◆</span>
+    <span>{{ work.serviceTitle }}</span>
+    <span>{{ work.ratio }}</span>
+    <span>{{ work.year }}</span>
+  </p>
+  <h1 class="h1 page-hero__title">{{ work.title }}</h1>
+  <p class="lead page-hero__lead">{{ work.summary }}</p>
+</section>
+
+<div class="wrap">
+  {{#if embedUrl}}
+  <!-- Фасад плеера: iframe подставляется только по клику -->
+  <button class="facade {{ work.ratioClass }} reveal" type="button"
+          data-facade="{{ embedUrl }}" data-facade-title="{{ work.title }}"
+          aria-label="Смотреть «{{ work.title }}»">
+    <picture>
+      <source srcset="{{ work.posterWebp }}" type="image/webp">
+      <img class="facade__img" src="{{ work.poster }}" alt="{{ work.title }} — кадр из фильма"
+           width="{{ work.posterWidth }}" height="{{ work.posterHeight }}"
+           fetchpriority="high" decoding="async">
+    </picture>
+    <span class="grain" aria-hidden="true"></span>
+    <span class="facade__play">
+      <span class="facade__disc" aria-hidden="true">
+        <svg width="22" height="24" viewBox="0 0 22 24" fill="currentColor"><path d="M21 12 0 24V0z"/></svg>
+      </span>
+      <span class="facade__label">Смотреть</span>
+    </span>
+  </button>
+  {{else}}
+  <div class="frame {{ work.ratioClass }} reveal">
+    <picture>
+      <source srcset="{{ work.posterWebp }}" type="image/webp">
+      <img class="frame__img" src="{{ work.poster }}" alt="{{ work.title }} — кадр из работы"
+           width="{{ work.posterWidth }}" height="{{ work.posterHeight }}"
+           fetchpriority="high" decoding="async">
+    </picture>
+    <span class="grain" aria-hidden="true"></span>
+  </div>
+  {{/if}}
+
+  <div class="meta-row reveal">
+    <div class="meta-row__cell">
+      <div class="meta-row__label">Клиент</div>
+      <div class="meta-row__value">{{ work.client }}</div>
+    </div>
+    <div class="meta-row__cell">
+      <div class="meta-row__label">Направление</div>
+      <div class="meta-row__value">
+        <a href="/services/{{ work.service }}/">{{ work.serviceTitle }}</a>
+      </div>
+    </div>
+    <div class="meta-row__cell">
+      <div class="meta-row__label">Формат</div>
+      <div class="meta-row__value">{{ work.ratio }}</div>
+    </div>
+    <div class="meta-row__cell">
+      <div class="meta-row__label">Локация и год</div>
+      <div class="meta-row__value">{{ work.location }} · {{ work.year }}</div>
+    </div>
+  </div>
+</div>
+
+<section class="wrap band band--tight" data-keyframe="О проекте">
+  <div class="split split--wide-left reveal">
+    <div>
+      <h2 class="h2" style="margin-bottom:var(--sp-5)">Как это было</h2>
+      <div class="prose"><p class="lead">{{ work.description }}</p></div>
+    </div>
+    <div>
+      {{#if work.results}}
+      <p class="slug" style="margin-bottom:var(--sp-5)">
+        <span class="slug__mark" aria-hidden="true">◆</span><span>В цифрах</span>
+      </p>
+      <div class="spec-list" style="margin-bottom:var(--sp-7)">
+        {{#each work.results}}
+        <span class="spec-list__item">{{ label }}: {{ value }}</span>
+        {{/each}}
+      </div>
+      {{/if}}
+
+      {{#if work.credits}}
+      <p class="slug" style="margin-bottom:var(--sp-5)">
+        <span class="slug__mark" aria-hidden="true">◆</span><span>Команда</span>
+      </p>
+      <div class="spec-list">
+        {{#each work.credits}}
+        <span class="spec-list__item">{{ role }}: {{ name }}</span>
+        {{/each}}
+      </div>
+      {{/if}}
+    </div>
+  </div>
+</section>
+
+{{#if work.gallery}}
+<section class="wrap band band--flush-top" data-keyframe="Кадры">
+  <div class="section-head reveal">
+    <div class="section-head__text">
+      <p class="slug">
+        <span class="slug__mark" aria-hidden="true">◆</span>
+        <span>Кадры</span><span>{{ work.gallery.length }}</span>
+      </p>
+      <h2 class="h2 section-head__title">Из отснятого</h2>
+    </div>
+  </div>
+
+  <div class="gallery reveal">
+    {{#each work.gallery}}
+    <a class="gallery__item" href="{{ src }}"
+       data-lightbox="{{ src }}" data-lightbox-alt="{{ alt }}">
+      <picture>
+        <source srcset="{{ srcWebp }}" type="image/webp">
+        <img class="gallery__img" src="{{ src }}" alt="{{ alt }}"
+             loading="lazy" decoding="async" width="1600" height="900">
+      </picture>
+      <span class="grain" aria-hidden="true"></span>
+    </a>
+    {{/each}}
+  </div>
+</section>
+{{/if}}
+
+<hr class="rule">
+
+<section class="wrap band" data-keyframe="Дальше">
+  <div class="section-head reveal">
+    <div class="section-head__text">
+      <p class="slug">
+        <span class="slug__mark" aria-hidden="true">◆</span>
+        <span>Следующая работа</span>
+      </p>
+      <h2 class="h2 section-head__title">{{ next.title }}</h2>
+    </div>
+    <a class="btn" href="/works/{{ next.slug }}/">Смотреть <span class="btn__arrow" aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+{{> cta-section }}

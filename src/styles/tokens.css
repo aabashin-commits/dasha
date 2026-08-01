@@ -35,8 +35,8 @@
   --ff-body:'Golos Text',system-ui,sans-serif;
   --ff-mono:'IBM Plex Mono',ui-monospace,monospace;
 
-  --fs-display:clamp(2.75rem,7.2vw,6.5rem);
-  --fs-h1:clamp(2.25rem,4.6vw,4rem);
+  --fs-display:clamp(2.5rem,7.2vw,6.5rem);
+  --fs-h1:clamp(1.875rem,4.6vw,4rem);
   --fs-h2:clamp(1.9rem,3.6vw,3.25rem);
   --fs-h3:clamp(1.15rem,1.7vw,1.5rem);
   --fs-lead:clamp(1.0625rem,1.35vw,1.3rem);

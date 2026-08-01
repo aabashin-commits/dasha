@@ -1,0 +1,142 @@
+<section class="wrap page-hero" data-keyframe="О студии">
+  {{> breadcrumbs }}
+  <p class="slug page-hero__slug" style="margin-top:var(--sp-6)">
+    <span class="slug__mark" aria-hidden="true">◆</span>
+    <span>О студии</span><span>{{ site.city }}</span>
+  </p>
+  <h1 class="h1 page-hero__title">Начинаем не с камеры</h1>
+  <p class="lead page-hero__lead">
+    Keyframe — студия видеопродакшна. Название взято из монтажа: ключевой
+    кадр задаёт точку изменения, всё остальное достраивается от него.
+    Работу мы устроили так же — от того, что должно остаться у зрителя.
+  </p>
+</section>
+
+<div class="wrap">
+  <div class="stats reveal">
+    {{#each stats}}
+    <div class="stat">
+      <div class="stat__value">{{ value }}</div>
+      <div class="stat__label">{{ label }}</div>
+    </div>
+    {{/each}}
+  </div>
+</div>
+
+<section class="wrap band" data-keyframe="Подход">
+  <div class="split split--wide-left reveal">
+    <div>
+      <h2 class="h2" style="margin-bottom:var(--sp-5)">Во что мы верим</h2>
+      <div class="prose">
+        <p class="lead">
+          Красивая картинка — не результат, а следствие. Результат — это когда
+          ролик досмотрели и сделали то, ради чего он снимался.
+        </p>
+        <p class="lead">
+          Поэтому бриф у нас длиннее, чем у большинства студий, а первый
+          вопрос звучит не «какой у вас бюджет», а «что должно остаться
+          у человека после просмотра». Из ответа на него выводится всё
+          остальное: формат, хронометраж, количество смен и смета.
+        </p>
+        <p class="lead">
+          И поэтому же мы отказываемся снимать срочно, когда сроки не
+          оставляют места подготовке. Съёмка без препродакшна — это
+          не экономия, а лотерея за ваши деньги.
+        </p>
+      </div>
+    </div>
+    <div>
+      <p class="slug" style="margin-bottom:var(--sp-5)">
+        <span class="slug__mark" aria-hidden="true">◆</span><span>Правила студии</span>
+      </p>
+      <div class="spec-list">
+        <span class="spec-list__item">Звук пишем отдельно, а не микрофоном камеры</span>
+        <span class="spec-list__item">Черновик показываем до финальной сборки</span>
+        <span class="spec-list__item">Не берёмся, если сроки исключают препродакшн</span>
+        <span class="spec-list__item">Резерв по картам и питанию всегда с собой</span>
+        <span class="spec-list__item">Наблюдение важнее постановки</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section class="wrap band" data-keyframe="Процесс">
+  <div class="section-head reveal">
+    <div class="section-head__text">
+      <p class="slug">
+        <span class="slug__mark" aria-hidden="true">◆</span>
+        <span>Процесс</span><span>{{ process.length }} этапа</span>
+      </p>
+      <h2 class="h2 section-head__title">Как устроена работа</h2>
+    </div>
+  </div>
+
+  <div class="process reveal">
+    {{#each process}}
+    <div class="process__item">
+      <span class="process__number">{{ @number }}</span>
+      <h3 class="h3">{{ title }}</h3>
+      <p class="process__text">{{ text }}</p>
+    </div>
+    {{/each}}
+  </div>
+</section>
+
+<hr class="rule">
+
+<section class="wrap band" data-keyframe="Команда">
+  <div class="section-head reveal">
+    <div class="section-head__text">
+      <p class="slug">
+        <span class="slug__mark" aria-hidden="true">◆</span>
+        <span>Команда</span><span>{{ team.length }} человека</span>
+      </p>
+      <h2 class="h2 section-head__title">Кто снимает</h2>
+    </div>
+    <p class="section-head__aside">
+      Постоянный состав. На крупные проекты добираем людей, с которыми
+      работаем не первый год, а не по объявлению.
+    </p>
+  </div>
+
+  <div class="team reveal">
+    {{#each team}}
+    <article class="person">
+      <div class="person__photo">
+        <img class="person__img" src="{{ photo }}" alt="{{ name }} — {{ role }}"
+             loading="lazy" decoding="async" width="800" height="1000">
+      </div>
+      <h3 class="person__name">{{ name }}</h3>
+      <p class="person__role">{{ role }}</p>
+      <p class="person__bio">{{ bio }}</p>
+    </article>
+    {{/each}}
+  </div>
+</section>
+
+<hr class="rule">
+
+<section class="wrap band" data-keyframe="Клиенты">
+  <div class="section-head reveal">
+    <div class="section-head__text">
+      <p class="slug">
+        <span class="slug__mark" aria-hidden="true">◆</span>
+        <span>Клиенты</span>
+      </p>
+      <h2 class="h2 section-head__title">С кем работали</h2>
+    </div>
+  </div>
+
+  <div class="logo-wall reveal">
+    {{#each clients}}
+    <div class="logo-wall__cell">
+      <img class="logo-wall__img" src="{{ logo }}" alt="{{ name }}"
+           loading="lazy" decoding="async" width="200" height="48">
+    </div>
+    {{/each}}
+  </div>
+</section>
+
+{{> cta-section }}

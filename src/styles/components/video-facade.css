@@ -1,0 +1,61 @@
+/* Фасад плеера: постер и кнопка Play, iframe подставляется только по клику.
+   Без этого один embed VK или Rutube съедает около мегабайта и портит LCP
+   на странице, где видео могут даже не запустить. */
+
+.facade{
+  position:relative; display:block; width:100%;
+  overflow:hidden; border:1px solid var(--line);
+  background:var(--bg-lift);
+}
+.facade__img{
+  position:absolute; inset:0;
+  width:100%; height:100%; object-fit:cover;
+  transition:transform var(--t-slow) var(--ease-out),
+             opacity var(--t) var(--ease);
+}
+.facade:hover .facade__img{transform:scale(1.02);opacity:.8}
+
+.facade__play{
+  position:absolute; inset:0; z-index:2;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:var(--sp-4);
+}
+.facade__disc{
+  display:flex; align-items:center; justify-content:center;
+  width:72px; height:72px;
+  background:var(--lime); color:var(--lime-ink);
+  border-radius:50%;
+  transition:transform var(--t) var(--ease-out),
+             background-color var(--t-fast) var(--ease);
+}
+.facade:hover .facade__disc{transform:scale(1.08);background:var(--lime-hi)}
+.facade__disc svg{margin-left:3px}
+
+.facade__label{
+  font-family:var(--ff-mono); font-size:var(--fs-micro);
+  letter-spacing:.14em; text-transform:uppercase; color:var(--ink);
+  text-shadow:0 1px 12px rgb(0 0 0 / .6);
+}
+
+.facade__frame{
+  position:absolute; inset:0; z-index:3;
+  width:100%; height:100%; border:0;
+}
+
+/* Галерея кейса */
+.gallery{display:grid;gap:var(--sp-4)}
+@media (min-width:760px){ .gallery{grid-template-columns:repeat(2,1fr)} }
+
+.gallery__item{
+  position:relative; display:block; overflow:hidden;
+  aspect-ratio:16/9;
+  border:1px solid var(--line);
+  transition:border-color var(--t) var(--ease);
+}
+.gallery__item:hover{border-color:var(--line-lit)}
+.gallery__img{
+  position:absolute; inset:0;
+  width:100%; height:100%; object-fit:cover;
+  transition:transform var(--t-slow) var(--ease-out);
+}
+.gallery__item:hover .gallery__img{transform:scale(1.03)}

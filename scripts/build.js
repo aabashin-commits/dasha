@@ -13,6 +13,7 @@ import * as esbuild from 'esbuild';
 import { render } from './lib/template.js';
 import { head, jsonLd } from './lib/seo.js';
 import { sitemap, robots } from './lib/sitemap.js';
+import { markdown, readingTime } from './lib/markdown.js';
 import { validate, report } from './validate-content.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -21,6 +22,24 @@ const DIST = join(ROOT, 'dist');
 const PUBLIC = join(ROOT, 'public');
 
 const PROD = process.env.NODE_ENV !== 'development';
+
+/* Тексты, общие для нескольких страниц. В content/*.json они не вынесены
+   намеренно: это не контент, которым управляет заказчик, а часть
+   повествования сайта. Если появится нужда их редактировать — переедут. */
+
+const STATS = [
+  { value: '140', label: 'проектов снято' },
+  { value: '2 100', label: 'часов исходников' },
+  { value: '7', label: 'лет студии' },
+  { value: '12', label: 'дней средний срок' },
+];
+
+const PROCESS = [
+  { title: 'Бриф', text: 'Спрашиваем, что должно остаться у зрителя после просмотра. Из ответа собирается всё остальное — формат, хронометраж, бюджет.' },
+  { title: 'Препродакшн', text: 'Раскадровка, локации, свет, график смен. К съёмочному дню приходим без открытых вопросов: площадка не место для решений.' },
+  { title: 'Съёмка', text: 'Снимаем с запасом на монтаж, но по плану. Каждый дубль знает, зачем он нужен в финальной сборке.' },
+  { title: 'Пост', text: 'Монтаж, цвет, звук. Черновик показываем до финала: на этом этапе правки стоят дешевле всего.' },
+];
 
 /* ---------- Шаблоны ---------- */
 
@@ -103,18 +122,8 @@ function collectPages(c) {
       clients,
       faq,
       team,
-      stats: [
-        { value: '140', label: 'проектов снято' },
-        { value: '2 100', label: 'часов исходников' },
-        { value: '7', label: 'лет студии' },
-        { value: '12', label: 'дней средний срок' },
-      ],
-      process: [
-        { title: 'Бриф', text: 'Спрашиваем, что должно остаться у зрителя после просмотра. Из ответа собирается всё остальное — формат, хронометраж, бюджет.' },
-        { title: 'Препродакшн', text: 'Раскадровка, локации, свет, график смен. К съёмочному дню приходим без открытых вопросов: площадка не место для решений.' },
-        { title: 'Съёмка', text: 'Снимаем с запасом на монтаж, но по плану. Каждый дубль знает, зачем он нужен в финальной сборке.' },
-        { title: 'Пост', text: 'Монтаж, цвет, звук. Черновик показываем до финала: на этом этапе правки стоят дешевле всего.' },
-      ],
+      stats: STATS,
+      process: PROCESS,
       heroShots: [
         { src: '/media/hero/shot-1.jpg', title: 'Ночь премьеры', meta: '16:9 · 04:12 · EVENT', alt: 'Сцена в контровом свете во время премьерного показа' },
         { src: '/media/hero/shot-2.jpg', title: 'Утро в мастерской', meta: '9:16 · 00:38 · REELS', alt: 'Свет из окна на верстаке мастерской' },
@@ -125,17 +134,168 @@ function collectPages(c) {
     },
   });
 
+  /* ---- Услуги ---- */
+
+  const HOME = { title: 'Главная', url: '/' };
+
+  pages.push({
+    url: '/services/',
+    template: 'services-list',
+    title: 'Направления съёмки',
+    description: 'Reels, съёмка событий, документальное кино и фильмы-воспоминания. Форматы, сроки и стоимость каждого направления.',
+    breadcrumbs: [HOME, { title: 'Направления', url: '/services/' }],
+    priority: '0.9',
+    data: { works: decorateWorks(works, sortedServices) },
+  });
+
+  for (const s of sortedServices) {
+    const related = works.filter((w) => w.service === s.slug).sort(byOrder).slice(0, 3);
+    pages.push({
+      url: `/services/${s.slug}/`,
+      template: 'service-detail',
+      title: s.seo.title,
+      description: s.seo.description,
+      ogImage: `/media/og/${s.slug}.jpg`,
+      breadcrumbs: [HOME, { title: 'Направления', url: '/services/' }, { title: s.title, url: `/services/${s.slug}/` }],
+      service: s,
+      faq: s.faq,
+      priority: '0.9',
+      data: { service: s, works: decorateWorks(related, sortedServices) },
+    });
+  }
+
+  /* ---- Работы ---- */
+
+  const allWorks = decorateWorks([...works].sort(byOrder), sortedServices);
+
+  pages.push({
+    url: '/works/',
+    template: 'works-list',
+    title: 'Работы студии',
+    description: 'Портфолио Keyframe: документальные фильмы, съёмки событий, вертикальные ролики и фильмы-воспоминания.',
+    breadcrumbs: [HOME, { title: 'Работы', url: '/works/' }],
+    priority: '0.9',
+    data: { works: allWorks, filters: sortedServices },
+  });
+
+  allWorks.forEach((w, i) => {
+    const next = allWorks[(i + 1) % allWorks.length];
+    pages.push({
+      url: `/works/${w.slug}/`,
+      template: 'work-detail',
+      title: w.seo.title,
+      description: w.seo.description,
+      ogImage: `/media/og/${w.slug}.jpg`,
+      ogType: 'article',
+      breadcrumbs: [HOME, { title: 'Работы', url: '/works/' }, { title: w.title, url: `/works/${w.slug}/` }],
+      work: w,
+      data: {
+        work: { ...w, gallery: decorateGallery(w.gallery) },
+        next,
+        embedUrl: embedUrl(w.video),
+      },
+    });
+  });
+
+  /* ---- Журнал ---- */
+
+  pages.push({
+    url: '/journal/',
+    template: 'journal-list',
+    title: 'Журнал',
+    description: 'Как устроен видеопродакшн изнутри: из чего складывается цена, зачем нужен сценарий и чем вертикаль отличается от горизонтали.',
+    breadcrumbs: [HOME, { title: 'Журнал', url: '/journal/' }],
+    data: { journal: decorateJournal(latest) },
+  });
+
+  for (const a of latest) {
+    pages.push({
+      url: `/journal/${a.slug}/`,
+      template: 'journal-detail',
+      title: a.title,
+      description: a.excerpt,
+      ogImage: `/media/og/${a.slug}.jpg`,
+      ogType: 'article',
+      publishedAt: a.date,
+      breadcrumbs: [HOME, { title: 'Журнал', url: '/journal/' }, { title: a.title, url: `/journal/${a.slug}/` }],
+      article: a,
+      lastmod: a.date,
+      data: {
+        article: { ...a, coverWebp: a.cover.replace(/\.jpg$/, '.webp') },
+        bodyHtml: markdown(a.body),
+        minutes: readingTime(a.body),
+        more: decorateJournal(latest.filter((x) => x.slug !== a.slug).slice(0, 2)),
+      },
+    });
+  }
+
+  /* ---- Остальное ---- */
+
+  pages.push({
+    url: '/about/',
+    template: 'about',
+    title: 'О студии',
+    description: 'Keyframe — студия видеопродакшна в Москве. Как мы работаем, кто в команде и почему начинаем не с камеры.',
+    breadcrumbs: [HOME, { title: 'О студии', url: '/about/' }],
+    data: { team, stats: STATS, process: PROCESS, clients },
+  });
+
+  pages.push({
+    url: '/contacts/',
+    template: 'contacts',
+    title: 'Контакты',
+    description: `Связаться со студией Keyframe: ${site.contacts.email}, Telegram @${site.contacts.telegram}. ${site.city}.`,
+    breadcrumbs: [HOME, { title: 'Контакты', url: '/contacts/' }],
+    localBusiness: true,
+    priority: '0.8',
+    data: {},
+  });
+
+  pages.push({
+    url: '/privacy/',
+    template: 'privacy',
+    title: 'Политика обработки персональных данных',
+    description: 'Как студия Keyframe обрабатывает и хранит персональные данные, отправленные через форму на сайте.',
+    breadcrumbs: [HOME, { title: 'Политика конфиденциальности', url: '/privacy/' }],
+    priority: '0.3',
+    data: {},
+  });
+
+  pages.push({
+    url: '/404.html',
+    template: '404',
+    title: 'Страница не найдена',
+    description: 'Такой страницы на сайте нет.',
+    breadcrumbs: [HOME],
+    noindex: true,
+    data: { works: decorateWorks(featured.slice(0, 3), sortedServices) },
+  });
+
   pages.push({
     url: '/styleguide/',
     template: 'styleguide',
     title: 'Дизайн-система',
     description: 'Служебная страница: типографика, цвет, компоненты.',
-    breadcrumbs: [{ title: 'Главная', url: '/' }],
+    breadcrumbs: [HOME],
     noindex: true,
-    data: { services: sortedServices },
+    data: {},
   });
 
   return pages;
+}
+
+/** URL плеера по провайдеру. Подставляется только по клику на постер. */
+function embedUrl(video) {
+  if (!video) return '';
+  const { provider, id } = video;
+  if (provider === 'vk') return `https://vk.com/video_ext.php?oid=${id.split('_')[0].replace('video-', '-')}&id=${id.split('_')[1]}&hd=2`;
+  if (provider === 'rutube') return `https://rutube.ru/play/embed/${id}/`;
+  if (provider === 'youtube') return `https://www.youtube-nocookie.com/embed/${id}?autoplay=1`;
+  return id;
+}
+
+function decorateGallery(gallery) {
+  return (gallery ?? []).map((g) => ({ ...g, srcWebp: g.src.replace(/\.jpg$/, '.webp') }));
 }
 
 const RATIO_VALUE = { '9:16': 9 / 16, '16:9': 16 / 9, '2.39:1': 2.39, '1.66:1': 1.66, '4:3': 4 / 3, '1:1': 1 };
@@ -150,7 +310,9 @@ function decorateWorks(works, services) {
     const height = Math.round(width / (RATIO_VALUE[w.ratio] ?? 16 / 9));
     return {
       ...w,
-      position: `pos-${i + 1}`,
+      // Раскладка задана на шесть позиций и дальше повторяется циклом,
+      // иначе седьмая работа осталась бы без правила размещения
+      position: `pos-${(i % 6) + 1}`,
       ratioClass: `ratio-${w.ratio.replace(/[:.]/g, '-')}`,
       serviceTitle: titleOf(w.service),
       posterWebp: w.poster.replace(/\.jpg$/, '.webp'),
@@ -169,7 +331,17 @@ function decorateJournal(items) {
 function renderPage(page, ctx, partials, assets) {
   const { site } = ctx;
   const layout = readFileSync(join(SRC, 'templates/_layout.html'), 'utf8');
-  const body = render(loadTemplate(page.template), { site, page, ...page.data }, partials, page.template);
+
+  // Глобальный контекст доступен любому шаблону: форма заявки нужна почти
+  // везде и всегда хочет список услуг. Данные страницы перекрывают глобальные.
+  const scope = {
+    site,
+    page,
+    services: ctx.servicesSorted,
+    ...page.data,
+  };
+
+  const body = render(loadTemplate(page.template), scope, partials, page.template);
 
   return render(layout, {
     site,
@@ -182,8 +354,9 @@ function renderPage(page, ctx, partials, assets) {
 }
 
 function writePage(page, html) {
-  const out = page.url === '/'
-    ? join(DIST, 'index.html')
+  // Страницы с расширением пишутся файлом, остальные — каталогом с index.html
+  const out = page.url.endsWith('.html')
+    ? join(DIST, page.url.replace(/^\//, ''))
     : join(DIST, page.url.replace(/^\/|\/$/g, ''), 'index.html');
   mkdirSync(dirname(out), { recursive: true });
   writeFileSync(out, html);
@@ -201,6 +374,9 @@ async function main() {
 
   rmSync(DIST, { recursive: true, force: true });
   mkdirSync(DIST, { recursive: true });
+
+  // Список услуг нужен форме заявки на каждой странице
+  content.servicesSorted = [...content.services].sort((a, b) => (a.order ?? 99) - (b.order ?? 99));
 
   const assets = await buildAssets();
   const partials = loadPartials();

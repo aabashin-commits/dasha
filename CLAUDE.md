@@ -167,6 +167,36 @@ npm run mock      # Node-мок эндпоинта заявок для пров�
 
 `npm run validate && npm run build` — обязаны пройти без ошибок и предупреждений.
 
+### Свип по всем страницам и ширинам одним вызовом
+
+Проверять адаптив навигацией по каждой странице — десятки вызовов на ровном месте. Вместо этого один `browser_evaluate` с невидимым iframe, которому меняется ширина:
+
+```js
+const frame = document.createElement('iframe');
+frame.style.cssText = 'position:fixed;left:-3000px;top:0;height:900px;border:0';
+document.body.append(frame);
+for (const w of [360, 768, 1024, 1440, 1920]) {
+  frame.style.width = w + 'px';
+  for (const p of pages) {
+    frame.src = p;
+    await new Promise(r => { frame.onload = r; });
+    const d = frame.contentDocument;
+    if (d.documentElement.scrollWidth > frame.contentWindow.innerWidth + 1) { /* нашли */ }
+  }
+}
+```
+
+Тем же приёмом проверяются количество `h1`, длина `title`, наличие `og:image` — через `fetch` + `DOMParser`, вообще без рендера.
+
+**Когда переполнение найдено, источник ищется так** (`getBoundingClientRect().right` его часто не видит):
+
+```js
+[...document.querySelectorAll('*')]
+  .filter(el => el.scrollWidth > el.clientWidth + 1 && el.clientWidth > 0)
+```
+
+Два реальных виновника из этого проекта: ханипот, уведённый за `left:-9999px`, и заголовок с длинным русским словом. Unbounded заметно шире обычного гротеска, поэтому у всех заголовков стоит `overflow-wrap: break-word` — это страховка на реальный контент, длину которого мы не контролируем.
+
 ### Скриншоты: два обязательных шага перед снимком
 
 Полностраничный скриншот врёт дважды, и оба раза это выглядит как поломка вёрстки:
