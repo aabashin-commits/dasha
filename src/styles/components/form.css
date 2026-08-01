@@ -1,0 +1,76 @@
+.cta{
+  display:grid; gap:var(--sp-7);
+  padding:clamp(28px,5vw,72px);
+  background:var(--bg-lift); border:1px solid var(--line);
+}
+@media (min-width:960px){
+  .cta{grid-template-columns:1fr 1fr;align-items:start}
+}
+.cta__title{margin-block:var(--sp-4) var(--sp-5)}
+.cta__links{
+  display:flex; flex-wrap:wrap; gap:var(--sp-3);
+  margin-top:var(--sp-6);
+}
+
+.field{
+  display:flex; flex-direction:column; gap:var(--sp-2);
+  margin-bottom:var(--sp-4);
+}
+.field__label{
+  font-family:var(--ff-mono); font-size:var(--fs-micro);
+  letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);
+}
+.field__control{
+  width:100%; min-height:46px; padding:13px var(--sp-4);
+  background:var(--bg-inset); color:var(--ink);
+  border:1px solid var(--line); border-radius:var(--r-sm);
+  font:400 var(--fs-body)/1.5 var(--ff-body);
+  transition:border-color var(--t-fast) var(--ease);
+}
+.field__control:hover{border-color:var(--line-lit)}
+.field__control::placeholder{color:var(--ink-3)}
+textarea.field__control{resize:vertical;min-height:96px}
+
+.field__control[aria-invalid="true"]{border-color:var(--danger)}
+.field__error{
+  font-family:var(--ff-mono); font-size:var(--fs-micro);
+  letter-spacing:.06em; color:var(--danger);
+}
+.field__error:empty{display:none}
+
+/* Ханипот. Прятать через display:none нельзя: часть ботов такие поля
+   пропускает именно по этому признаку. */
+.field--trap{
+  position:absolute; left:-9999px;
+  width:1px; height:1px; overflow:hidden;
+}
+
+.consent{
+  display:flex; align-items:flex-start; gap:var(--sp-3);
+  margin-block:var(--sp-5);
+  font-size:var(--fs-small); line-height:1.45; color:var(--ink-2);
+}
+.consent__box{
+  flex:none; width:18px; height:18px; margin-top:2px;
+  accent-color:var(--lime);
+}
+.consent a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+
+/* Результат отправки. Держим в aria-live, чтобы скринридер объявил его
+   без перевода фокуса. */
+.form__status{margin-top:var(--sp-4)}
+.form__status:empty{display:none}
+.form__status--ok{
+  padding:var(--sp-5);
+  border:1px solid var(--lime); background:var(--lime-dim);
+}
+.form__status--error{
+  padding:var(--sp-4);
+  border:1px solid var(--danger); color:var(--ink);
+  font-size:var(--fs-small);
+}
+.form__status-title{
+  font-family:var(--ff-display); font-weight:500;
+  font-size:var(--fs-h3); letter-spacing:-.02em;
+  margin-bottom:var(--sp-2);
+}

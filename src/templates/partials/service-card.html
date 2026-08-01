@@ -1,0 +1,23 @@
+<!-- Нумерации 01–04 здесь нет: направления параллельны, а не последовательны.
+     Вместо номера — глиф соотношения сторон в истинной пропорции и
+     хронометраж, то есть то, что клиент действительно сравнивает. -->
+<a class="service-card" href="/services/{{ slug }}/">
+  <span class="service-card__format">
+    <span class="service-card__glyph glyph-{{ format.ratio | ratio }}" aria-hidden="true"></span>
+    <span class="service-card__spec">{{ format.ratio }} · {{ format.duration }}</span>
+  </span>
+
+  <span class="service-card__body">
+    <span class="h3 service-card__title" style="display:block">{{ title }}</span>
+    <span class="service-card__text">{{ summary }}</span>
+  </span>
+
+  <span class="service-card__footer">
+    {{#if priceFrom}}
+    <span class="service-card__price">от {{ priceFrom | money }} ₽</span>
+    {{else}}
+    <span class="service-card__price service-card__price--soft">{{ priceNote }}</span>
+    {{/if}}
+    <span class="service-card__arrow" aria-hidden="true">→</span>
+  </span>
+</a>

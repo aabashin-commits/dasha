@@ -1,0 +1,12 @@
+<article class="journal-card">
+  <a class="journal-card__media" href="/journal/{{ slug }}/" tabindex="-1" aria-hidden="true">
+    <picture>
+      <source srcset="{{ coverWebp }}" type="image/webp">
+      <img class="journal-card__img" src="{{ cover }}" alt="{{ coverAlt }}"
+           loading="lazy" decoding="async" width="1600" height="900">
+    </picture>
+  </a>
+  <p class="journal-card__date"><time datetime="{{ date }}">{{ date | date }}</time></p>
+  <h3><a class="journal-card__title" href="/journal/{{ slug }}/">{{ title }}</a></h3>
+  <p class="journal-card__excerpt">{{ excerpt }}</p>
+</article>

@@ -1,0 +1,62 @@
+/* Сетка работ.
+   Композиция задана явно: вертикали занимают две строки, горизонтали
+   складываются рядом — так правый край сетки не рвётся дырами.
+   Классы раскладки вынесены в префикс .pos-* : ранее .w-b означал
+   одновременно размещение и подпись, и правила прилетали друг на друга. */
+
+.works{
+  display:grid; grid-template-columns:repeat(12,1fr);
+  gap:var(--sp-5); align-items:start;
+}
+.work-card{grid-column:span 12}
+
+@media (min-width:760px){
+  .pos-1{grid-column:1/9}
+  .pos-2{grid-column:9/13;grid-row:1/3}
+  .pos-3{grid-column:1/9}
+  .pos-4{grid-column:1/5;grid-row:3/5}
+  .pos-5{grid-column:5/13}
+  .pos-6{grid-column:5/13}
+}
+
+/* display:block обязателен — на inline-элементе aspect-ratio не работает,
+   и карточка схлопывается в нулевую высоту. */
+.work-card__media{
+  display:block; position:relative; overflow:hidden;
+  border:1px solid var(--line);
+  transition:border-color var(--t) var(--ease);
+}
+.work-card:hover .work-card__media{border-color:var(--line-lit)}
+
+.work-card__img{
+  position:absolute; inset:0;
+  width:100%; height:100%; object-fit:cover;
+  transition:transform var(--t-slow) var(--ease-out);
+}
+.work-card:hover .work-card__img{transform:scale(1.03)}
+
+.work-card__line{
+  position:absolute; left:0; right:0; bottom:0; height:2px;
+  background:var(--lime);
+  transform:scaleX(0); transform-origin:left;
+  transition:transform var(--t) var(--ease-out);
+}
+.work-card:hover .work-card__line{transform:scaleX(1)}
+
+.work-card__caption{
+  display:flex; justify-content:space-between; gap:var(--sp-4);
+  padding-top:var(--sp-4);
+}
+.work-card__title{
+  font-family:var(--ff-display); font-weight:500;
+  font-size:1.0625rem; letter-spacing:-.02em; line-height:1.25;
+}
+.work-card__meta{
+  flex:none; text-align:right; line-height:1.7;
+  font-family:var(--ff-mono); font-size:var(--fs-micro);
+  letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3);
+}
+
+/* Фильтр скрывает карточки, но не удаляет: все работы остаются в HTML,
+   иначе фильтрация съедает индексацию. */
+.work-card[hidden]{display:none}

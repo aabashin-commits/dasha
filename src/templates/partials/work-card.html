@@ -1,0 +1,16 @@
+<a class="work-card {{ position }}" href="/works/{{ slug }}/">
+  <span class="work-card__media {{ ratioClass }}">
+    <picture>
+      <source srcset="{{ posterWebp }}" type="image/webp">
+      <img class="work-card__img" src="{{ poster }}" alt="{{ title }} — кадр из работы"
+           loading="lazy" decoding="async"
+           width="{{ posterWidth }}" height="{{ posterHeight }}">
+    </picture>
+    <span class="grain" aria-hidden="true"></span>
+    <span class="work-card__line" aria-hidden="true"></span>
+  </span>
+  <span class="work-card__caption">
+    <span class="work-card__title">{{ title }}</span>
+    <span class="work-card__meta">{{ serviceTitle }}<br>{{ ratio }} · {{ year }}</span>
+  </span>
+</a>

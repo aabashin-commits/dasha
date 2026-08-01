@@ -1,0 +1,22 @@
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="logo" href="/" aria-label="{{ site.name }} — на главную">
+      <span class="logo__mark" aria-hidden="true"></span>{{ site.name }}
+    </a>
+
+    <nav class="site-nav" aria-label="Основная навигация">
+      {{#each site.menu}}
+      <a class="site-nav__link" href="{{ url }}">{{ title }}</a>
+      {{/each}}
+    </nav>
+
+    <a class="btn btn--primary site-header__cta" href="/contacts/">Обсудить проект</a>
+
+    <button class="burger" type="button" data-burger
+            aria-expanded="false" aria-controls="menu" aria-label="Открыть меню">
+      <span class="burger__line"></span>
+      <span class="burger__line"></span>
+      <span class="burger__line"></span>
+    </button>
+  </div>
+</header>

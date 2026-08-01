@@ -1,0 +1,245 @@
+<!-- ГЕРОЙ: остановленный кадр вместо автоплей-шоурила.
+     Обоснование и условия отката — docs/design-direction.md -->
+<section class="wrap hero" data-keyframe="Начало">
+  <p class="slug hero__slug">
+    <span class="slug__mark" aria-hidden="true">◆</span>
+    <span>{{ site.name }}</span><span>{{ site.tagline }}</span><span>{{ site.city }}</span>
+  </p>
+
+  <h1 class="display hero__title">Один кадр решает, досмотрят ли остальные</h1>
+
+  <p class="lead hero__lead">
+    Снимаем Reels, события, документальное кино и фильмы-воспоминания.
+    Начинаем не с камеры, а с вопроса, что должно остаться у зрителя,
+    когда ролик закончится.
+  </p>
+
+  <div class="hero__actions">
+    <a class="btn btn--primary" href="/contacts/">Обсудить проект <span class="btn__arrow" aria-hidden="true">→</span></a>
+    <a class="btn" href="/works/">Смотреть работы <span class="btn__arrow" aria-hidden="true">→</span></a>
+  </div>
+
+  <div class="stage" data-stage>
+    <div class="stage__frame">
+      {{#each heroShots}}
+      <img class="stage__shot{{#if @first}} stage__shot--active{{/if}}"
+           data-shot data-shot-title="{{ title }}" data-shot-meta="{{ meta }}"
+           src="{{ src }}" alt="{{ alt }}" width="1920" height="1080"
+           {{#if @first}}fetchpriority="high"{{else}}loading="lazy"{{/if}} decoding="async">
+      {{/each}}
+      <span class="stage__safe" aria-hidden="true"></span>
+      <span class="grain stage__grain" aria-hidden="true"></span>
+    </div>
+
+    <div class="stage__bar">
+      <span class="stage__title" data-shot-title>Ночь премьеры</span>
+      <span class="ticks" data-ticks aria-hidden="true"></span>
+      <span class="stage__meta">
+        <span data-shot-meta>16:9 · 04:12 · EVENT</span> · <span data-timecode>00:00:00:00</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- НАПРАВЛЕНИЯ -->
+<section class="wrap band" id="services" data-keyframe="Направления">
+  <div class="section-head reveal">
+    <div class="section-head__text">
+      <p class="slug">
+        <span class="slug__mark" aria-hidden="true">◆</span>
+        <span>Направления</span><span>{{ services.length }} позиции</span>
+      </p>
+      <h2 class="h2 section-head__title">Четыре формата. Разная задача у каждого</h2>
+    </div>
+    <p class="section-head__aside">
+      Выбор начинается не с бюджета, а с того, где ролик будет жить
+      и сколько времени у вас есть на внимание зрителя.
+    </p>
+  </div>
+
+  <div class="services reveal">
+    {{#each services}}
+    {{> service-card }}
+    {{/each}}
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- РАБОТЫ: каждая карточка в истинном соотношении сторон своей работы -->
+<section class="wrap band" id="works" data-keyframe="Работы">
+  <div class="section-head reveal">
+    <div class="section-head__text">
+      <p class="slug">
+        <span class="slug__mark" aria-hidden="true">◆</span>
+        <span>Работы</span><span>Избранное</span>
+      </p>
+      <h2 class="h2 section-head__title">Каждая работа&nbsp;— в своём формате</h2>
+    </div>
+    <a class="btn" href="/works/">Все работы <span class="btn__arrow" aria-hidden="true">→</span></a>
+  </div>
+
+  <div class="works reveal">
+    {{#each works}}
+    {{> work-card }}
+    {{/each}}
+  </div>
+</section>
+
+<!-- Одна бегущая строка на весь сайт -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <div class="marquee__group">
+      {{#each services}}
+      <span class="marquee__item">{{ title }}<span class="marquee__dot"></span></span>
+      {{/each}}
+    </div>
+    <div class="marquee__group">
+      {{#each services}}
+      <span class="marquee__item">{{ title }}<span class="marquee__dot"></span></span>
+      {{/each}}
+    </div>
+  </div>
+</div>
+
+<!-- ПРОЦЕСС: нумерация здесь несёт информацию, это настоящая последовательность -->
+<section class="wrap band" id="process" data-keyframe="Процесс">
+  <div class="section-head reveal">
+    <div class="section-head__text">
+      <p class="slug">
+        <span class="slug__mark" aria-hidden="true">◆</span>
+        <span>Процесс</span><span>{{ process.length }} этапа</span>
+      </p>
+      <h2 class="h2 section-head__title">Как устроена работа</h2>
+    </div>
+  </div>
+
+  <div class="process reveal">
+    {{#each process}}
+    <div class="process__item">
+      <span class="process__number">{{ @number }}</span>
+      <h3 class="h3">{{ title }}</h3>
+      <p class="process__text">{{ text }}</p>
+    </div>
+    {{/each}}
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="stats reveal">
+    {{#each stats}}
+    <div class="stat">
+      <div class="stat__value">{{ value }}</div>
+      <div class="stat__label">{{ label }}</div>
+    </div>
+    {{/each}}
+  </div>
+</div>
+
+<!-- ОТЗЫВЫ И КЛИЕНТЫ -->
+<section class="wrap band" data-keyframe="Отзывы">
+  <div class="section-head reveal">
+    <div class="section-head__text">
+      <p class="slug">
+        <span class="slug__mark" aria-hidden="true">◆</span>
+        <span>Отзывы</span>
+      </p>
+      <h2 class="h2 section-head__title">Что говорят заказчики</h2>
+    </div>
+  </div>
+
+  <div class="testimonials reveal">
+    {{#each testimonials}}
+    <figure class="testimonial">
+      <blockquote class="testimonial__text">{{ text }}</blockquote>
+      <figcaption>
+        <div class="testimonial__author">{{ author }}</div>
+        <div class="testimonial__role">{{ role }}{{#if company}} · {{ company }}{{/if}}</div>
+      </figcaption>
+    </figure>
+    {{/each}}
+  </div>
+
+  <div class="logo-wall reveal" style="margin-top:var(--sp-6)">
+    {{#each clients}}
+    <div class="logo-wall__cell">
+      <img class="logo-wall__img" src="{{ logo }}" alt="{{ name }}"
+           loading="lazy" decoding="async" width="200" height="48">
+    </div>
+    {{/each}}
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ЖУРНАЛ -->
+<section class="wrap band" id="journal" data-keyframe="Журнал">
+  <div class="section-head reveal">
+    <div class="section-head__text">
+      <p class="slug">
+        <span class="slug__mark" aria-hidden="true">◆</span>
+        <span>Журнал</span>
+      </p>
+      <h2 class="h2 section-head__title">Как мы думаем о работе</h2>
+    </div>
+    <a class="btn" href="/journal/">Все статьи <span class="btn__arrow" aria-hidden="true">→</span></a>
+  </div>
+
+  <div class="journal-grid reveal">
+    {{#each journal}}
+    {{> journal-card }}
+    {{/each}}
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ВОПРОСЫ -->
+<section class="wrap band" id="faq" data-keyframe="Вопросы">
+  <div class="section-head reveal">
+    <div class="section-head__text">
+      <p class="slug">
+        <span class="slug__mark" aria-hidden="true">◆</span>
+        <span>Вопросы</span>
+      </p>
+      <h2 class="h2 section-head__title">Что спрашивают чаще всего</h2>
+    </div>
+  </div>
+
+  <div class="faq reveal">
+    {{#each faq}}
+    <details class="faq__item">
+      <summary class="faq__q">
+        {{ q }}
+        <span class="faq__sign" aria-hidden="true"></span>
+      </summary>
+      <div class="faq__a">{{ a }}</div>
+    </details>
+    {{/each}}
+  </div>
+</section>
+
+<!-- КОНТАКТ -->
+<section class="wrap band" id="contact" data-keyframe="Контакт">
+  <div class="cta reveal">
+    <div>
+      <p class="slug">
+        <span class="slug__mark" aria-hidden="true">◆</span>
+        <span>Контакт</span>
+      </p>
+      <h2 class="h2 cta__title">Расскажите, что нужно снять</h2>
+      <p class="muted">
+        Ответим в течение рабочего дня. Если проект срочный —
+        пишите в Telegram, там быстрее.
+      </p>
+      <div class="cta__links">
+        <a class="btn" href="https://t.me/{{ site.contacts.telegram }}">Telegram <span class="btn__arrow" aria-hidden="true">→</span></a>
+        <a class="btn" href="mailto:{{ site.contacts.email }}">{{ site.contacts.email }}</a>
+      </div>
+    </div>
+
+    {{> lead-form }}
+  </div>
+</section>

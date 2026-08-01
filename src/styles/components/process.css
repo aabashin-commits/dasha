@@ -1,0 +1,24 @@
+/* Нумерация здесь оправдана: бриф → препродакшн → съёмка → пост
+   действительно последовательность, и номер несёт информацию.
+   На карточках направлений её нет — там порядка не существует. */
+
+.process{display:grid;border-top:1px solid var(--line)}
+
+.process__item{
+  display:grid; gap:var(--sp-3) var(--sp-6);
+  grid-template-columns:auto 1fr;
+  padding-block:var(--sp-6);
+  border-bottom:1px solid var(--line);
+}
+@media (min-width:900px){
+  .process__item{grid-template-columns:70px 1fr 1.15fr;align-items:start}
+}
+
+.process__number{
+  padding-top:5px;
+  font-family:var(--ff-mono); font-size:var(--fs-meta);
+  letter-spacing:.14em; color:var(--lime);
+  font-variant-numeric:tabular-nums;
+}
+.process__text{grid-column:1/-1;color:var(--ink-2)}
+@media (min-width:900px){ .process__text{grid-column:auto} }

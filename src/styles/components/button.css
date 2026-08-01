@@ -1,0 +1,37 @@
+.btn{
+  display:inline-flex; align-items:center; gap:10px;
+  min-height:46px; padding:0 var(--sp-5);
+  font-family:var(--ff-mono); font-size:var(--fs-meta);
+  letter-spacing:.12em; text-transform:uppercase;
+  border:1px solid var(--line-lit); border-radius:var(--r-sm);
+  color:var(--ink);
+  transition:border-color var(--t-fast) var(--ease),
+             color var(--t-fast) var(--ease),
+             background-color var(--t-fast) var(--ease);
+}
+.btn:hover{border-color:var(--ink-2)}
+
+/* Единственная заливка лаймом на экран. Вторичные кнопки контурные —
+   иначе акцент перестаёт читаться как свет и становится просто краской. */
+.btn--primary{
+  background:var(--lime); border-color:var(--lime);
+  color:var(--lime-ink); font-weight:500;
+}
+.btn--primary:hover{background:var(--lime-hi);border-color:var(--lime-hi)}
+
+.btn--wide{width:100%;justify-content:center}
+.btn[disabled]{opacity:.5;pointer-events:none}
+
+.btn__arrow{
+  font-family:var(--ff-body);
+  transition:transform var(--t) var(--ease-out);
+}
+.btn:hover .btn__arrow{transform:translateX(4px)}
+
+/* Спиннер на время отправки формы */
+.btn__spinner{
+  width:13px; height:13px; flex:none;
+  border:1.5px solid currentColor; border-top-color:transparent;
+  border-radius:50%; animation:btn-spin .7s linear infinite;
+}
+@keyframes btn-spin{to{transform:rotate(360deg)}}
