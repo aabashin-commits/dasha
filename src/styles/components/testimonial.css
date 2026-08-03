@@ -8,7 +8,7 @@
 }
 .testimonial__text{flex:1;color:var(--ink-2);line-height:1.55}
 .testimonial__author{
-  font-family:var(--ff-display); font-weight:500;
+  font-family:var(--ff-display); font-weight:700;
   font-size:1rem; letter-spacing:-.02em;
 }
 .testimonial__role{

@@ -136,17 +136,30 @@ function sceneSvg(sc, w, h) {
 const RATIO = { '9:16': 9 / 16, '16:9': 16 / 9, '2.39:1': 2.39, '1.66:1': 1.66, '4:3': 4 / 3, '1:1': 1 };
 let written = 0;
 
-async function emit(path, key, w, h, sceneIndex) {
+async function emit(path, key, w, h, sceneIndex, widths = []) {
   const abs = join(PUBLIC, path);
   mkdirSync(dirname(abs), { recursive: true });
   const scene = sceneIndex === undefined ? sceneFor(key) : SCENES[sceneIndex % SCENES.length];
   const svg = Buffer.from(sceneSvg(scene, w, h));
+
   // resize обязателен: sharp растрирует SVG исходя из density, а не из
   // атрибутов width/height, и без него картинки выходят в 1.33 раза крупнее
-  const img = sharp(svg).resize(w, h, { fit: 'fill' });
-  await img.clone().jpeg({ quality: 82, mozjpeg: true }).toFile(abs);
-  await img.clone().webp({ quality: 80 }).toFile(abs.replace(/\.jpg$/, '.webp'));
-  written += 2;
+  const write = async (file, width) => {
+    const height = Math.round((width / w) * h);
+    const img = sharp(svg).resize(width, height, { fit: 'fill' });
+    await img.clone().jpeg({ quality: 82, mozjpeg: true }).toFile(file);
+    await img.clone().webp({ quality: 80 }).toFile(file.replace(/\.jpg$/, '.webp'));
+    written += 2;
+  };
+
+  await write(abs, w);
+
+  // Узкие варианты для srcset: отдавать телефону кадр в 1920px —
+  // это секунды LCP на медленной сети
+  for (const width of widths) {
+    if (width >= w) continue;
+    await write(abs.replace(/\.jpg$/, `-${width}.jpg`), width);
+  }
 }
 
 /** Ширина фиксирована, высота выводится из соотношения — так работает вёрстка. */
@@ -165,7 +178,7 @@ async function main() {
 
   for (const w of works) {
     const [pw, ph] = box(w.ratio);
-    await emit(w.poster, w.slug, pw, ph);
+    await emit(w.poster, w.slug, pw, ph, undefined, [480, 800, 1200]);
     for (const [i, g] of (w.gallery ?? []).entries()) {
       await emit(g.src, `${w.slug}-${i}`, 1600, 900);
     }
@@ -189,7 +202,7 @@ async function main() {
   // Кадры героя: пять остановленных кадров вместо автоплей-шоурила.
   // Сцены задаются явно — весь смысл склеек в том, что кадры заведомо разные.
   for (let i = 1; i <= 5; i++) {
-    await emit(`/media/hero/shot-${i}.jpg`, `hero-shot-${i}`, 1920, 1080, i - 1);
+    await emit(`/media/hero/shot-${i}.jpg`, `hero-shot-${i}`, 1920, 1080, i - 1, [640, 1024, 1440]);
   }
 
   // Логотипы клиентов — простые словесные знаки, монохром под грейскейл-стену

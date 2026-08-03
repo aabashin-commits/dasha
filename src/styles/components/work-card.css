@@ -58,7 +58,7 @@
   padding-top:var(--sp-4);
 }
 .work-card__title{
-  font-family:var(--ff-display); font-weight:500;
+  font-family:var(--ff-display); font-weight:700;
   font-size:1.0625rem; letter-spacing:-.02em; line-height:1.25;
 }
 .work-card__meta{

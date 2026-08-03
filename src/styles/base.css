@@ -25,7 +25,7 @@
   letter-spacing:-.035em; text-wrap:balance;
 }
 .h3{
-  font-family:var(--ff-display); font-weight:500;
+  font-family:var(--ff-display); font-weight:700;
   font-size:var(--fs-h3); line-height:1.15;
   letter-spacing:-.02em;
 }
@@ -48,6 +48,7 @@
 
 .skip{
   position:absolute; left:var(--sp-4); top:-100px; z-index:var(--z-skip);
+  display:flex; align-items:center; min-height:44px;
   background:var(--lime); color:var(--lime-ink);
   padding:var(--sp-3) var(--sp-5); border-radius:var(--r-sm);
   font-family:var(--ff-mono); font-size:var(--fs-meta);

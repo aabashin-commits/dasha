@@ -22,7 +22,7 @@
   letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3);
 }
 .journal-card__title{
-  font-family:var(--ff-display); font-weight:500;
+  font-family:var(--ff-display); font-weight:700;
   font-size:1.125rem; line-height:1.25; letter-spacing:-.025em;
   transition:color var(--t-fast) var(--ease);
 }

@@ -11,8 +11,10 @@
   gap:var(--sp-5); height:var(--header-h);
 }
 
+/* min-height 44px — тач-цель. Логотип это основная ссылка «на главную»,
+   и промахиваться по ней пальцем не должно быть возможно. */
 .logo{
-  display:flex; align-items:center; gap:9px;
+  display:flex; align-items:center; gap:9px; min-height:44px;
   font-family:var(--ff-display); font-weight:700;
   font-size:1.0625rem; letter-spacing:-.03em;
 }
@@ -26,7 +28,8 @@
 @media (min-width:900px){ .site-nav{display:flex} }
 
 .site-nav__link{
-  position:relative; padding-block:6px;
+  position:relative;
+  display:flex; align-items:center; min-height:44px;
   font-family:var(--ff-mono); font-size:var(--fs-meta);
   letter-spacing:.12em; text-transform:uppercase; color:var(--ink-2);
   transition:color var(--t-fast) var(--ease);

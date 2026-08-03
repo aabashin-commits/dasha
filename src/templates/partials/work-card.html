@@ -1,8 +1,11 @@
 <a class="work-card {{ position }}" href="/works/{{ slug }}/" data-work-service="{{ service }}">
   <span class="work-card__media {{ ratioClass }}">
     <picture>
-      <source srcset="{{ posterWebp }}" type="image/webp">
-      <img class="work-card__img" src="{{ poster }}" alt="{{ title }} — кадр из работы"
+      <source type="image/webp" srcset="{{ posterSrcsetWebp }}"
+              sizes="(min-width: 1100px) 40vw, (min-width: 760px) 50vw, 100vw">
+      <img class="work-card__img" src="{{ poster }}" srcset="{{ posterSrcset }}"
+           sizes="(min-width: 1100px) 40vw, (min-width: 760px) 50vw, 100vw"
+           alt="{{ title }} — кадр из работы"
            loading="lazy" decoding="async"
            width="{{ posterWidth }}" height="{{ posterHeight }}">
     </picture>

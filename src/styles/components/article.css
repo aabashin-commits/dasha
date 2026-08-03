@@ -12,11 +12,13 @@
 }
 .article h3{
   margin-top:var(--sp-7);
-  font-family:var(--ff-display); font-weight:500;
+  font-family:var(--ff-display); font-weight:700;
   font-size:var(--fs-h3); letter-spacing:-.02em;
 }
 .article p{font-size:var(--fs-lead);line-height:1.65;color:var(--ink-2)}
-.article strong{color:var(--ink);font-weight:500}
+/* Выделение цветом, а не весом: отдельное начертание Golos ради
+   нескольких слов в статье стоило бы 65 КБ на первой загрузке */
+.article strong{color:var(--ink)}
 .article a{
   color:var(--ink);
   text-decoration:underline; text-underline-offset:3px;
@@ -74,7 +76,7 @@
 }
 .person:hover .person__img{filter:none}
 .person__name{
-  font-family:var(--ff-display); font-weight:500;
+  font-family:var(--ff-display); font-weight:700;
   font-size:1.0625rem; letter-spacing:-.02em;
 }
 .person__role{

@@ -6,7 +6,7 @@
   display:flex; align-items:baseline; justify-content:space-between;
   gap:var(--sp-5); padding-block:var(--sp-5);
   cursor:pointer; list-style:none;
-  font-family:var(--ff-display); font-weight:500;
+  font-family:var(--ff-display); font-weight:700;
   font-size:var(--fs-h3); letter-spacing:-.02em; line-height:1.25;
   transition:color var(--t-fast) var(--ease);
 }

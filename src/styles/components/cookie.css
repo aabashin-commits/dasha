@@ -1,0 +1,28 @@
+.cookie{
+  position:fixed; z-index:var(--z-menu);
+  left:var(--sp-4); right:var(--sp-4); bottom:var(--sp-4);
+  display:flex; flex-wrap:wrap; align-items:center;
+  justify-content:space-between; gap:var(--sp-4);
+  max-width:760px; margin-inline:auto;
+  padding:var(--sp-5);
+  background:var(--bg-lift); border:1px solid var(--line-lit);
+  border-radius:var(--r-md);
+  box-shadow:0 16px 48px rgb(0 0 0 / .5);
+  opacity:0; transform:translateY(12px);
+  transition:opacity var(--t) var(--ease),
+             transform var(--t) var(--ease-out);
+}
+.cookie--in{opacity:1;transform:none}
+
+/* Оставляем место мобильному плейхеду внизу экрана */
+@media (max-width:1099px){ .cookie{bottom:calc(var(--sp-4) + 4px)} }
+
+.cookie__text{
+  flex:1 1 280px;
+  font-size:var(--fs-small); line-height:1.45; color:var(--ink-2);
+}
+.cookie__text a{
+  color:var(--ink);
+  text-decoration:underline; text-underline-offset:3px;
+}
+.cookie__actions{display:flex;flex-wrap:wrap;gap:var(--sp-3)}

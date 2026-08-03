@@ -60,6 +60,36 @@ function loadGa4(id) {
   window.gtag('config', id);
 }
 
+/** Клики по ссылкам с data-track и глубина скролла — без ручных вызовов. */
+function wireAutoEvents() {
+  document.addEventListener('click', (e) => {
+    const el = e.target.closest('[data-track]');
+    if (el) track(el.dataset.track, { href: el.getAttribute('href') || '' });
+  });
+
+  const marks = [
+    { at: 0.5, event: 'scroll_50', done: false },
+    { at: 0.9, event: 'scroll_90', done: false },
+  ];
+  let queued = false;
+
+  addEventListener('scroll', () => {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(() => {
+      queued = false;
+      const max = document.documentElement.scrollHeight - innerHeight;
+      if (max <= 0) return;
+      const p = scrollY / max;
+      for (const m of marks) {
+        if (m.done || p < m.at) continue;
+        m.done = true;
+        track(m.event);
+      }
+    });
+  }, { passive: true });
+}
+
 export function init() {
   const el = document.body;
   config = {
@@ -67,17 +97,30 @@ export function init() {
     metrika: el.dataset.metrika || '',
     ga4: el.dataset.ga4 || '',
   };
+
+  // События собираем всегда: пока согласия нет, они лежат в буфере
+  // и уходят только если человек согласится
+  wireAutoEvents();
   if (!config.enabled) return;
 
   const start = () => {
     if (loaded) return;
+    // Без явного согласия счётчики не грузим: это требование 152-ФЗ,
+    // а не вопрос вкуса. В приватном режиме Safari localStorage бросает
+    // исключение — считаем это отсутствием согласия.
+    let granted = false;
+    try { granted = localStorage.getItem('kf-cookie-consent') === 'granted'; } catch { /* приватный режим */ }
+    if (!granted) return;
     loaded = true;
     if (config.metrika) loadMetrika(config.metrika);
     if (config.ga4) loadGa4(config.ga4);
     while (queue.length > 0) send(...queue.shift());
   };
 
-  // Первое взаимодействие или простой — что случится раньше
+  addEventListener('kf:consent-granted', start);
+
+  // Первое взаимодействие или простой — что случится раньше.
+  // Синхронная загрузка в <head> убила бы LCP.
   const once = { once: true, passive: true };
   addEventListener('pointerdown', start, once);
   addEventListener('keydown', start, once);

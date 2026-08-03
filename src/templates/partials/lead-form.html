@@ -1,4 +1,9 @@
-<form class="lead-form" data-lead-form action="{{ site.form.endpoint }}" method="post" novalidate>
+<form class="lead-form" data-lead-form method="post" novalidate
+      action="{{ site.form.endpoint }}"
+      data-success-title="{{ site.form.successTitle }}"
+      data-success-text="{{ site.form.successText }}"
+      data-error-text="{{ site.form.errorText }}"
+      data-telegram="{{ site.contacts.telegram }}">
   <div class="field">
     <label class="field__label" for="lead-name">Как вас зовут</label>
     <input class="field__control" id="lead-name" name="name" type="text"

@@ -20,7 +20,7 @@
 
 .filter__btn[aria-pressed="true"]{
   background:var(--lime); border-color:var(--lime);
-  color:var(--lime-ink); font-weight:500;
+  color:var(--lime-ink);
 }
 .filter__count{opacity:.55;margin-left:6px}
 

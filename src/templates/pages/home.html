@@ -22,10 +22,16 @@
   <div class="stage" data-stage>
     <div class="stage__frame">
       {{#each heroShots}}
-      <img class="stage__shot{{#if @first}} stage__shot--active{{/if}}"
-           data-shot data-shot-title="{{ title }}" data-shot-meta="{{ meta }}"
-           src="{{ src }}" alt="{{ alt }}" width="1920" height="1080"
-           {{#if @first}}fetchpriority="high"{{else}}loading="lazy"{{/if}} decoding="async">
+      <picture>
+        <source type="image/webp" srcset="{{ srcsetWebp }}"
+                sizes="(min-width: 1440px) 1208px, 100vw">
+        <img class="stage__shot{{#if @first}} stage__shot--active{{/if}}"
+             data-shot data-shot-title="{{ title }}" data-shot-meta="{{ meta }}"
+             src="{{ src }}" srcset="{{ srcset }}"
+             sizes="(min-width: 1440px) 1208px, 100vw"
+             alt="{{ alt }}" width="1920" height="1080"
+             {{#if @first}}fetchpriority="high"{{else}}loading="lazy"{{/if}} decoding="async">
+      </picture>
       {{/each}}
       <span class="stage__safe" aria-hidden="true"></span>
       <span class="grain stage__grain" aria-hidden="true"></span>

@@ -13,7 +13,7 @@
 }
 .contact-list__value{
   margin-top:var(--sp-3);
-  font-family:var(--ff-display); font-weight:500;
+  font-family:var(--ff-display); font-weight:700;
   font-size:clamp(1.0625rem,1.8vw,1.375rem);
   letter-spacing:-.02em; word-break:break-word;
 }

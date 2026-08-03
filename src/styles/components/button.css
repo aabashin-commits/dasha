@@ -3,7 +3,7 @@
   min-height:46px; padding:0 var(--sp-5);
   font-family:var(--ff-mono); font-size:var(--fs-meta);
   letter-spacing:.12em; text-transform:uppercase;
-  border:1px solid var(--line-lit); border-radius:var(--r-sm);
+  border:1px solid var(--line-ui); border-radius:var(--r-sm);
   color:var(--ink);
   transition:border-color var(--t-fast) var(--ease),
              color var(--t-fast) var(--ease),
@@ -15,7 +15,7 @@
    иначе акцент перестаёт читаться как свет и становится просто краской. */
 .btn--primary{
   background:var(--lime); border-color:var(--lime);
-  color:var(--lime-ink); font-weight:500;
+  color:var(--lime-ink);
 }
 .btn--primary:hover{background:var(--lime-hi);border-color:var(--lime-hi)}
 

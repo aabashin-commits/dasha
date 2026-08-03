@@ -22,10 +22,20 @@ const CSS_OUT = join(ROOT, 'src/styles/fonts.css');
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 '
   + '(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36';
 
+/**
+ * Начертаний ровно четыре, и это осознанный предел.
+ *
+ * Каждое начертание — два файла (латиница и кириллица) и примерно 60–80 КБ
+ * на первой загрузке. Шесть начертаний давали 236 КБ шрифтов — больше,
+ * чем весь остальной сайт вместе взятый.
+ *
+ * Golos 500 и Plex Mono 500 убраны: их применение сводилось к выделению
+ * отдельных подписей, а это решается цветом и фоном, а не весом.
+ */
 const FAMILIES = [
-  { name: 'Unbounded', weights: [500, 700], varName: 'display' },
-  { name: 'Golos Text', weights: [400, 500], varName: 'body' },
-  { name: 'IBM Plex Mono', weights: [400, 500], varName: 'mono' },
+  { name: 'Unbounded', weights: [700] },
+  { name: 'Golos Text', weights: [400] },
+  { name: 'IBM Plex Mono', weights: [400] },
 ];
 
 // Берём только нужные подмножества: латиница для технических подписей,

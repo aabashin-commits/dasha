@@ -11,9 +11,14 @@ import * as heroCuts from './modules/hero-cuts.js';
 import * as worksFilter from './modules/works-filter.js';
 import * as videoFacade from './modules/video-facade.js';
 import * as lightbox from './modules/lightbox.js';
+import * as form from './modules/form.js';
+import * as cookie from './modules/cookie.js';
 import * as reveal from './modules/reveal.js';
 
-const MODULES = [analytics, nav, spine, heroCuts, worksFilter, videoFacade, lightbox, reveal];
+const MODULES = [
+  analytics, nav, spine, heroCuts,
+  worksFilter, videoFacade, lightbox, form, cookie, reveal,
+];
 
 for (const mod of MODULES) {
   try {

@@ -34,6 +34,16 @@ const STATS = [
   { value: '12', label: 'дней средний срок' },
 ];
 
+/* Кадры героя. Это не контент заказчика, а часть повествования страницы,
+   поэтому живут здесь, а не в content/*.json. */
+const HERO_SHOTS = [
+  { src: '/media/hero/shot-1.jpg', title: 'Ночь премьеры', meta: '16:9 · 04:12 · EVENT', alt: 'Сцена в контровом свете во время премьерного показа' },
+  { src: '/media/hero/shot-2.jpg', title: 'Утро в мастерской', meta: '9:16 · 00:38 · REELS', alt: 'Свет из окна на верстаке мастерской' },
+  { src: '/media/hero/shot-3.jpg', title: 'Смена на Рубинштейна', meta: '9:16 · 00:38 · REELS', alt: 'Ночная улица с фонарями' },
+  { src: '/media/hero/shot-4.jpg', title: 'Дорога в Териберку', meta: '2.39:1 · 31:20 · DOC', alt: 'Низкий горизонт северного побережья' },
+  { src: '/media/hero/shot-5.jpg', title: 'Последний свет', meta: '1.66:1 · 08:05 · MEMORY', alt: 'Золотой час над полем' },
+];
+
 const PROCESS = [
   { title: 'Бриф', text: 'Спрашиваем, что должно остаться у зрителя после просмотра. Из ответа собирается всё остальное — формат, хронометраж, бюджет.' },
   { title: 'Препродакшн', text: 'Раскадровка, локации, свет, график смен. К съёмочному дню приходим без открытых вопросов: площадка не место для решений.' },
@@ -124,13 +134,12 @@ function collectPages(c) {
       team,
       stats: STATS,
       process: PROCESS,
-      heroShots: [
-        { src: '/media/hero/shot-1.jpg', title: 'Ночь премьеры', meta: '16:9 · 04:12 · EVENT', alt: 'Сцена в контровом свете во время премьерного показа' },
-        { src: '/media/hero/shot-2.jpg', title: 'Утро в мастерской', meta: '9:16 · 00:38 · REELS', alt: 'Свет из окна на верстаке мастерской' },
-        { src: '/media/hero/shot-3.jpg', title: 'Смена на Рубинштейна', meta: '9:16 · 00:38 · REELS', alt: 'Ночная улица с фонарями' },
-        { src: '/media/hero/shot-4.jpg', title: 'Дорога в Териберку', meta: '2.39:1 · 31:20 · DOC', alt: 'Низкий горизонт северного побережья' },
-        { src: '/media/hero/shot-5.jpg', title: 'Последний свет', meta: '1.66:1 · 08:05 · MEMORY', alt: 'Золотой час над полем' },
-      ],
+      heroShots: HERO_SHOTS.map((s) => ({
+        ...s,
+        srcset: srcset(s.src, HERO_WIDTHS, 1920),
+        srcsetWebp: srcset(s.src, HERO_WIDTHS, 1920, 'webp'),
+        webp: s.src.replace(/\.jpg$/, '.webp'),
+      })),
     },
   });
 
@@ -300,6 +309,24 @@ function decorateGallery(gallery) {
 
 const RATIO_VALUE = { '9:16': 9 / 16, '16:9': 16 / 9, '2.39:1': 2.39, '1.66:1': 1.66, '4:3': 4 / 3, '1:1': 1 };
 
+/**
+ * Строка srcset из вариантов, которые сгенерировал make-placeholders.js.
+ * Без неё телефону уезжает кадр в 1600–1920 пикселей — это секунды LCP
+ * на медленной сети.
+ */
+function srcset(path, widths, full, ext) {
+  const file = ext ? path.replace(/\.jpg$/, `.${ext}`) : path;
+  const parts = widths.map((w) => {
+    const variant = file.replace(/\.(jpg|webp)$/, `-${w}.$1`);
+    return `${variant} ${w}w`;
+  });
+  parts.push(`${file} ${full}w`);
+  return parts.join(', ');
+}
+
+const POSTER_WIDTHS = [480, 800, 1200];
+const HERO_WIDTHS = [640, 1024, 1440];
+
 /** Добавляет работам поля, нужные только вёрстке: класс позиции, соотношения, размеры. */
 function decorateWorks(works, services) {
   const titleOf = (slug) => services.find((s) => s.slug === slug)?.title ?? slug;
@@ -318,6 +345,8 @@ function decorateWorks(works, services) {
       posterWebp: w.poster.replace(/\.jpg$/, '.webp'),
       posterWidth: width,
       posterHeight: height,
+      posterSrcset: srcset(w.poster, POSTER_WIDTHS, width),
+      posterSrcsetWebp: srcset(w.poster, POSTER_WIDTHS, width, 'webp'),
     };
   });
 }

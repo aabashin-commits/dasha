@@ -38,6 +38,16 @@
   letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);
 }
 .meta-row__value{margin-top:var(--sp-2)}
+/* Ссылка на направление — единственная тач-цель в мета-строке,
+   поэтому доводим её до 44px, а не оставляем высотой строки */
+.meta-row__value a{
+  display:inline-flex; align-items:center; min-height:44px;
+  margin-top:calc(var(--sp-3) * -1);
+  text-decoration:underline; text-underline-offset:4px;
+  text-decoration-color:var(--line-lit);
+  transition:text-decoration-color var(--t-fast) var(--ease);
+}
+.meta-row__value a:hover{text-decoration-color:var(--lime)}
 
 /* Список «что входит» / «что получите» */
 .spec-list{display:grid;gap:var(--sp-3)}

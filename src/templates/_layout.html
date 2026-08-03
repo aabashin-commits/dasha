@@ -13,7 +13,13 @@
   <link rel="preload" href="/fonts/golos-text-400-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 
+  <!-- Один блокирующий стиль, и это осознанно.
+       Схема «критический инлайном + остальное отложенно» была собрана
+       и замерена: FCP улучшился на 0,7 с, но CLS вырос с 0,019 до 0,159 —
+       страница перерисовывалась, когда доезжал отложенный файл.
+       При 6 КБ в gzip блокировка рендера не является узким местом. -->
   <link rel="stylesheet" href="{{ assets.css }}">
+
   {{{ jsonLd }}}
 </head>
 <body
