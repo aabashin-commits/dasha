@@ -1,11 +1,7 @@
-node_modules/
-dist/
-.DS_Store
-
 # Секреты бэкенда. Никогда не коммитить.
-public/api/config.php
+api/config.php
 storage/
 
-# Артефакты локальной отладки
+.DS_Store
 *.log
 .playwright-mcp/

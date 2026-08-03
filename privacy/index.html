@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Политика обработки персональных данных</title>
+  <meta name="description" content="Как студия Keyframe обрабатывает и хранит персональные данные, отправленные через форму на сайте.">
+  <link rel="canonical" href="https://keyframe.example/privacy/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Keyframe">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="Политика обработки персональных данных">
+  <meta property="og:description" content="Как студия Keyframe обрабатывает и хранит персональные данные, отправленные через форму на сайте.">
+  <meta property="og:url" content="https://keyframe.example/privacy/">
+  <meta property="og:image" content="https://keyframe.example/media/og/default.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Политика обработки персональных данных">
+  <meta name="twitter:description" content="Как студия Keyframe обрабатывает и хранит персональные данные, отправленные через форму на сайте.">
+  <meta name="twitter:image" content="https://keyframe.example/media/og/default.jpg">
+
+  <link rel="icon" href="/favicon/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0A0B0C">
+
+  <!-- Кириллические начертания основного текста и заголовков: они нужны
+       для первого экрана, остальное подтянется по font-display:swap -->
+  <link rel="preload" href="/fonts/golos-text-400-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Один блокирующий стиль, и это осознанно.
+       Схема «критический инлайном + остальное отложенно» была собрана
+       и замерена: FCP улучшился на 0,7 с, но CLS вырос с 0,019 до 0,159 —
+       страница перерисовывалась, когда доезжал отложенный файл.
+       При 6 КБ в gzip блокировка рендера не является узким местом. -->
+  <link rel="stylesheet" href="/assets/style.css">
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://keyframe.example/#organization","name":"Keyframe","legalName":"ИП Заглушкин З. З.","url":"https://keyframe.example","description":"Студия видеопродакшна: Reels, съёмка событий, документальное кино и фильмы-воспоминания.","email":"hello@keyframe.example","telephone":"+7 900 000-00-00","address":{"@type":"PostalAddress","addressLocality":"Москва","streetAddress":"Москва, наб. Заглушечная, 1"},"sameAs":["https://t.me/keyframe_studio","https://vk.com/keyframe_studio","https://behance.net/keyframe_studio"]},{"@type":"WebSite","@id":"https://keyframe.example/#website","url":"https://keyframe.example","name":"Keyframe","inLanguage":"ru-RU","publisher":{"@id":"https://keyframe.example/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://keyframe.example/"},{"@type":"ListItem","position":2,"name":"Политика конфиденциальности","item":"https://keyframe.example/privacy/"}]}]}</script>
+</head>
+<body
+  data-analytics="off"
+  data-metrika="00000000"
+  data-ga4="">
+
+<!-- Ставит .js на <html> до отрисовки. Правило `.js .reveal{opacity:0}`
+     завязано на этот класс: без него отказ JavaScript оставил бы
+     пустую страницу вместо читаемого текста. -->
+<script>document.documentElement.classList.add('js')</script>
+
+<a class="skip" href="#main">К основному содержанию</a>
+
+<!-- Сигнатура: таймлайн-спайн. Маркеры строит spine.js из секций
+     с data-keyframe — разметка здесь только каркас. -->
+<aside class="spine" data-spine aria-label="Навигация по секциям страницы">
+  <div class="spine__mark">KF</div>
+  <div class="spine__line" data-spine-line></div>
+  <div class="spine__playhead" data-playhead></div>
+  <div class="spine__list" data-spine-list></div>
+  <div class="spine__timecode" data-timecode>00:00:00:00</div>
+</aside>
+
+<div class="rail" aria-hidden="true"><div class="rail__fill" data-rail-fill></div></div>
+
+
+<div class="shell">
+  <header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="logo" href="/" aria-label="Keyframe — на главную">
+      <span class="logo__mark" aria-hidden="true"></span>Keyframe
+    </a>
+
+    <nav class="site-nav" aria-label="Основная навигация">
+      
+      <a class="site-nav__link" href="/services/">Направления</a>
+      
+      <a class="site-nav__link" href="/works/">Работы</a>
+      
+      <a class="site-nav__link" href="/about/">О студии</a>
+      
+      <a class="site-nav__link" href="/journal/">Журнал</a>
+      
+      <a class="site-nav__link" href="/contacts/">Контакты</a>
+      
+    </nav>
+
+    <a class="btn btn--primary site-header__cta" href="/contacts/">Обсудить проект</a>
+
+    <button class="burger" type="button" data-burger
+            aria-expanded="false" aria-controls="menu" aria-label="Открыть меню">
+      <span class="burger__line"></span>
+      <span class="burger__line"></span>
+      <span class="burger__line"></span>
+    </button>
+  </div>
+</header>
+
+  <!-- visibility:hidden убирает меню из таб-порядка и дерева доступности,
+     поэтому атрибут hidden не нужен и не ломает переход -->
+<div class="menu" id="menu" data-menu>
+  <nav class="menu__list" aria-label="Мобильная навигация">
+    
+    <a class="menu__link" href="/services/">Направления</a>
+    
+    <a class="menu__link" href="/works/">Работы</a>
+    
+    <a class="menu__link" href="/about/">О студии</a>
+    
+    <a class="menu__link" href="/journal/">Журнал</a>
+    
+    <a class="menu__link" href="/contacts/">Контакты</a>
+    
+  </nav>
+  <p class="slug menu__footer">
+    <span>Видеопродакшн</span>
+    <span>Москва</span>
+    <span>hello@keyframe.example</span>
+  </p>
+</div>
+
+
+  <main id="main">
+<section class="wrap page-hero" data-keyframe="Политика">
+  <nav class="breadcrumbs" aria-label="Хлебные крошки">
+  
+  
+  <a class="breadcrumbs__link" href="/">Главная</a>
+  <span class="breadcrumbs__sep" aria-hidden="true">/</span>
+  
+  
+  
+  <span class="breadcrumbs__current" aria-current="page">Политика конфиденциальности</span>
+  
+  
+</nav>
+
+  <p class="slug page-hero__slug" style="margin-top:var(--sp-6)">
+    <span class="slug__mark" aria-hidden="true">◆</span>
+    <span>Правовая информация</span><span>152-ФЗ</span>
+  </p>
+  <h1 class="h1 page-hero__title" style="max-width:24ch">Политика обработки персональных данных</h1>
+</section>
+
+<div class="wrap band band--flush-top">
+  <article class="article">
+    <p>
+      Настоящая политика описывает, какие данные ИП Заглушкин З. З.
+      (далее — Студия) получает через сайт https://keyframe.example, зачем их
+      использует и сколько хранит.
+    </p>
+
+    <h2>Какие данные мы получаем</h2>
+    <p>
+      Только те, что вы сами вводите в форму заявки: имя, способ связи
+      (Telegram, телефон или адрес электронной почты), выбранное направление
+      съёмки и текст сообщения. Иных персональных данных Студия не собирает.
+    </p>
+    <p>
+      Дополнительно системы веб-аналитики сохраняют обезличенные технические
+      сведения: тип устройства, разрешение экрана, источник перехода
+      и действия на страницах. Связать их с конкретным человеком нельзя.
+    </p>
+
+    <h2>Зачем они нужны</h2>
+    <ul>
+      <li>Ответить на заявку и обсудить проект</li>
+      <li>Подготовить и согласовать смету</li>
+      <li>Понять, какие страницы сайта работают, а какие нет</li>
+    </ul>
+    <p>
+      Данные не используются для рассылок, не передаются третьим лицам
+      и не продаются. Исключение — операторы связи и почтовые сервисы,
+      через которые до вас доходит ответ.
+    </p>
+
+    <h2>Согласие</h2>
+    <p>
+      Отправляя форму, вы подтверждаете согласие на обработку указанных
+      данных на условиях этой политики. Галочка согласия обязательна:
+      без неё форма не отправляется.
+    </p>
+
+    <h2>Сколько храним</h2>
+    <p>
+      Заявки хранятся до завершения переписки и далее не более трёх лет
+      в архиве обращений. Обезличенная аналитика хранится по правилам
+      соответствующих сервисов.
+    </p>
+
+    <h2>Как отозвать согласие</h2>
+    <p>
+      Напишите на <a href="mailto:hello@keyframe.example">hello@keyframe.example</a>
+      с просьбой удалить ваши данные. Удалим в течение трёх рабочих дней
+      и подтвердим ответным письмом.
+    </p>
+
+    <h2>Файлы cookie</h2>
+    <p>
+      Сайт использует cookie для работы веб-аналитики. Их можно отключить
+      в настройках браузера — на работу сайта это не влияет, форма продолжит
+      отправляться.
+    </p>
+
+    <h2>Как с нами связаться</h2>
+    <p>
+      ИП Заглушкин З. З., ИНН 000000000000.<br>
+      Москва, наб. Заглушечная, 1<br>
+      <a href="mailto:hello@keyframe.example">hello@keyframe.example</a>
+    </p>
+
+    <blockquote>
+      Реквизиты юридического лица на этой странице — заглушки.
+      Перед публикацией сайта их необходимо заменить на действительные
+      и передать текст на проверку юристу.
+    </blockquote>
+  </article>
+</div>
+
+  </main>
+
+  <footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <div>
+      <a class="logo" href="/">
+        <span class="logo__mark" aria-hidden="true"></span>Keyframe
+      </a>
+      <p class="slug site-footer__meta">
+        <span>Видеопродакшн</span>
+        <span>Москва</span>
+      </p>
+    </div>
+
+    <nav class="site-footer__nav" aria-label="Навигация в подвале">
+      
+      <a class="site-nav__link" href="/services/">Направления</a>
+      
+      <a class="site-nav__link" href="/works/">Работы</a>
+      
+      <a class="site-nav__link" href="/about/">О студии</a>
+      
+      <a class="site-nav__link" href="/journal/">Журнал</a>
+      
+      <a class="site-nav__link" href="/contacts/">Контакты</a>
+      
+    </nav>
+
+    <div>
+      <p class="slug"><span class="slug__mark">◆</span><span>Связаться</span></p>
+      <p class="site-footer__meta">
+        <a href="mailto:hello@keyframe.example">hello@keyframe.example</a><br>
+        <a href="https://t.me/keyframe_studio">@keyframe_studio</a>
+      </p>
+    </div>
+
+    <p class="site-footer__legal">
+      © 2026 Keyframe. ИП Заглушкин З. З..
+      <a href="/privacy/">Политика обработки персональных данных</a>
+    </p>
+  </div>
+</footer>
+
+</div>
+
+<script defer src="/assets/script.js"></script>
+</body>
+</html>

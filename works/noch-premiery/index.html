@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ночь премьеры — съёмка театрального показа</title>
+  <meta name="description" content="Многокамерная съёмка премьерного показа с записью звука напрямую с пульта. Сюжет сдан за шесть дней.">
+  <link rel="canonical" href="https://keyframe.example/works/noch-premiery/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Keyframe">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="Ночь премьеры — съёмка театрального показа">
+  <meta property="og:description" content="Многокамерная съёмка премьерного показа с записью звука напрямую с пульта. Сюжет сдан за шесть дней.">
+  <meta property="og:url" content="https://keyframe.example/works/noch-premiery/">
+  <meta property="og:image" content="https://keyframe.example/media/og/noch-premiery.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ночь премьеры — съёмка театрального показа">
+  <meta name="twitter:description" content="Многокамерная съёмка премьерного показа с записью звука напрямую с пульта. Сюжет сдан за шесть дней.">
+  <meta name="twitter:image" content="https://keyframe.example/media/og/noch-premiery.jpg">
+
+  <link rel="icon" href="/favicon/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0A0B0C">
+
+  <!-- Кириллические начертания основного текста и заголовков: они нужны
+       для первого экрана, остальное подтянется по font-display:swap -->
+  <link rel="preload" href="/fonts/golos-text-400-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Один блокирующий стиль, и это осознанно.
+       Схема «критический инлайном + остальное отложенно» была собрана
+       и замерена: FCP улучшился на 0,7 с, но CLS вырос с 0,019 до 0,159 —
+       страница перерисовывалась, когда доезжал отложенный файл.
+       При 6 КБ в gzip блокировка рендера не является узким местом. -->
+  <link rel="stylesheet" href="/assets/style.css">
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://keyframe.example/#organization","name":"Keyframe","legalName":"ИП Заглушкин З. З.","url":"https://keyframe.example","description":"Студия видеопродакшна: Reels, съёмка событий, документальное кино и фильмы-воспоминания.","email":"hello@keyframe.example","telephone":"+7 900 000-00-00","address":{"@type":"PostalAddress","addressLocality":"Москва","streetAddress":"Москва, наб. Заглушечная, 1"},"sameAs":["https://t.me/keyframe_studio","https://vk.com/keyframe_studio","https://behance.net/keyframe_studio"]},{"@type":"WebSite","@id":"https://keyframe.example/#website","url":"https://keyframe.example","name":"Keyframe","inLanguage":"ru-RU","publisher":{"@id":"https://keyframe.example/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://keyframe.example/"},{"@type":"ListItem","position":2,"name":"Работы","item":"https://keyframe.example/works/"},{"@type":"ListItem","position":3,"name":"Ночь премьеры","item":"https://keyframe.example/works/noch-premiery/"}]},{"@type":"CreativeWork","name":"Ночь премьеры","description":"Съёмка премьерного показа: три камеры, звук с пульта, сюжет через неделю.","url":"https://keyframe.example/works/noch-premiery/","dateCreated":"2025","creator":{"@id":"https://keyframe.example/#organization"},"locationCreated":"Москва","keywords":"событие, театр, многокамерная съёмка"},{"@type":"VideoObject","name":"Ночь премьеры","description":"Съёмка премьерного показа: три камеры, звук с пульта, сюжет через неделю.","thumbnailUrl":"https://keyframe.example/media/works/noch-premiery/poster.jpg","uploadDate":"2025-01-01","duration":"PT4M12S","contentUrl":"https://keyframe.example/works/noch-premiery/"}]}</script>
+</head>
+<body
+  data-analytics="off"
+  data-metrika="00000000"
+  data-ga4="">
+
+<!-- Ставит .js на <html> до отрисовки. Правило `.js .reveal{opacity:0}`
+     завязано на этот класс: без него отказ JavaScript оставил бы
+     пустую страницу вместо читаемого текста. -->
+<script>document.documentElement.classList.add('js')</script>
+
+<a class="skip" href="#main">К основному содержанию</a>
+
+<!-- Сигнатура: таймлайн-спайн. Маркеры строит spine.js из секций
+     с data-keyframe — разметка здесь только каркас. -->
+<aside class="spine" data-spine aria-label="Навигация по секциям страницы">
+  <div class="spine__mark">KF</div>
+  <div class="spine__line" data-spine-line></div>
+  <div class="spine__playhead" data-playhead></div>
+  <div class="spine__list" data-spine-list></div>
+  <div class="spine__timecode" data-timecode>00:00:00:00</div>
+</aside>
+
+<div class="rail" aria-hidden="true"><div class="rail__fill" data-rail-fill></div></div>
+
+
+<div class="shell">
+  <header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="logo" href="/" aria-label="Keyframe — на главную">
+      <span class="logo__mark" aria-hidden="true"></span>Keyframe
+    </a>
+
+    <nav class="site-nav" aria-label="Основная навигация">
+      
+      <a class="site-nav__link" href="/services/">Направления</a>
+      
+      <a class="site-nav__link" href="/works/">Работы</a>
+      
+      <a class="site-nav__link" href="/about/">О студии</a>
+      
+      <a class="site-nav__link" href="/journal/">Журнал</a>
+      
+      <a class="site-nav__link" href="/contacts/">Контакты</a>
+      
+    </nav>
+
+    <a class="btn btn--primary site-header__cta" href="/contacts/">Обсудить проект</a>
+
+    <button class="burger" type="button" data-burger
+            aria-expanded="false" aria-controls="menu" aria-label="Открыть меню">
+      <span class="burger__line"></span>
+      <span class="burger__line"></span>
+      <span class="burger__line"></span>
+    </button>
+  </div>
+</header>
+
+  <!-- visibility:hidden убирает меню из таб-порядка и дерева доступности,
+     поэтому атрибут hidden не нужен и не ломает переход -->
+<div class="menu" id="menu" data-menu>
+  <nav class="menu__list" aria-label="Мобильная навигация">
+    
+    <a class="menu__link" href="/services/">Направления</a>
+    
+    <a class="menu__link" href="/works/">Работы</a>
+    
+    <a class="menu__link" href="/about/">О студии</a>
+    
+    <a class="menu__link" href="/journal/">Журнал</a>
+    
+    <a class="menu__link" href="/contacts/">Контакты</a>
+    
+  </nav>
+  <p class="slug menu__footer">
+    <span>Видеопродакшн</span>
+    <span>Москва</span>
+    <span>hello@keyframe.example</span>
+  </p>
+</div>
+
+
+  <main id="main">
+<section class="wrap page-hero" data-keyframe="Ночь премьеры">
+  <nav class="breadcrumbs" aria-label="Хлебные крошки">
+  
+  
+  <a class="breadcrumbs__link" href="/">Главная</a>
+  <span class="breadcrumbs__sep" aria-hidden="true">/</span>
+  
+  
+  
+  <a class="breadcrumbs__link" href="/works/">Работы</a>
+  <span class="breadcrumbs__sep" aria-hidden="true">/</span>
+  
+  
+  
+  <span class="breadcrumbs__current" aria-current="page">Ночь премьеры</span>
+  
+  
+</nav>
+
+  <p class="slug page-hero__slug" style="margin-top:var(--sp-6)">
+    <span class="slug__mark" aria-hidden="true">◆</span>
+    <span>Event Production</span>
+    <span>16:9</span>
+    <span>2025</span>
+  </p>
+  <h1 class="h1 page-hero__title">Ночь премьеры</h1>
+  <p class="lead page-hero__lead">Съёмка премьерного показа: три камеры, звук с пульта, сюжет через неделю.</p>
+</section>
+
+<div class="wrap">
+  
+  <!-- Фасад плеера: iframe подставляется только по клику -->
+  <button class="facade ratio-16-9 reveal" type="button"
+          data-facade="https://rutube.ru/play/embed/0000000000000000000000000000000a/" data-facade-title="Ночь премьеры"
+          aria-label="Смотреть «Ночь премьеры»">
+    <picture>
+      <source srcset="/media/works/noch-premiery/poster.avif" type="image/avif">
+      <source srcset="/media/works/noch-premiery/poster.webp" type="image/webp">
+      <img class="facade__img" src="/media/works/noch-premiery/poster.jpg" alt="Ночь премьеры — кадр из фильма"
+           width="1600" height="900"
+           fetchpriority="high" decoding="async">
+    </picture>
+    <span class="grain" aria-hidden="true"></span>
+    <span class="facade__play">
+      <span class="facade__disc" aria-hidden="true">
+        <svg width="22" height="24" viewBox="0 0 22 24" fill="currentColor"><path d="M21 12 0 24V0z"/></svg>
+      </span>
+      <span class="facade__label">Смотреть</span>
+    </span>
+  </button>
+  
+
+  <div class="meta-row reveal">
+    <div class="meta-row__cell">
+      <div class="meta-row__label">Клиент</div>
+      <div class="meta-row__value">Театральная площадка «Заглушка»</div>
+    </div>
+    <div class="meta-row__cell">
+      <div class="meta-row__label">Направление</div>
+      <div class="meta-row__value">
+        <a href="/services/event-production/">Event Production</a>
+      </div>
+    </div>
+    <div class="meta-row__cell">
+      <div class="meta-row__label">Формат</div>
+      <div class="meta-row__value">16:9</div>
+    </div>
+    <div class="meta-row__cell">
+      <div class="meta-row__label">Локация и год</div>
+      <div class="meta-row__value">Москва · 2025</div>
+    </div>
+  </div>
+</div>
+
+<section class="wrap band band--tight" data-keyframe="О проекте">
+  <div class="split split--wide-left reveal">
+    <div>
+      <h2 class="h2" style="margin-bottom:var(--sp-5)">Как это было</h2>
+      <div class="prose"><p class="lead">Премьеру нельзя переснять. Мы приехали за четыре часа до зрителей, прошли зал, договорились о трёх точках и подключились к пульту напрямую — иначе аплодисменты съедают речь. Сюжет на четыре минуты сдали через шесть дней.</p></div>
+    </div>
+    <div>
+      
+      <p class="slug" style="margin-bottom:var(--sp-5)">
+        <span class="slug__mark" aria-hidden="true">◆</span><span>В цифрах</span>
+      </p>
+      <div class="spec-list" style="margin-bottom:var(--sp-7)">
+        
+        <span class="spec-list__item">Камер: 3</span>
+        
+        <span class="spec-list__item">Срок сдачи: 6 дней</span>
+        
+      </div>
+      
+
+      
+      <p class="slug" style="margin-bottom:var(--sp-5)">
+        <span class="slug__mark" aria-hidden="true">◆</span><span>Команда</span>
+      </p>
+      <div class="spec-list">
+        
+        <span class="spec-list__item">Продюсер: Заглушка Заглушкина</span>
+        
+        <span class="spec-list__item">Операторы: Заглушкин, Заглушкин, Заглушкина</span>
+        
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+<section class="wrap band band--flush-top" data-keyframe="Кадры">
+  <div class="section-head reveal">
+    <div class="section-head__text">
+      <p class="slug">
+        <span class="slug__mark" aria-hidden="true">◆</span>
+        <span>Кадры</span><span>2</span>
+      </p>
+      <h2 class="h2 section-head__title">Из отснятого</h2>
+    </div>
+  </div>
+
+  <div class="gallery reveal">
+    
+    <a class="gallery__item" href="/media/works/noch-premiery/01.jpg"
+       data-lightbox="/media/works/noch-premiery/01.jpg" data-lightbox-alt="Сцена в контровом свете во время показа">
+      <picture>
+        <source srcset="/media/works/noch-premiery/01.avif" type="image/avif">
+        <source srcset="/media/works/noch-premiery/01.webp" type="image/webp">
+        <img class="gallery__img" src="/media/works/noch-premiery/01.jpg" alt="Сцена в контровом свете во время показа"
+             loading="lazy" decoding="async" width="1600" height="900">
+      </picture>
+      <span class="grain" aria-hidden="true"></span>
+    </a>
+    
+    <a class="gallery__item" href="/media/works/noch-premiery/02.jpg"
+       data-lightbox="/media/works/noch-premiery/02.jpg" data-lightbox-alt="Зрительный зал перед началом">
+      <picture>
+        <source srcset="/media/works/noch-premiery/02.avif" type="image/avif">
+        <source srcset="/media/works/noch-premiery/02.webp" type="image/webp">
+        <img class="gallery__img" src="/media/works/noch-premiery/02.jpg" alt="Зрительный зал перед началом"
+             loading="lazy" decoding="async" width="1600" height="900">
+      </picture>
+      <span class="grain" aria-hidden="true"></span>
+    </a>
+    
+  </div>
+</section>
+
+
+<hr class="rule">
+
+<section class="wrap band" data-keyframe="Дальше">
+  <div class="section-head reveal">
+    <div class="section-head__text">
+      <p class="slug">
+        <span class="slug__mark" aria-hidden="true">◆</span>
+        <span>Следующая работа</span>
+      </p>
+      <h2 class="h2 section-head__title">Утро в мастерской краснодеревщика, который двадцать лет не пускал к себе камеру</h2>
+    </div>
+    <a class="btn" href="/works/utro-v-masterskoy/">Смотреть <span class="btn__arrow" aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<!-- Сквозной блок заявки. Стоит в конце каждой содержательной страницы:
+     решение обсудить проект чаще всего созревает после чтения, а не до. -->
+<section class="wrap band" id="contact" data-keyframe="Контакт">
+  <div class="cta reveal">
+    <div>
+      <p class="slug">
+        <span class="slug__mark" aria-hidden="true">◆</span>
+        <span>Контакт</span>
+      </p>
+      <h2 class="h2 cta__title">Расскажите, что нужно снять</h2>
+      <p class="muted">
+        Ответим в течение рабочего дня. Если проект срочный —
+        пишите в Telegram, там быстрее.
+      </p>
+      <div class="cta__links">
+        <a class="btn" href="https://t.me/keyframe_studio" data-track="click_telegram">
+          Telegram <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="btn" href="mailto:hello@keyframe.example" data-track="click_email">
+          hello@keyframe.example
+        </a>
+      </div>
+    </div>
+
+    <form class="lead-form" data-lead-form method="post" novalidate
+      action="/api/lead.php"
+      data-success-title="Заявка отправлена"
+      data-success-text="Свяжемся в течение рабочего дня. Если нужно быстрее — напишите в Telegram."
+      data-error-text="Не удалось отправить. Попробуйте ещё раз или напишите нам в Telegram."
+      data-telegram="keyframe_studio">
+  <div class="field">
+    <label class="field__label" for="lead-name">Как вас зовут</label>
+    <input class="field__control" id="lead-name" name="name" type="text"
+           autocomplete="name" required placeholder="Имя">
+    <p class="field__error" data-error-for="name"></p>
+  </div>
+
+  <div class="field">
+    <label class="field__label" for="lead-contact">Telegram, телефон или почта</label>
+    <input class="field__control" id="lead-contact" name="contact" type="text"
+           required placeholder="@username">
+    <p class="field__error" data-error-for="contact"></p>
+  </div>
+
+  <div class="field">
+    <label class="field__label" for="lead-service">Направление</label>
+    <select class="field__control" id="lead-service" name="service">
+      <option value="">Ещё не решили</option>
+      
+      <option value="reels">Reels</option>
+      
+      <option value="event-production">Event Production</option>
+      
+      <option value="documentary">Documentary</option>
+      
+      <option value="memory-films">Memory Films</option>
+      
+    </select>
+  </div>
+
+  <div class="field">
+    <label class="field__label" for="lead-message">Что нужно снять</label>
+    <textarea class="field__control" id="lead-message" name="message"
+              placeholder="Пара предложений о задаче и сроках"></textarea>
+    <p class="field__error" data-error-for="message"></p>
+  </div>
+
+  <!-- Ханипот: скрыт позиционированием, а не display:none — часть ботов
+       пропускает поля именно по display:none -->
+  <div class="field field--trap" aria-hidden="true">
+    <label for="lead-company">Не заполняйте это поле</label>
+    <input id="lead-company" name="company" type="text" tabindex="-1" autocomplete="off">
+  </div>
+
+  <label class="consent">
+    <input class="consent__box" name="consent" type="checkbox" value="1" required>
+    <span>Согласен на обработку персональных данных
+      и принимаю <a href="/privacy/">политику конфиденциальности</a></span>
+  </label>
+
+  <button class="btn btn--primary btn--wide" type="submit" data-submit>
+    <span data-submit-text>Отправить заявку</span>
+    <span class="btn__arrow" aria-hidden="true">→</span>
+  </button>
+
+  <div class="form__status" data-form-status role="status" aria-live="polite"></div>
+</form>
+
+  </div>
+</section>
+
+
+  </main>
+
+  <footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <div>
+      <a class="logo" href="/">
+        <span class="logo__mark" aria-hidden="true"></span>Keyframe
+      </a>
+      <p class="slug site-footer__meta">
+        <span>Видеопродакшн</span>
+        <span>Москва</span>
+      </p>
+    </div>
+
+    <nav class="site-footer__nav" aria-label="Навигация в подвале">
+      
+      <a class="site-nav__link" href="/services/">Направления</a>
+      
+      <a class="site-nav__link" href="/works/">Работы</a>
+      
+      <a class="site-nav__link" href="/about/">О студии</a>
+      
+      <a class="site-nav__link" href="/journal/">Журнал</a>
+      
+      <a class="site-nav__link" href="/contacts/">Контакты</a>
+      
+    </nav>
+
+    <div>
+      <p class="slug"><span class="slug__mark">◆</span><span>Связаться</span></p>
+      <p class="site-footer__meta">
+        <a href="mailto:hello@keyframe.example">hello@keyframe.example</a><br>
+        <a href="https://t.me/keyframe_studio">@keyframe_studio</a>
+      </p>
+    </div>
+
+    <p class="site-footer__legal">
+      © 2026 Keyframe. ИП Заглушкин З. З..
+      <a href="/privacy/">Политика обработки персональных данных</a>
+    </p>
+  </div>
+</footer>
+
+</div>
+
+<script defer src="/assets/script.js"></script>
+</body>
+</html>

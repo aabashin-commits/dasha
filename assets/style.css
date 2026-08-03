@@ -1,0 +1,1488 @@
+/* ============================================================
+   Keyframe — стили сайта
+
+   Один файл, разделён на секции. Ищите нужное поиском по
+   заголовку секции: /* --- ИМЯ --- */
+
+   Все цвета, размеры и отступы задаются переменными в самом
+   начале, в блоке :root. Меняете там — меняется везде.
+   ============================================================ */
+
+
+/* --- FONTS --- */
+
+/* Сгенерировано scripts/fetch-fonts.js — вручную не править. */
+/* Локальные woff2: CDN Google нестабилен у РФ-аудитории. */
+
+@font-face{
+  font-family:'Unbounded';
+  font-style:normal;
+  font-weight:700;
+  font-display:swap;
+  src:url('/fonts/unbounded-700-cyrillic.woff2') format('woff2');
+  unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face{
+  font-family:'Unbounded';
+  font-style:normal;
+  font-weight:700;
+  font-display:swap;
+  src:url('/fonts/unbounded-700-latin.woff2') format('woff2');
+  unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face{
+  font-family:'Golos Text';
+  font-style:normal;
+  font-weight:400;
+  font-display:swap;
+  src:url('/fonts/golos-text-400-cyrillic.woff2') format('woff2');
+  unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face{
+  font-family:'Golos Text';
+  font-style:normal;
+  font-weight:400;
+  font-display:swap;
+  src:url('/fonts/golos-text-400-latin.woff2') format('woff2');
+  unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face{
+  font-family:'IBM Plex Mono';
+  font-style:normal;
+  font-weight:400;
+  font-display:swap;
+  src:url('/fonts/ibm-plex-mono-400-cyrillic.woff2') format('woff2');
+  unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face{
+  font-family:'IBM Plex Mono';
+  font-style:normal;
+  font-weight:400;
+  font-display:swap;
+  src:url('/fonts/ibm-plex-mono-400-latin.woff2') format('woff2');
+  unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* --- TOKENS --- */
+
+/**
+ * Единственное место, где живут значения дизайн-системы.
+ * В компонентах — только var(). Обоснования: docs/design-direction.md
+ */
+:root{
+  /* --- Цвет ---
+     Нейтральные сдвинуты в холод, белый — в тепло. Так строится киношная
+     градация: тени уходят в синеву, свет остаётся тёплым. Чистый серый
+     выдал бы интерфейс, а не студию. */
+  --bg:#0A0B0C;
+  --bg-lift:#101315;
+  --bg-inset:#16191C;
+  --line:#21262A;
+  --line-lit:#333A40;
+  /* Граница интерактивных элементов: ≥3:1 по WCAG 1.4.11.
+     У контурной кнопки рамка и есть её опознавательный признак. */
+  --line-ui:#5A636C;
+
+  --ink:#F0F2EE;
+  --ink-2:#8E958F;
+  --ink-3:#7A817B;
+  /* Разметка поверх изображения: она должна едва читаться на любом кадре */
+  --ink-faint:rgba(240,242,238,.09);
+
+  /* Акцент работает как свет, а не как краска: тонкие штрихи, плейхед,
+     кольцо фокуса, одна первичная кнопка на экран. Не более ~5% площади. */
+  --lime:#C6F432;
+  --lime-hi:#D8FF5C;
+  --lime-ink:#0A0B0C;
+  --lime-dim:rgba(198,244,50,.12);
+  --lime-half:rgba(198,244,50,.5);
+  --lime-glow:var(--lime-half);
+
+  --danger:#FF5C4D;
+
+  /* --- Типографика --- */
+  --ff-display:'Unbounded',system-ui,sans-serif;
+  --ff-body:'Golos Text',system-ui,sans-serif;
+  --ff-mono:'IBM Plex Mono',ui-monospace,monospace;
+
+  --fs-display:clamp(2.5rem,7.2vw,6.5rem);
+  --fs-h1:clamp(1.875rem,4.6vw,4rem);
+  --fs-h2:clamp(1.9rem,3.6vw,3.25rem);
+  --fs-h3:clamp(1.15rem,1.7vw,1.5rem);
+  --fs-lead:clamp(1.0625rem,1.35vw,1.3rem);
+  --fs-body:1rem;
+  --fs-small:0.875rem;
+  --fs-meta:0.75rem;
+  --fs-micro:0.6875rem;
+
+  /* --- Пространство, шкала на базе 4px --- */
+  --sp-1:4px;  --sp-2:8px;  --sp-3:12px; --sp-4:16px;
+  --sp-5:24px; --sp-6:32px; --sp-7:48px; --sp-8:64px; --sp-9:96px;
+
+  --spine:88px;
+  --pad:clamp(20px,4vw,56px);
+  --band:clamp(96px,11vw,176px);
+  --maxw:1320px;
+  --header-h:68px;
+
+  --r-sm:3px;
+  --r-md:10px;
+  --r-pill:999px;
+
+  /* --- Слои --- */
+  --z-rail:40;
+  --z-spine:40;
+  --z-menu:50;
+  --z-header:60;
+  --z-lightbox:70;
+  --z-skip:100;
+
+  /* --- Движение --- */
+  --ease:cubic-bezier(.4,0,.2,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --t-fast:180ms;
+  --t:320ms;
+  --t-slow:700ms;
+}
+
+/* --- RESET --- */
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+html{
+  -webkit-text-size-adjust:100%;
+  scroll-behavior:smooth;
+  /* Якорные переходы не должны прятать заголовок под липкой шапкой */
+  scroll-padding-top:calc(var(--header-h) + var(--sp-5));
+}
+
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font:400 var(--fs-body)/1.6 var(--ff-body);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+img,svg,video,picture{display:block;max-width:100%}
+img{height:auto}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,select,textarea{font:inherit;color:inherit}
+ul,ol{list-style:none}
+table{border-collapse:collapse}
+
+::selection{background:var(--lime);color:var(--lime-ink)}
+
+:focus-visible{
+  outline:2px solid var(--lime);
+  outline-offset:3px;
+  border-radius:var(--r-sm);
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
+}
+
+/* --- BASE --- */
+
+/* Типографические примитивы и сквозные утилиты. */
+
+/* Unbounded заметно шире обычного гротеска, а русские слова длинные:
+   «краснодеревщика» на 390px не влезает в строку и даёт горизонтальный
+   скролл всей странице. Перенос внутри слова — страховка на реальный
+   контент, где длина заголовков не под нашим контролем. */
+.display,
+.h1,
+.h2,
+.h3{overflow-wrap:break-word}
+
+.display{
+  font-family:var(--ff-display); font-weight:700;
+  font-size:var(--fs-display); line-height:.88;
+  letter-spacing:-.045em; text-wrap:balance;
+}
+.h1{
+  font-family:var(--ff-display); font-weight:700;
+  font-size:var(--fs-h1); line-height:.94;
+  letter-spacing:-.04em; text-wrap:balance;
+}
+.h2{
+  font-family:var(--ff-display); font-weight:700;
+  font-size:var(--fs-h2); line-height:.96;
+  letter-spacing:-.035em; text-wrap:balance;
+}
+.h3{
+  font-family:var(--ff-display); font-weight:700;
+  font-size:var(--fs-h3); line-height:1.15;
+  letter-spacing:-.02em;
+}
+.lead{
+  font-size:var(--fs-lead); line-height:1.5;
+  color:var(--ink-2); max-width:52ch;
+}
+.muted{color:var(--ink-2)}
+
+/* Слаглайн — строка метаданных из шот-листа. Сквозной приём: им набраны
+   надзаголовки секций, мета работ и технические подписи. */
+.slug{
+  display:flex; flex-wrap:wrap; align-items:center;
+  gap:var(--sp-2) var(--sp-4);
+  font-family:var(--ff-mono); font-weight:400;
+  font-size:var(--fs-meta); letter-spacing:.14em;
+  text-transform:uppercase; color:var(--ink-3);
+}
+.slug__mark{color:var(--lime)}
+
+.skip{
+  position:absolute; left:var(--sp-4); top:-100px; z-index:var(--z-skip);
+  display:flex; align-items:center; min-height:44px;
+  background:var(--lime); color:var(--lime-ink);
+  padding:var(--sp-3) var(--sp-5); border-radius:var(--r-sm);
+  font-family:var(--ff-mono); font-size:var(--fs-meta);
+  transition:top var(--t-fast) var(--ease);
+}
+.skip:focus{top:var(--sp-4)}
+
+.visually-hidden{
+  position:absolute; width:1px; height:1px;
+  margin:-1px; padding:0; overflow:hidden;
+  clip-path:inset(50%); white-space:nowrap; border:0;
+}
+
+/* Появление секций.
+   Скрываем только под классом .js — инлайн-скрипт в начале <body> его ставит.
+   Без этого гейта отказ JavaScript оставляет пустую страницу. */
+.js .reveal{
+  opacity:0; transform:translateY(22px);
+  transition:opacity var(--t-slow) var(--ease-out),
+             transform var(--t-slow) var(--ease-out);
+}
+.js .reveal--in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  .js .reveal{opacity:1;transform:none}
+}
+
+/* --- LAYOUT --- */
+
+/* Контейнер, вертикальный ритм, шапки секций.
+   Сетка асимметричная: спайн слева, контент смещён вправо. Симметричная
+   центрированная колонка — язык презентации; монтажный интерфейс всегда
+   асимметричен, таймлайн слева и картинка справа. */
+
+.shell{padding-left:0}
+@media (min-width:1100px){
+  .shell{padding-left:var(--spine)}
+}
+
+.wrap{
+  width:100%; max-width:var(--maxw);
+  margin-inline:auto; padding-inline:var(--pad);
+}
+
+.band{padding-block:var(--band)}
+.band--tight{padding-block:var(--sp-9)}
+.band--flush-top{padding-top:0}
+
+.rule{height:1px;background:var(--line);border:0}
+
+.section-head{
+  display:flex; flex-wrap:wrap; gap:var(--sp-5);
+  align-items:end; justify-content:space-between;
+  margin-bottom:var(--sp-8);
+}
+.section-head__text{max-width:19ch}
+.section-head__title{margin-top:var(--sp-4)}
+.section-head__aside{max-width:34ch;color:var(--ink-2)}
+
+@media (min-width:900px){
+  .section-head__text{max-width:28ch}
+}
+
+/* Две колонки: текст и врезка */
+.split{display:grid;gap:var(--sp-7)}
+@media (min-width:900px){
+  .split{grid-template-columns:1fr 1fr;gap:var(--sp-8)}
+  .split--wide-left{grid-template-columns:1.3fr 1fr}
+}
+
+/* --- BUTTON --- */
+
+.btn{
+  display:inline-flex; align-items:center; gap:10px;
+  min-height:46px; padding:0 var(--sp-5);
+  font-family:var(--ff-mono); font-size:var(--fs-meta);
+  letter-spacing:.12em; text-transform:uppercase;
+  border:1px solid var(--line-ui); border-radius:var(--r-sm);
+  color:var(--ink);
+  transition:border-color var(--t-fast) var(--ease),
+             color var(--t-fast) var(--ease),
+             background-color var(--t-fast) var(--ease);
+}
+.btn:hover{border-color:var(--ink-2)}
+
+/* Единственная заливка лаймом на экран. Вторичные кнопки контурные —
+   иначе акцент перестаёт читаться как свет и становится просто краской. */
+.btn--primary{
+  background:var(--lime); border-color:var(--lime);
+  color:var(--lime-ink);
+}
+.btn--primary:hover{background:var(--lime-hi);border-color:var(--lime-hi)}
+
+.btn--wide{width:100%;justify-content:center}
+.btn[disabled]{opacity:.5;pointer-events:none}
+
+.btn__arrow{
+  font-family:var(--ff-body);
+  transition:transform var(--t) var(--ease-out);
+}
+.btn:hover .btn__arrow{transform:translateX(4px)}
+
+/* Спиннер на время отправки формы */
+.btn__spinner{
+  width:13px; height:13px; flex:none;
+  border:1.5px solid currentColor; border-top-color:transparent;
+  border-radius:50%; animation:btn-spin .7s linear infinite;
+}
+@keyframes btn-spin{to{transform:rotate(360deg)}}
+
+/* --- SITE-HEADER --- */
+
+/* Шапка выше меню (--z-menu: 50): бургер должен оставаться кликабельным,
+   иначе открытое меню закрывается только по Escape. */
+.site-header{
+  position:sticky; top:0; z-index:var(--z-header);
+  background:color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.site-header__inner{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:var(--sp-5); height:var(--header-h);
+}
+
+/* min-height 44px — тач-цель. Логотип это основная ссылка «на главную»,
+   и промахиваться по ней пальцем не должно быть возможно. */
+.logo{
+  display:flex; align-items:center; gap:9px; min-height:44px;
+  font-family:var(--ff-display); font-weight:700;
+  font-size:1.0625rem; letter-spacing:-.03em;
+}
+/* Ромб — тот же знак, которым в монтажных программах обозначают ключевой кадр */
+.logo__mark{
+  width:8px; height:8px; flex:none;
+  background:var(--lime); transform:rotate(45deg);
+}
+
+.site-nav{display:none;gap:var(--sp-6)}
+@media (min-width:900px){ .site-nav{display:flex} }
+
+.site-nav__link{
+  position:relative;
+  display:flex; align-items:center; min-height:44px;
+  font-family:var(--ff-mono); font-size:var(--fs-meta);
+  letter-spacing:.12em; text-transform:uppercase; color:var(--ink-2);
+  transition:color var(--t-fast) var(--ease);
+}
+.site-nav__link::after{
+  content:''; position:absolute; left:0; right:0; bottom:0; height:1px;
+  background:var(--lime); transform:scaleX(0); transform-origin:left;
+  transition:transform var(--t) var(--ease-out);
+}
+.site-nav__link:hover{color:var(--ink)}
+.site-nav__link:hover::after{transform:scaleX(1)}
+.site-nav__link[aria-current="page"]{color:var(--ink)}
+.site-nav__link[aria-current="page"]::after{transform:scaleX(1)}
+
+.site-header__cta{display:none}
+@media (min-width:560px){ .site-header__cta{display:inline-flex} }
+
+/* --- MENU --- */
+
+.burger{
+  display:flex; flex-direction:column; justify-content:center; gap:5px;
+  width:46px; height:46px; margin-right:-10px; flex:none;
+}
+@media (min-width:900px){ .burger{display:none} }
+
+.burger__line{
+  display:block; width:20px; height:1.5px;
+  margin-inline:auto; background:var(--ink);
+  transition:transform var(--t) var(--ease-out),
+             opacity var(--t-fast) var(--ease);
+}
+.is-menu-open .burger__line:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.is-menu-open .burger__line:nth-child(2){opacity:0}
+.is-menu-open .burger__line:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* visibility:hidden убирает меню из таб-порядка и дерева доступности,
+   поэтому атрибут hidden не нужен и не ломает переход. */
+.menu{
+  position:fixed; inset:0; z-index:var(--z-menu);
+  display:flex; flex-direction:column; justify-content:center;
+  padding:var(--sp-9) var(--pad) var(--sp-8);
+  background:var(--bg);
+  opacity:0; visibility:hidden; transform:translateY(-8px);
+  transition:opacity var(--t) var(--ease),
+             transform var(--t) var(--ease-out),
+             visibility 0s linear var(--t);
+  overflow-y:auto;
+}
+.menu--open{
+  opacity:1; visibility:visible; transform:none;
+  transition-delay:0s;
+}
+
+.menu__list{display:flex;flex-direction:column;gap:var(--sp-4)}
+.menu__link{
+  display:flex; align-items:baseline; gap:14px;
+  /* line-height:1 у крупного шрифта даёт цель ниже 44px — добавляем
+     вертикальный отступ, чтобы по пункту меню нельзя было промахнуться */
+  padding-block:var(--sp-2); min-height:44px;
+  font-family:var(--ff-display); font-weight:700;
+  font-size:clamp(1.75rem,8vw,3rem); line-height:1.1;
+  letter-spacing:-.04em;
+}
+.menu__link::before{
+  content:'◆'; flex:none;
+  font-family:var(--ff-body); font-size:.55rem;
+  color:var(--line-lit);
+  transition:color var(--t) var(--ease);
+}
+.menu__link:hover::before,
+.menu__link:focus-visible::before{color:var(--lime)}
+
+.menu__footer{margin-top:var(--sp-8)}
+
+body.is-locked{overflow:hidden}
+
+/* --- SPINE --- */
+
+/* СИГНАТУРА: таймлайн-спайн.
+   Волосяная линия с ромбовидными маркерами — теми же, какими в монтажных
+   программах обозначают ключевые кадры. Секции страницы буквально являются
+   её ключевыми кадрами, поэтому это навигация, а не украшение. */
+
+.spine{
+  position:fixed; inset-block:0; left:0; width:var(--spine);
+  z-index:var(--z-spine); display:none;
+  background:var(--bg); border-right:1px solid var(--line);
+}
+@media (min-width:1100px){ .spine{display:block} }
+
+.spine__mark{
+  position:absolute; top:var(--sp-5); left:0; width:100%;
+  text-align:center; font-family:var(--ff-mono);
+  font-size:var(--fs-micro); letter-spacing:.2em; color:var(--ink);
+}
+.spine__line,
+.spine__playhead{
+  position:absolute; left:calc(var(--spine) / 2); width:1px;
+  transform:translateX(-.5px);
+}
+.spine__line{top:15vh;bottom:15vh;background:var(--line)}
+.spine__playhead{
+  top:15vh; height:0; background:var(--lime);
+  box-shadow:0 0 12px var(--lime-glow);
+  transition:height var(--t) var(--ease);
+}
+.spine__list{
+  position:absolute; left:0; top:15vh; bottom:15vh; width:100%;
+  display:flex; flex-direction:column; justify-content:space-between;
+}
+.spine__timecode{
+  position:absolute; bottom:var(--sp-5); left:0; width:100%;
+  text-align:center; font-family:var(--ff-mono);
+  font-size:10px; letter-spacing:.06em; color:var(--ink-3);
+  font-variant-numeric:tabular-nums;
+}
+
+.keyframe{
+  position:relative; display:flex; align-items:center;
+  width:100%; height:24px;
+}
+.keyframe__dot{
+  position:absolute; left:calc(var(--spine) / 2); top:50%;
+  width:7px; height:7px; margin:-3.5px 0 0 -3.5px;
+  background:var(--line-lit); transform:rotate(45deg);
+  transition:background var(--t) var(--ease),
+             box-shadow var(--t) var(--ease);
+}
+.keyframe__label{
+  position:absolute; left:calc(var(--spine) - 8px);
+  padding:4px 10px; white-space:nowrap;
+  font-family:var(--ff-mono); font-size:var(--fs-micro);
+  letter-spacing:.12em; text-transform:uppercase; color:var(--ink-2);
+  background:var(--bg-lift); border:1px solid var(--line);
+  opacity:0; transform:translateX(-6px); pointer-events:none;
+  transition:opacity var(--t-fast) var(--ease),
+             transform var(--t-fast) var(--ease);
+}
+.keyframe:hover .keyframe__dot,
+.keyframe:focus-visible .keyframe__dot{background:var(--ink-2)}
+.keyframe:hover .keyframe__label,
+.keyframe:focus-visible .keyframe__label{opacity:1;transform:translateX(0)}
+
+.keyframe--active .keyframe__dot{
+  background:var(--lime);
+  box-shadow:0 0 0 4px var(--lime-dim), 0 0 14px var(--lime-glow);
+}
+
+/* Мобильный плейхед: спайн сворачивается в полосу без подписей */
+.rail{
+  position:fixed; left:0; right:0; bottom:0; height:2px;
+  background:var(--line); z-index:var(--z-rail);
+}
+.rail__fill{
+  height:100%; width:0; background:var(--lime);
+  transition:width 120ms linear;
+}
+@media (min-width:1100px){ .rail{display:none} }
+
+/* --- MEDIA --- */
+
+/* Зерно поверх изображений. Одна общая SVG-текстура на весь сайт —
+   она и делает поверхность плёночной, а не «отрендеренной». */
+.grain{
+  position:absolute; inset:0; pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  opacity:.07; mix-blend-mode:overlay;
+}
+
+.frame{
+  position:relative; overflow:hidden;
+  background:var(--bg-lift); border:1px solid var(--line);
+}
+.frame__img{
+  position:absolute; inset:0;
+  width:100%; height:100%; object-fit:cover;
+}
+
+/* Соотношения сторон. Формат — содержание, а не оформление: приведение
+   всех работ к 16:9 стёрло бы разницу между Reels и документальным. */
+.ratio-9-16{aspect-ratio:9/16}
+.ratio-16-9{aspect-ratio:16/9}
+.ratio-2-39-1{aspect-ratio:2.39/1}
+.ratio-1-66-1{aspect-ratio:1.66/1}
+.ratio-4-3{aspect-ratio:4/3}
+.ratio-1-1{aspect-ratio:1/1}
+
+/* --- HERO --- */
+
+.hero{padding-top:clamp(48px,6vw,88px);padding-bottom:var(--band)}
+.hero__slug{margin-bottom:var(--sp-6)}
+.hero__title{margin-bottom:var(--sp-6);max-width:15ch}
+.hero__lead{margin-bottom:var(--sp-7)}
+.hero__actions{
+  display:flex; flex-wrap:wrap; gap:var(--sp-3);
+  margin-bottom:var(--sp-9);
+}
+
+/* Кадровое полотно вместо автоплей-шоурила.
+   Один остановленный кадр, раз в 4,2 секунды жёсткая склейка на следующий.
+   Никакого кроссфейда: это перелистывание шот-листа, а не нарезка.
+   Побочная выгода — LCP становится картинкой, а не видеофайлом. */
+.stage{position:relative}
+.stage__frame{
+  position:relative; width:100%; aspect-ratio:16/9; overflow:hidden;
+  background:var(--bg-lift); border:1px solid var(--line);
+}
+@media (max-width:600px){ .stage__frame{aspect-ratio:4/3} }
+
+.stage__shot{
+  position:absolute; inset:0;
+  width:100%; height:100%; object-fit:cover;
+  opacity:0;
+}
+.stage__shot--active{opacity:1}
+
+/* Разметка безопасной зоны — из монтажного вьюпорта */
+.stage__safe{
+  position:absolute; inset:5.5% 4.5%; z-index:2; pointer-events:none;
+  border:1px solid var(--ink-faint);
+}
+.stage__safe::before,
+.stage__safe::after{
+  content:''; position:absolute; width:13px; height:13px;
+  border:1px solid var(--lime-half);
+}
+.stage__safe::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.stage__safe::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+
+.stage__grain{z-index:2}
+
+.stage__bar{
+  display:flex; flex-wrap:wrap; align-items:center;
+  justify-content:space-between; gap:var(--sp-3) var(--sp-6);
+  padding-top:var(--sp-4);
+}
+.stage__title{
+  font-family:var(--ff-mono); font-size:var(--fs-meta);
+  letter-spacing:.14em; text-transform:uppercase; color:var(--ink);
+}
+.stage__meta{
+  font-family:var(--ff-mono); font-size:var(--fs-meta);
+  letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);
+  font-variant-numeric:tabular-nums;
+}
+
+/* Индикатор склеек: сколько кадров в шот-листе и какой сейчас */
+.ticks{display:flex;align-items:center;gap:5px}
+.ticks__item{
+  width:20px; height:2px; background:var(--line-lit);
+  transition:background var(--t) var(--ease);
+}
+.ticks__item--active{background:var(--lime)}
+
+/* --- PAGE-HERO --- */
+
+/* Шапка внутренней страницы. Крупная, но тише главной: display остаётся
+   привилегией первого экрана сайта. */
+
+.page-hero{
+  padding-top:clamp(40px,5vw,72px);
+  padding-bottom:clamp(48px,6vw,88px);
+}
+.page-hero__slug{margin-bottom:var(--sp-5)}
+.page-hero__title{max-width:18ch}
+.page-hero__lead{margin-top:var(--sp-5)}
+.page-hero__actions{
+  display:flex; flex-wrap:wrap; gap:var(--sp-3);
+  margin-top:var(--sp-6);
+}
+
+.breadcrumbs{
+  display:flex; flex-wrap:wrap; align-items:center; gap:var(--sp-2);
+  padding-top:var(--sp-5);
+  font-family:var(--ff-mono); font-size:var(--fs-micro);
+  letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3);
+}
+.breadcrumbs__sep{color:var(--line-lit)}
+.breadcrumbs__link:hover{color:var(--ink-2)}
+.breadcrumbs__current{color:var(--ink-2)}
+
+/* Строка метаданных под заголовком кейса: клиент, год, формат, локация */
+.meta-row{
+  display:grid; gap:1px;
+  background:var(--line); border:1px solid var(--line);
+  margin-block:var(--sp-7);
+}
+@media (min-width:620px){ .meta-row{grid-template-columns:repeat(2,1fr)} }
+@media (min-width:960px){ .meta-row{grid-template-columns:repeat(4,1fr)} }
+
+.meta-row__cell{background:var(--bg);padding:var(--sp-5)}
+.meta-row__label{
+  font-family:var(--ff-mono); font-size:var(--fs-micro);
+  letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);
+}
+.meta-row__value{margin-top:var(--sp-2)}
+/* Ссылка на направление — единственная тач-цель в мета-строке,
+   поэтому доводим её до 44px, а не оставляем высотой строки */
+.meta-row__value a{
+  display:inline-flex; align-items:center; min-height:44px;
+  margin-top:calc(var(--sp-3) * -1);
+  text-decoration:underline; text-underline-offset:4px;
+  text-decoration-color:var(--line-lit);
+  transition:text-decoration-color var(--t-fast) var(--ease);
+}
+.meta-row__value a:hover{text-decoration-color:var(--lime)}
+
+/* Список «что входит» / «что получите» */
+.spec-list{display:grid;gap:var(--sp-3)}
+.spec-list__item{
+  display:flex; align-items:baseline; gap:var(--sp-3);
+  padding-bottom:var(--sp-3);
+  border-bottom:1px solid var(--line);
+  color:var(--ink-2);
+}
+.spec-list__item::before{
+  content:'◆'; flex:none;
+  font-size:.5rem; color:var(--lime);
+  transform:translateY(-2px);
+}
+
+.prose{max-width:64ch}
+.prose p + p{margin-top:var(--sp-4)}
+
+/* --- MARQUEE --- */
+
+/* Одна бегущая строка на весь сайт. Больше — и страница начинает
+   выглядеть сгенерированной. */
+.marquee{
+  overflow:hidden;
+  border-block:1px solid var(--line);
+  padding-block:var(--sp-5);
+}
+.marquee__track{
+  display:flex; width:max-content;
+  animation:marquee 42s linear infinite;
+}
+.marquee__group{
+  display:flex; align-items:center; gap:var(--sp-7);
+  padding-right:var(--sp-7); flex:none;
+}
+.marquee__item{
+  display:flex; align-items:center; gap:var(--sp-7);
+  font-family:var(--ff-display); font-weight:700;
+  font-size:clamp(1.25rem,2.4vw,2rem);
+  letter-spacing:-.03em; white-space:nowrap; color:var(--ink);
+}
+.marquee__dot{
+  width:7px; height:7px; flex:none;
+  background:var(--lime); transform:rotate(45deg);
+}
+
+@keyframes marquee{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+
+.marquee:hover .marquee__track{animation-play-state:paused}
+
+@media (prefers-reduced-motion:reduce){
+  .marquee__track{animation:none}
+  .marquee{overflow-x:auto}
+}
+
+/* --- FILTER --- */
+
+/* Фильтр портфолио.
+   Скрывает карточки, но не удаляет: все работы остаются в HTML,
+   иначе фильтрация съедает индексацию. */
+
+.filter{
+  display:flex; flex-wrap:wrap; gap:var(--sp-2);
+  margin-bottom:var(--sp-7);
+}
+
+.filter__btn{
+  min-height:38px; padding:0 var(--sp-4);
+  border:1px solid var(--line); border-radius:var(--r-pill);
+  font-family:var(--ff-mono); font-size:var(--fs-micro);
+  letter-spacing:.12em; text-transform:uppercase; color:var(--ink-2);
+  transition:border-color var(--t-fast) var(--ease),
+             color var(--t-fast) var(--ease),
+             background-color var(--t-fast) var(--ease);
+}
+.filter__btn:hover{border-color:var(--line-lit);color:var(--ink)}
+
+.filter__btn[aria-pressed="true"]{
+  background:var(--lime); border-color:var(--lime);
+  color:var(--lime-ink);
+}
+.filter__count{opacity:.55;margin-left:6px}
+
+.filter__empty{
+  padding:var(--sp-8) 0;
+  color:var(--ink-2); text-align:center;
+}
+.filter__empty[hidden]{display:none}
+
+/* --- VIDEO-FACADE --- */
+
+/* Фасад плеера: постер и кнопка Play, iframe подставляется только по клику.
+   Без этого один embed VK или Rutube съедает около мегабайта и портит LCP
+   на странице, где видео могут даже не запустить. */
+
+.facade{
+  position:relative; display:block; width:100%;
+  overflow:hidden; border:1px solid var(--line);
+  background:var(--bg-lift);
+}
+.facade__img{
+  position:absolute; inset:0;
+  width:100%; height:100%; object-fit:cover;
+  transition:transform var(--t-slow) var(--ease-out),
+             opacity var(--t) var(--ease);
+}
+.facade:hover .facade__img{transform:scale(1.02);opacity:.8}
+
+.facade__play{
+  position:absolute; inset:0; z-index:2;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:var(--sp-4);
+}
+.facade__disc{
+  display:flex; align-items:center; justify-content:center;
+  width:72px; height:72px;
+  background:var(--lime); color:var(--lime-ink);
+  border-radius:50%;
+  transition:transform var(--t) var(--ease-out),
+             background-color var(--t-fast) var(--ease);
+}
+.facade:hover .facade__disc{transform:scale(1.08);background:var(--lime-hi)}
+.facade__disc svg{margin-left:3px}
+
+.facade__label{
+  font-family:var(--ff-mono); font-size:var(--fs-micro);
+  letter-spacing:.14em; text-transform:uppercase; color:var(--ink);
+  text-shadow:0 1px 12px rgb(0 0 0 / .6);
+}
+
+.facade__frame{
+  position:absolute; inset:0; z-index:3;
+  width:100%; height:100%; border:0;
+}
+
+/* Галерея кейса */
+.gallery{display:grid;gap:var(--sp-4)}
+@media (min-width:760px){ .gallery{grid-template-columns:repeat(2,1fr)} }
+
+.gallery__item{
+  position:relative; display:block; overflow:hidden;
+  aspect-ratio:16/9;
+  border:1px solid var(--line);
+  transition:border-color var(--t) var(--ease);
+}
+.gallery__item:hover{border-color:var(--line-lit)}
+.gallery__img{
+  position:absolute; inset:0;
+  width:100%; height:100%; object-fit:cover;
+  transition:transform var(--t-slow) var(--ease-out);
+}
+.gallery__item:hover .gallery__img{transform:scale(1.03)}
+
+/* --- LIGHTBOX --- */
+
+.lightbox{
+  position:fixed; inset:0; z-index:var(--z-lightbox);
+  display:flex; align-items:center; justify-content:center;
+  padding:clamp(16px,4vw,56px);
+  background:color-mix(in srgb, var(--bg) 96%, transparent);
+  opacity:0; visibility:hidden;
+  transition:opacity var(--t) var(--ease),
+             visibility 0s linear var(--t);
+}
+.lightbox--open{opacity:1;visibility:visible;transition-delay:0s}
+
+.lightbox__img{
+  max-width:100%; max-height:100%;
+  object-fit:contain;
+  border:1px solid var(--line);
+}
+.lightbox__caption{
+  position:absolute; left:0; right:0; bottom:var(--sp-5);
+  padding-inline:var(--pad); text-align:center;
+  font-family:var(--ff-mono); font-size:var(--fs-micro);
+  letter-spacing:.12em; text-transform:uppercase; color:var(--ink-2);
+}
+
+.lightbox__btn{
+  position:absolute; z-index:2;
+  display:flex; align-items:center; justify-content:center;
+  width:48px; height:48px;
+  border:1px solid var(--line-ui); border-radius:50%;
+  background:var(--bg); color:var(--ink);
+  transition:border-color var(--t-fast) var(--ease),
+             color var(--t-fast) var(--ease);
+}
+.lightbox__btn:hover{border-color:var(--lime);color:var(--lime)}
+.lightbox__btn--close{top:var(--sp-4);right:var(--sp-4)}
+.lightbox__btn--prev{left:var(--sp-4);top:50%;margin-top:-24px}
+.lightbox__btn--next{right:var(--sp-4);top:50%;margin-top:-24px}
+
+@media (max-width:600px){
+  .lightbox__btn--prev{left:var(--sp-3)}
+  .lightbox__btn--next{right:var(--sp-3)}
+}
+
+/* --- ARTICLE --- */
+
+/* Типографика чтения. Ширина строки ограничена 68 символами: дальше
+   глаз теряет начало следующей строки. */
+
+.article{max-width:68ch}
+.article > * + *{margin-top:var(--sp-5)}
+
+.article h2{
+  margin-top:var(--sp-8);
+  font-family:var(--ff-display); font-weight:700;
+  font-size:clamp(1.5rem,2.6vw,2rem);
+  letter-spacing:-.03em; line-height:1.1;
+}
+.article h3{
+  margin-top:var(--sp-7);
+  font-family:var(--ff-display); font-weight:700;
+  font-size:var(--fs-h3); letter-spacing:-.02em;
+}
+.article p{font-size:var(--fs-lead);line-height:1.65;color:var(--ink-2)}
+/* Выделение цветом, а не весом: отдельное начертание Golos ради
+   нескольких слов в статье стоило бы 65 КБ на первой загрузке */
+.article strong{color:var(--ink)}
+.article a{
+  color:var(--ink);
+  text-decoration:underline; text-underline-offset:3px;
+  text-decoration-color:var(--lime);
+}
+.article ul{display:grid;gap:var(--sp-3)}
+.article li{
+  display:flex; align-items:baseline; gap:var(--sp-3);
+  color:var(--ink-2);
+}
+.article li::before{
+  content:'◆'; flex:none;
+  font-size:.5rem; color:var(--lime);
+  transform:translateY(-2px);
+}
+.article blockquote{
+  padding-left:var(--sp-5);
+  border-left:2px solid var(--lime);
+  font-size:var(--fs-lead); color:var(--ink);
+}
+
+.article-meta{
+  display:flex; flex-wrap:wrap; gap:var(--sp-4);
+  padding-bottom:var(--sp-6);
+  margin-bottom:var(--sp-7);
+  border-bottom:1px solid var(--line);
+}
+.article-cover{
+  position:relative; overflow:hidden;
+  aspect-ratio:16/9;
+  border:1px solid var(--line);
+  margin-bottom:var(--sp-8);
+}
+.article-cover__img{
+  position:absolute; inset:0;
+  width:100%; height:100%; object-fit:cover;
+}
+
+/* Команда */
+.team{display:grid;gap:var(--sp-5)}
+@media (min-width:560px){ .team{grid-template-columns:repeat(2,1fr)} }
+@media (min-width:1000px){ .team{grid-template-columns:repeat(4,1fr)} }
+
+.person__photo{
+  position:relative; overflow:hidden;
+  aspect-ratio:4/5;
+  border:1px solid var(--line);
+  margin-bottom:var(--sp-4);
+}
+.person__img{
+  position:absolute; inset:0;
+  width:100%; height:100%; object-fit:cover;
+  filter:grayscale(1);
+  transition:filter var(--t-slow) var(--ease);
+}
+.person:hover .person__img{filter:none}
+.person__name{
+  font-family:var(--ff-display); font-weight:700;
+  font-size:1.0625rem; letter-spacing:-.02em;
+}
+.person__role{
+  margin-top:var(--sp-1);
+  font-family:var(--ff-mono); font-size:var(--fs-micro);
+  letter-spacing:.1em; text-transform:uppercase; color:var(--lime);
+}
+.person__bio{
+  margin-top:var(--sp-3);
+  font-size:var(--fs-small); line-height:1.5; color:var(--ink-2);
+}
+
+/* --- CONTACTS --- */
+
+.contact-list{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+@media (min-width:620px){ .contact-list{grid-template-columns:repeat(2,1fr)} }
+
+.contact-list__item{
+  display:block; background:var(--bg);
+  padding:var(--sp-6) var(--sp-5);
+  transition:background var(--t) var(--ease);
+}
+.contact-list__item:hover{background:var(--bg-lift)}
+.contact-list__label{
+  font-family:var(--ff-mono); font-size:var(--fs-micro);
+  letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);
+}
+.contact-list__value{
+  margin-top:var(--sp-3);
+  font-family:var(--ff-display); font-weight:700;
+  font-size:clamp(1.0625rem,1.8vw,1.375rem);
+  letter-spacing:-.02em; word-break:break-word;
+}
+.contact-list__item:hover .contact-list__value{color:var(--lime)}
+
+/* Карта фасадом: живой iframe Яндекса тянет сотни килобайт скриптов
+   на страницу, где карту откроют единицы. */
+.map-facade{
+  position:relative; display:block;
+  aspect-ratio:16/9; overflow:hidden;
+  border:1px solid var(--line); background:var(--bg-inset);
+}
+@media (max-width:600px){ .map-facade{aspect-ratio:4/3} }
+.map-facade__grid{
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size:48px 48px;
+  opacity:.5;
+}
+.map-facade__pin{
+  position:absolute; left:50%; top:50%;
+  width:14px; height:14px; margin:-7px 0 0 -7px;
+  background:var(--lime); transform:rotate(45deg);
+  box-shadow:0 0 0 8px var(--lime-dim);
+}
+.map-facade__label{
+  position:absolute; left:var(--sp-5); bottom:var(--sp-5);
+  padding:var(--sp-3) var(--sp-4);
+  background:var(--bg); border:1px solid var(--line);
+  font-family:var(--ff-mono); font-size:var(--fs-micro);
+  letter-spacing:.12em; text-transform:uppercase;
+}
+
+/* --- SERVICE-CARD --- */
+
+/* Карточка направления.
+   Нумерации 01–04 здесь нет намеренно: четыре направления параллельны,
+   а не последовательны, и номер сообщал бы порядок, которого не существует.
+   Вместо него — то, что клиент действительно сравнивает: соотношение
+   сторон, вычерченное в истинной пропорции, и диапазон хронометража. */
+
+.services{
+  display:grid; gap:1px;
+  background:var(--line); border:1px solid var(--line);
+}
+@media (min-width:760px){ .services{grid-template-columns:1fr 1fr} }
+@media (min-width:1240px){ .services{grid-template-columns:repeat(4,1fr)} }
+
+.service-card{
+  display:flex; flex-direction:column; gap:var(--sp-4);
+  min-height:288px; padding:var(--sp-6) var(--sp-5) var(--sp-5);
+  background:var(--bg);
+  transition:background var(--t) var(--ease);
+}
+.service-card:hover{background:var(--bg-lift)}
+
+.service-card__format{
+  display:flex; align-items:flex-end; gap:10px; height:34px;
+}
+.service-card__glyph{
+  flex:none; border:1px solid var(--ink-3);
+  transition:border-color var(--t) var(--ease);
+}
+.service-card:hover .service-card__glyph{border-color:var(--lime)}
+
+/* Глиф вычерчен в истинной пропорции формата */
+.glyph-9-16{width:18px;height:32px}
+.glyph-16-9{width:32px;height:18px}
+.glyph-2-39-1{width:34px;height:14px}
+.glyph-1-66-1{width:30px;height:18px}
+.glyph-4-3{width:26px;height:19px}
+.glyph-1-1{width:24px;height:24px}
+
+.service-card__spec{
+  font-family:var(--ff-mono); font-size:var(--fs-micro);
+  letter-spacing:.1em; color:var(--ink-3);
+}
+
+.service-card__body{flex:1}
+.service-card__title{margin-bottom:var(--sp-3)}
+.service-card__text{
+  font-size:.9375rem; line-height:1.5; color:var(--ink-2);
+}
+
+.service-card__footer{
+  display:flex; align-items:baseline; justify-content:space-between;
+  gap:var(--sp-3); padding-top:var(--sp-4);
+  border-top:1px solid var(--line);
+}
+.service-card__price{
+  font-family:var(--ff-mono); font-size:var(--fs-meta);
+  letter-spacing:.06em; color:var(--ink);
+}
+.service-card__price--soft{color:var(--ink-3);text-transform:none}
+.service-card__arrow{
+  color:var(--ink-3);
+  transition:color var(--t) var(--ease), transform var(--t) var(--ease-out);
+}
+.service-card:hover .service-card__arrow{
+  color:var(--lime); transform:translateX(4px);
+}
+
+/* --- WORK-CARD --- */
+
+/* Сетка работ.
+   Композиция задана явно: вертикали занимают две строки, горизонтали
+   складываются рядом — так правый край сетки не рвётся дырами.
+   Классы раскладки вынесены в префикс .pos-* : ранее .w-b означал
+   одновременно размещение и подпись, и правила прилетали друг на друга. */
+
+.works{
+  display:grid; grid-template-columns:repeat(12,1fr);
+  gap:var(--sp-5); align-items:start;
+}
+.work-card{grid-column:span 12}
+
+@media (min-width:760px){
+  .pos-1{grid-column:1/9}
+  .pos-2{grid-column:9/13;grid-row:1/3}
+  .pos-3{grid-column:1/9}
+  .pos-4{grid-column:1/5;grid-row:3/5}
+  .pos-5{grid-column:5/13}
+  .pos-6{grid-column:5/13}
+}
+
+/* При активном фильтре явная раскладка не годится: часть карточек скрыта,
+   и закреплённые за ними колонки со строками оставляют дыры. Переходим
+   на равные колонки — соотношения сторон карточек при этом сохраняются. */
+@media (min-width:760px){
+  .works--filtered .work-card{grid-column:span 6;grid-row:auto}
+}
+@media (min-width:1240px){
+  .works--filtered .work-card{grid-column:span 4}
+}
+
+/* display:block обязателен — на inline-элементе aspect-ratio не работает,
+   и карточка схлопывается в нулевую высоту. */
+.work-card__media{
+  display:block; position:relative; overflow:hidden;
+  border:1px solid var(--line);
+  transition:border-color var(--t) var(--ease);
+}
+.work-card:hover .work-card__media{border-color:var(--line-lit)}
+
+.work-card__img{
+  position:absolute; inset:0;
+  width:100%; height:100%; object-fit:cover;
+  transition:transform var(--t-slow) var(--ease-out);
+}
+.work-card:hover .work-card__img{transform:scale(1.03)}
+
+.work-card__line{
+  position:absolute; left:0; right:0; bottom:0; height:2px;
+  background:var(--lime);
+  transform:scaleX(0); transform-origin:left;
+  transition:transform var(--t) var(--ease-out);
+}
+.work-card:hover .work-card__line{transform:scaleX(1)}
+
+.work-card__caption{
+  display:flex; justify-content:space-between; gap:var(--sp-4);
+  padding-top:var(--sp-4);
+}
+.work-card__title{
+  font-family:var(--ff-display); font-weight:700;
+  font-size:1.0625rem; letter-spacing:-.02em; line-height:1.25;
+}
+.work-card__meta{
+  flex:none; text-align:right; line-height:1.7;
+  font-family:var(--ff-mono); font-size:var(--fs-micro);
+  letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3);
+}
+
+/* Фильтр скрывает карточки, но не удаляет: все работы остаются в HTML,
+   иначе фильтрация съедает индексацию. */
+.work-card[hidden]{display:none}
+
+/* --- JOURNAL-CARD --- */
+
+.journal-grid{display:grid;gap:var(--sp-6)}
+@media (min-width:760px){ .journal-grid{grid-template-columns:repeat(3,1fr)} }
+
+.journal-card{display:flex;flex-direction:column;gap:var(--sp-4)}
+
+.journal-card__media{
+  display:block; position:relative; overflow:hidden;
+  aspect-ratio:16/9;
+  border:1px solid var(--line);
+  transition:border-color var(--t) var(--ease);
+}
+.journal-card:hover .journal-card__media{border-color:var(--line-lit)}
+.journal-card__img{
+  position:absolute; inset:0;
+  width:100%; height:100%; object-fit:cover;
+  transition:transform var(--t-slow) var(--ease-out);
+}
+.journal-card:hover .journal-card__img{transform:scale(1.03)}
+
+.journal-card__date{
+  font-family:var(--ff-mono); font-size:var(--fs-micro);
+  letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3);
+}
+.journal-card__title{
+  font-family:var(--ff-display); font-weight:700;
+  font-size:1.125rem; line-height:1.25; letter-spacing:-.025em;
+  transition:color var(--t-fast) var(--ease);
+}
+.journal-card:hover .journal-card__title{color:var(--lime)}
+.journal-card__excerpt{
+  font-size:var(--fs-small); line-height:1.55; color:var(--ink-2);
+}
+
+/* --- PROCESS --- */
+
+/* Нумерация здесь оправдана: бриф → препродакшн → съёмка → пост
+   действительно последовательность, и номер несёт информацию.
+   На карточках направлений её нет — там порядка не существует. */
+
+.process{display:grid;border-top:1px solid var(--line)}
+
+.process__item{
+  display:grid; gap:var(--sp-3) var(--sp-6);
+  grid-template-columns:auto 1fr;
+  padding-block:var(--sp-6);
+  border-bottom:1px solid var(--line);
+}
+@media (min-width:900px){
+  .process__item{grid-template-columns:70px 1fr 1.15fr;align-items:start}
+}
+
+.process__number{
+  padding-top:5px;
+  font-family:var(--ff-mono); font-size:var(--fs-meta);
+  letter-spacing:.14em; color:var(--lime);
+  font-variant-numeric:tabular-nums;
+}
+.process__text{grid-column:1/-1;color:var(--ink-2)}
+@media (min-width:900px){ .process__text{grid-column:auto} }
+
+/* --- STAT --- */
+
+.stats{
+  display:grid; gap:1px;
+  background:var(--line); border-block:1px solid var(--line);
+}
+@media (min-width:620px){ .stats{grid-template-columns:1fr 1fr} }
+@media (min-width:1000px){ .stats{grid-template-columns:repeat(4,1fr)} }
+
+.stat{background:var(--bg);padding:var(--sp-6) var(--sp-5)}
+.stat__value{
+  font-family:var(--ff-display); font-weight:700;
+  font-size:clamp(2.1rem,3.6vw,3rem);
+  letter-spacing:-.04em; line-height:1;
+}
+.stat__label{
+  margin-top:var(--sp-3);
+  font-family:var(--ff-mono); font-size:var(--fs-micro);
+  letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);
+}
+
+/* --- TESTIMONIAL --- */
+
+.testimonials{display:grid;gap:var(--sp-5)}
+@media (min-width:820px){ .testimonials{grid-template-columns:repeat(3,1fr)} }
+
+.testimonial{
+  display:flex; flex-direction:column; gap:var(--sp-5);
+  padding:var(--sp-6) var(--sp-5);
+  background:var(--bg-lift); border:1px solid var(--line);
+}
+.testimonial__text{flex:1;color:var(--ink-2);line-height:1.55}
+.testimonial__author{
+  font-family:var(--ff-display); font-weight:700;
+  font-size:1rem; letter-spacing:-.02em;
+}
+.testimonial__role{
+  margin-top:var(--sp-1);
+  font-family:var(--ff-mono); font-size:var(--fs-micro);
+  letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3);
+}
+
+/* Стена логотипов: грейскейл до наведения, чтобы чужой брендинг
+   не перетягивал внимание с работ. */
+.logo-wall{
+  display:grid; grid-template-columns:repeat(2,1fr);
+  gap:1px; background:var(--line);
+  border:1px solid var(--line);
+}
+@media (min-width:620px){ .logo-wall{grid-template-columns:repeat(3,1fr)} }
+@media (min-width:1000px){ .logo-wall{grid-template-columns:repeat(6,1fr)} }
+
+.logo-wall__cell{
+  display:flex; align-items:center; justify-content:center;
+  min-height:96px; padding:var(--sp-5);
+  background:var(--bg);
+}
+.logo-wall__img{
+  max-width:100%; height:auto;
+  opacity:.42; filter:grayscale(1);
+  transition:opacity var(--t) var(--ease), filter var(--t) var(--ease);
+}
+.logo-wall__cell:hover .logo-wall__img{opacity:1;filter:none}
+
+/* --- ACCORDION --- */
+
+/* На <details>: без JS вопрос всё равно раскрывается. */
+.faq{border-top:1px solid var(--line)}
+
+.faq__item{border-bottom:1px solid var(--line)}
+.faq__q{
+  display:flex; align-items:baseline; justify-content:space-between;
+  gap:var(--sp-5); padding-block:var(--sp-5);
+  cursor:pointer; list-style:none;
+  font-family:var(--ff-display); font-weight:700;
+  font-size:var(--fs-h3); letter-spacing:-.02em; line-height:1.25;
+  transition:color var(--t-fast) var(--ease);
+}
+.faq__q::-webkit-details-marker{display:none}
+.faq__q:hover{color:var(--lime)}
+
+.faq__sign{
+  position:relative; flex:none;
+  width:14px; height:14px; margin-top:6px;
+}
+.faq__sign::before,
+.faq__sign::after{
+  content:''; position:absolute; inset:50% 0 auto 0;
+  height:1px; background:currentColor;
+  transition:transform var(--t) var(--ease-out);
+}
+.faq__sign::after{transform:rotate(90deg)}
+.faq__item[open] .faq__sign::after{transform:rotate(0)}
+
+.faq__a{
+  padding-bottom:var(--sp-6); max-width:64ch;
+  color:var(--ink-2);
+}
+
+/* --- FORM --- */
+
+.cta{
+  display:grid; gap:var(--sp-7);
+  padding:clamp(28px,5vw,72px);
+  background:var(--bg-lift); border:1px solid var(--line);
+}
+@media (min-width:960px){
+  .cta{grid-template-columns:1fr 1fr;align-items:start}
+}
+.cta__title{margin-block:var(--sp-4) var(--sp-5)}
+.cta__links{
+  display:flex; flex-wrap:wrap; gap:var(--sp-3);
+  margin-top:var(--sp-6);
+}
+
+/* Позиционируем форму, чтобы скрытый ханипот считал её своим
+   содержащим блоком и не уезжал относительно всей страницы */
+.lead-form{position:relative}
+
+.field{
+  display:flex; flex-direction:column; gap:var(--sp-2);
+  margin-bottom:var(--sp-4);
+}
+.field__label{
+  font-family:var(--ff-mono); font-size:var(--fs-micro);
+  letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);
+}
+.field__control{
+  width:100%; min-height:46px; padding:13px var(--sp-4);
+  background:var(--bg-inset); color:var(--ink);
+  border:1px solid var(--line); border-radius:var(--r-sm);
+  font:400 var(--fs-body)/1.5 var(--ff-body);
+  transition:border-color var(--t-fast) var(--ease);
+}
+.field__control:hover{border-color:var(--line-lit)}
+.field__control::placeholder{color:var(--ink-3)}
+textarea.field__control{resize:vertical;min-height:96px}
+
+.field__control[aria-invalid="true"]{border-color:var(--danger)}
+.field__error{
+  font-family:var(--ff-mono); font-size:var(--fs-micro);
+  letter-spacing:.06em; color:var(--danger);
+}
+.field__error:empty{display:none}
+
+/* Ханипот. Прятать через display:none нельзя: часть ботов такие поля
+   пропускает именно по этому признаку.
+   Увод за left:-9999px тоже не годится — он растягивает область прокрутки
+   и даёт горизонтальный скролл на каждой странице с формой. Поэтому поле
+   остаётся на своём месте размером 1×1 и полностью обрезается. */
+.field--trap{
+  position:absolute;
+  width:1px; height:1px;
+  margin:-1px; padding:0; overflow:hidden;
+  clip-path:inset(50%); white-space:nowrap; border:0;
+}
+
+/* Весь блок — <label>, поэтому кликабельна и подпись: реальная область
+   попадания заметно больше самого чекбокса */
+.consent{
+  display:flex; align-items:flex-start; gap:var(--sp-3);
+  margin-block:var(--sp-5); padding-block:var(--sp-2);
+  font-size:var(--fs-small); line-height:1.45; color:var(--ink-2);
+  cursor:pointer;
+}
+.consent__box{
+  flex:none; width:24px; height:24px; margin-top:-1px;
+  accent-color:var(--lime);
+}
+.consent a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+
+/* Результат отправки. Держим в aria-live, чтобы скринридер объявил его
+   без перевода фокуса. */
+.form__status{margin-top:var(--sp-4)}
+.form__status:empty{display:none}
+.form__status--ok{
+  padding:var(--sp-5);
+  border:1px solid var(--lime); background:var(--lime-dim);
+}
+.form__status--error{
+  padding:var(--sp-4);
+  border:1px solid var(--danger); color:var(--ink);
+  font-size:var(--fs-small);
+}
+.form__status-title{
+  font-family:var(--ff-display); font-weight:700;
+  font-size:var(--fs-h3); letter-spacing:-.02em;
+  margin-bottom:var(--sp-2);
+}
+
+/* --- COOKIE --- */
+
+.cookie{
+  position:fixed; z-index:var(--z-menu);
+  left:var(--sp-4); right:var(--sp-4); bottom:var(--sp-4);
+  display:flex; flex-wrap:wrap; align-items:center;
+  justify-content:space-between; gap:var(--sp-4);
+  max-width:760px; margin-inline:auto;
+  padding:var(--sp-5);
+  background:var(--bg-lift); border:1px solid var(--line-lit);
+  border-radius:var(--r-md);
+  box-shadow:0 16px 48px rgb(0 0 0 / .5);
+  opacity:0; transform:translateY(12px);
+  transition:opacity var(--t) var(--ease),
+             transform var(--t) var(--ease-out);
+}
+.cookie--in{opacity:1;transform:none}
+
+/* Оставляем место мобильному плейхеду внизу экрана */
+@media (max-width:1099px){ .cookie{bottom:calc(var(--sp-4) + 4px)} }
+
+.cookie__text{
+  flex:1 1 280px;
+  font-size:var(--fs-small); line-height:1.45; color:var(--ink-2);
+}
+.cookie__text a{
+  color:var(--ink);
+  text-decoration:underline; text-underline-offset:3px;
+}
+.cookie__actions{display:flex;flex-wrap:wrap;gap:var(--sp-3)}
+
+/* --- SITE-FOOTER --- */
+
+.site-footer{
+  border-top:1px solid var(--line);
+  padding-block:var(--sp-8) var(--sp-7);
+}
+.site-footer__inner{
+  display:flex; flex-wrap:wrap; gap:var(--sp-7);
+  justify-content:space-between;
+}
+.site-footer__nav{
+  display:flex; flex-wrap:wrap; gap:var(--sp-3) var(--sp-5);
+  align-content:flex-start;
+}
+.site-footer__meta{margin-top:var(--sp-4)}
+.site-footer__legal{
+  width:100%; margin-top:var(--sp-6); padding-top:var(--sp-5);
+  border-top:1px solid var(--line);
+  font-size:var(--fs-small); color:var(--ink-3);
+}
+.site-footer__legal a{text-decoration:underline;text-underline-offset:3px}
