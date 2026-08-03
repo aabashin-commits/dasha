@@ -149,7 +149,10 @@ async function emit(path, key, w, h, sceneIndex, widths = []) {
     const img = sharp(svg).resize(width, height, { fit: 'fill' });
     await img.clone().jpeg({ quality: 82, mozjpeg: true }).toFile(file);
     await img.clone().webp({ quality: 80 }).toFile(file.replace(/\.jpg$/, '.webp'));
-    written += 2;
+    // effort:4 вместо максимального 9: на градиентах разница в размере
+    // меньше процента, а время сборки отличается втрое
+    await img.clone().avif({ quality: 55, effort: 4 }).toFile(file.replace(/\.jpg$/, '.avif'));
+    written += 3;
   };
 
   await write(abs, w);

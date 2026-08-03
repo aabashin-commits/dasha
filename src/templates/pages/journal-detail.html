@@ -13,6 +13,7 @@
 <div class="wrap">
   <div class="article-cover reveal">
     <picture>
+      <source srcset="{{ article.coverAvif }}" type="image/avif">
       <source srcset="{{ article.coverWebp }}" type="image/webp">
       <img class="article-cover__img" src="{{ article.cover }}" alt="{{ article.coverAlt }}"
            width="1600" height="900" fetchpriority="high" decoding="async">

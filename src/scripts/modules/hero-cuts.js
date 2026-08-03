@@ -33,8 +33,11 @@ export function init() {
   const shots = [...stage.querySelectorAll('[data-shot]')];
   if (shots.length === 0) return;
 
-  const titleEl = stage.querySelector('[data-shot-title]');
-  const metaEl = stage.querySelector('[data-shot-meta]');
+  // Имена атрибутов у подписи и у кадров разные намеренно: когда они
+  // совпадали, querySelector находил первым <img>, и подпись никогда
+  // не обновлялась — текст молча уходил в атрибут картинки
+  const titleEl = stage.querySelector('[data-caption-title]');
+  const metaEl = stage.querySelector('[data-caption-meta]');
   const ticksEl = stage.querySelector('[data-ticks]');
 
   const ticks = shots.map(() => {

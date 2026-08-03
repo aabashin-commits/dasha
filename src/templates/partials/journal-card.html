@@ -1,6 +1,7 @@
 <article class="journal-card">
   <a class="journal-card__media" href="/journal/{{ slug }}/" tabindex="-1" aria-hidden="true">
     <picture>
+      <source srcset="{{ coverAvif }}" type="image/avif">
       <source srcset="{{ coverWebp }}" type="image/webp">
       <img class="journal-card__img" src="{{ cover }}" alt="{{ coverAlt }}"
            loading="lazy" decoding="async" width="1600" height="900">

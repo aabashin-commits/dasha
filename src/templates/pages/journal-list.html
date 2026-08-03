@@ -13,6 +13,10 @@
 </section>
 
 <div class="wrap band band--flush-top">
+  <!-- Заголовок скрыт визуально, но нужен структурно: карточки набраны
+       h3, и без h2 уровни прыгали бы с первого сразу на третий -->
+  <h2 class="visually-hidden">Все статьи журнала</h2>
+
   <div class="journal-grid reveal">
     {{#each journal}}
     {{> journal-card }}

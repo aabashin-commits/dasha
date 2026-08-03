@@ -23,6 +23,9 @@
     <div class="stage__frame">
       {{#each heroShots}}
       <picture>
+        <source type="image/avif" srcset="{{ srcsetAvif }}"
+                sizes="(min-width: 1440px) 1208px, 100vw">
+
         <source type="image/webp" srcset="{{ srcsetWebp }}"
                 sizes="(min-width: 1440px) 1208px, 100vw">
         <img class="stage__shot{{#if @first}} stage__shot--active{{/if}}"
@@ -38,10 +41,10 @@
     </div>
 
     <div class="stage__bar">
-      <span class="stage__title" data-shot-title>Ночь премьеры</span>
+      <span class="stage__title" data-caption-title>{{ heroShots.0.title }}</span>
       <span class="ticks" data-ticks aria-hidden="true"></span>
       <span class="stage__meta">
-        <span data-shot-meta>16:9 · 04:12 · EVENT</span> · <span data-timecode>00:00:00:00</span>
+        <span data-caption-meta>{{ heroShots.0.meta }}</span> · <span data-timecode>00:00:00:00</span>
       </span>
     </div>
   </div>

@@ -17,6 +17,7 @@
           data-facade="{{ embedUrl }}" data-facade-title="{{ work.title }}"
           aria-label="Смотреть «{{ work.title }}»">
     <picture>
+      <source srcset="{{ work.posterAvif }}" type="image/avif">
       <source srcset="{{ work.posterWebp }}" type="image/webp">
       <img class="facade__img" src="{{ work.poster }}" alt="{{ work.title }} — кадр из фильма"
            width="{{ work.posterWidth }}" height="{{ work.posterHeight }}"
@@ -33,6 +34,7 @@
   {{else}}
   <div class="frame {{ work.ratioClass }} reveal">
     <picture>
+      <source srcset="{{ work.posterAvif }}" type="image/avif">
       <source srcset="{{ work.posterWebp }}" type="image/webp">
       <img class="frame__img" src="{{ work.poster }}" alt="{{ work.title }} — кадр из работы"
            width="{{ work.posterWidth }}" height="{{ work.posterHeight }}"
@@ -113,6 +115,7 @@
     <a class="gallery__item" href="{{ src }}"
        data-lightbox="{{ src }}" data-lightbox-alt="{{ alt }}">
       <picture>
+        <source srcset="{{ srcAvif }}" type="image/avif">
         <source srcset="{{ srcWebp }}" type="image/webp">
         <img class="gallery__img" src="{{ src }}" alt="{{ alt }}"
              loading="lazy" decoding="async" width="1600" height="900">

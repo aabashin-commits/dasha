@@ -105,8 +105,12 @@
     {{#each team}}
     <article class="person">
       <div class="person__photo">
-        <img class="person__img" src="{{ photo }}" alt="{{ name }} — {{ role }}"
-             loading="lazy" decoding="async" width="800" height="1000">
+        <picture>
+          <source srcset="{{ photoAvif }}" type="image/avif">
+          <source srcset="{{ photoWebp }}" type="image/webp">
+          <img class="person__img" src="{{ photo }}" alt="{{ name }} — {{ role }}"
+               loading="lazy" decoding="async" width="800" height="1000">
+        </picture>
       </div>
       <h3 class="person__name">{{ name }}</h3>
       <p class="person__role">{{ role }}</p>

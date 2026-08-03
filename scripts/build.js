@@ -138,7 +138,7 @@ function collectPages(c) {
         ...s,
         srcset: srcset(s.src, HERO_WIDTHS, 1920),
         srcsetWebp: srcset(s.src, HERO_WIDTHS, 1920, 'webp'),
-        webp: s.src.replace(/\.jpg$/, '.webp'),
+        srcsetAvif: srcset(s.src, HERO_WIDTHS, 1920, 'avif'),
       })),
     },
   });
@@ -230,7 +230,7 @@ function collectPages(c) {
       article: a,
       lastmod: a.date,
       data: {
-        article: { ...a, coverWebp: a.cover.replace(/\.jpg$/, '.webp') },
+        article: decorateJournal([a])[0],
         bodyHtml: markdown(a.body),
         minutes: readingTime(a.body),
         more: decorateJournal(latest.filter((x) => x.slug !== a.slug).slice(0, 2)),
@@ -246,7 +246,7 @@ function collectPages(c) {
     title: 'О студии',
     description: 'Keyframe — студия видеопродакшна в Москве. Как мы работаем, кто в команде и почему начинаем не с камеры.',
     breadcrumbs: [HOME, { title: 'О студии', url: '/about/' }],
-    data: { team, stats: STATS, process: PROCESS, clients },
+    data: { team: decorateTeam(team), stats: STATS, process: PROCESS, clients },
   });
 
   pages.push({
@@ -304,7 +304,19 @@ function embedUrl(video) {
 }
 
 function decorateGallery(gallery) {
-  return (gallery ?? []).map((g) => ({ ...g, srcWebp: g.src.replace(/\.jpg$/, '.webp') }));
+  return (gallery ?? []).map((g) => ({
+    ...g,
+    srcWebp: g.src.replace(/\.jpg$/, '.webp'),
+    srcAvif: g.src.replace(/\.jpg$/, '.avif'),
+  }));
+}
+
+function decorateTeam(team) {
+  return team.map((p) => ({
+    ...p,
+    photoWebp: p.photo.replace(/\.jpg$/, '.webp'),
+    photoAvif: p.photo.replace(/\.jpg$/, '.avif'),
+  }));
 }
 
 const RATIO_VALUE = { '9:16': 9 / 16, '16:9': 16 / 9, '2.39:1': 2.39, '1.66:1': 1.66, '4:3': 4 / 3, '1:1': 1 };
@@ -343,16 +355,22 @@ function decorateWorks(works, services) {
       ratioClass: `ratio-${w.ratio.replace(/[:.]/g, '-')}`,
       serviceTitle: titleOf(w.service),
       posterWebp: w.poster.replace(/\.jpg$/, '.webp'),
+      posterAvif: w.poster.replace(/\.jpg$/, '.avif'),
       posterWidth: width,
       posterHeight: height,
       posterSrcset: srcset(w.poster, POSTER_WIDTHS, width),
       posterSrcsetWebp: srcset(w.poster, POSTER_WIDTHS, width, 'webp'),
+      posterSrcsetAvif: srcset(w.poster, POSTER_WIDTHS, width, 'avif'),
     };
   });
 }
 
 function decorateJournal(items) {
-  return items.map((a) => ({ ...a, coverWebp: a.cover.replace(/\.jpg$/, '.webp') }));
+  return items.map((a) => ({
+    ...a,
+    coverWebp: a.cover.replace(/\.jpg$/, '.webp'),
+    coverAvif: a.cover.replace(/\.jpg$/, '.avif'),
+  }));
 }
 
 /* ---------- Рендер ---------- */
