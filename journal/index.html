@@ -20,20 +20,20 @@
   <meta name="twitter:description" content="Как устроен видеопродакшн изнутри: из чего складывается цена, зачем нужен сценарий и чем вертикаль отличается от горизонтали.">
   <meta name="twitter:image" content="https://keyframe.example/media/og/default.jpg">
 
-  <link rel="icon" href="/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../favicon/favicon.svg" type="image/svg+xml">
   <meta name="theme-color" content="#0A0B0C">
 
   <!-- Кириллические начертания основного текста и заголовков: они нужны
        для первого экрана, остальное подтянется по font-display:swap -->
-  <link rel="preload" href="/fonts/golos-text-400-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/golos-text-400-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Один блокирующий стиль, и это осознанно.
        Схема «критический инлайном + остальное отложенно» была собрана
        и замерена: FCP улучшился на 0,7 с, но CLS вырос с 0,019 до 0,159 —
        страница перерисовывалась, когда доезжал отложенный файл.
        При 6 КБ в gzip блокировка рендера не является узким местом. -->
-  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="../assets/style.css">
 
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://keyframe.example/#organization","name":"Keyframe","legalName":"ИП Заглушкин З. З.","url":"https://keyframe.example","description":"Студия видеопродакшна: Reels, съёмка событий, документальное кино и фильмы-воспоминания.","email":"hello@keyframe.example","telephone":"+7 900 000-00-00","address":{"@type":"PostalAddress","addressLocality":"Москва","streetAddress":"Москва, наб. Заглушечная, 1"},"sameAs":["https://t.me/keyframe_studio","https://vk.com/keyframe_studio","https://behance.net/keyframe_studio"]},{"@type":"WebSite","@id":"https://keyframe.example/#website","url":"https://keyframe.example","name":"Keyframe","inLanguage":"ru-RU","publisher":{"@id":"https://keyframe.example/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://keyframe.example/"},{"@type":"ListItem","position":2,"name":"Журнал","item":"https://keyframe.example/journal/"}]}]}</script>
 </head>
@@ -65,25 +65,25 @@
 <div class="shell">
   <header class="site-header">
   <div class="wrap site-header__inner">
-    <a class="logo" href="/" aria-label="Keyframe — на главную">
+    <a class="logo" href="../" aria-label="Keyframe — на главную">
       <span class="logo__mark" aria-hidden="true"></span>Keyframe
     </a>
 
     <nav class="site-nav" aria-label="Основная навигация">
       
-      <a class="site-nav__link" href="/services/">Направления</a>
+      <a class="site-nav__link" href="../services/">Направления</a>
       
-      <a class="site-nav__link" href="/works/">Работы</a>
+      <a class="site-nav__link" href="../works/">Работы</a>
       
-      <a class="site-nav__link" href="/about/">О студии</a>
+      <a class="site-nav__link" href="../about/">О студии</a>
       
-      <a class="site-nav__link" href="/journal/">Журнал</a>
+      <a class="site-nav__link" href="../journal/">Журнал</a>
       
-      <a class="site-nav__link" href="/contacts/">Контакты</a>
+      <a class="site-nav__link" href="../contacts/">Контакты</a>
       
     </nav>
 
-    <a class="btn btn--primary site-header__cta" href="/contacts/">Обсудить проект</a>
+    <a class="btn btn--primary site-header__cta" href="../contacts/">Обсудить проект</a>
 
     <button class="burger" type="button" data-burger
             aria-expanded="false" aria-controls="menu" aria-label="Открыть меню">
@@ -99,15 +99,15 @@
 <div class="menu" id="menu" data-menu>
   <nav class="menu__list" aria-label="Мобильная навигация">
     
-    <a class="menu__link" href="/services/">Направления</a>
+    <a class="menu__link" href="../services/">Направления</a>
     
-    <a class="menu__link" href="/works/">Работы</a>
+    <a class="menu__link" href="../works/">Работы</a>
     
-    <a class="menu__link" href="/about/">О студии</a>
+    <a class="menu__link" href="../about/">О студии</a>
     
-    <a class="menu__link" href="/journal/">Журнал</a>
+    <a class="menu__link" href="../journal/">Журнал</a>
     
-    <a class="menu__link" href="/contacts/">Контакты</a>
+    <a class="menu__link" href="../contacts/">Контакты</a>
     
   </nav>
   <p class="slug menu__footer">
@@ -123,7 +123,7 @@
   <nav class="breadcrumbs" aria-label="Хлебные крошки">
   
   
-  <a class="breadcrumbs__link" href="/">Главная</a>
+  <a class="breadcrumbs__link" href="../">Главная</a>
   <span class="breadcrumbs__sep" aria-hidden="true">/</span>
   
   
@@ -153,46 +153,46 @@
   <div class="journal-grid reveal">
     
     <article class="journal-card">
-  <a class="journal-card__media" href="/journal/skolko-stoit-video/" tabindex="-1" aria-hidden="true">
+  <a class="journal-card__media" href="../journal/skolko-stoit-video/" tabindex="-1" aria-hidden="true">
     <picture>
-      <source srcset="/media/journal/skolko-stoit-video/cover.avif" type="image/avif">
-      <source srcset="/media/journal/skolko-stoit-video/cover.webp" type="image/webp">
-      <img class="journal-card__img" src="/media/journal/skolko-stoit-video/cover.jpg" alt="Съёмочная площадка с выставленным светом"
+      <source srcset="../media/journal/skolko-stoit-video/cover.avif" type="image/avif">
+      <source srcset="../media/journal/skolko-stoit-video/cover.webp" type="image/webp">
+      <img class="journal-card__img" src="../media/journal/skolko-stoit-video/cover.jpg" alt="Съёмочная площадка с выставленным светом"
            loading="lazy" decoding="async" width="1600" height="900">
     </picture>
   </a>
   <p class="journal-card__date"><time datetime="2026-06-18">18 июня 2026</time></p>
-  <h3><a class="journal-card__title" href="/journal/skolko-stoit-video/">Из чего складывается цена видео</a></h3>
+  <h3><a class="journal-card__title" href="../journal/skolko-stoit-video/">Из чего складывается цена видео</a></h3>
   <p class="journal-card__excerpt">Почему одна и та же задача может стоить 45 тысяч и 450 тысяч, и что именно вы покупаете в каждом случае.</p>
 </article>
 
     
     <article class="journal-card">
-  <a class="journal-card__media" href="/journal/pochemu-scenariy-nuzhen-vsegda/" tabindex="-1" aria-hidden="true">
+  <a class="journal-card__media" href="../journal/pochemu-scenariy-nuzhen-vsegda/" tabindex="-1" aria-hidden="true">
     <picture>
-      <source srcset="/media/journal/pochemu-scenariy-nuzhen-vsegda/cover.avif" type="image/avif">
-      <source srcset="/media/journal/pochemu-scenariy-nuzhen-vsegda/cover.webp" type="image/webp">
-      <img class="journal-card__img" src="/media/journal/pochemu-scenariy-nuzhen-vsegda/cover.jpg" alt="Раскадровка на столе рядом с камерой"
+      <source srcset="../media/journal/pochemu-scenariy-nuzhen-vsegda/cover.avif" type="image/avif">
+      <source srcset="../media/journal/pochemu-scenariy-nuzhen-vsegda/cover.webp" type="image/webp">
+      <img class="journal-card__img" src="../media/journal/pochemu-scenariy-nuzhen-vsegda/cover.jpg" alt="Раскадровка на столе рядом с камерой"
            loading="lazy" decoding="async" width="1600" height="900">
     </picture>
   </a>
   <p class="journal-card__date"><time datetime="2026-04-02">2 апреля 2026</time></p>
-  <h3><a class="journal-card__title" href="/journal/pochemu-scenariy-nuzhen-vsegda/">Почему сценарий нужен даже «живому» ролику</a></h3>
+  <h3><a class="journal-card__title" href="../journal/pochemu-scenariy-nuzhen-vsegda/">Почему сценарий нужен даже «живому» ролику</a></h3>
   <p class="journal-card__excerpt">Ощущение спонтанности — результат подготовки. Что происходит на монтаже, когда её не было.</p>
 </article>
 
     
     <article class="journal-card">
-  <a class="journal-card__media" href="/journal/vertikal-i-gorizontal/" tabindex="-1" aria-hidden="true">
+  <a class="journal-card__media" href="../journal/vertikal-i-gorizontal/" tabindex="-1" aria-hidden="true">
     <picture>
-      <source srcset="/media/journal/vertikal-i-gorizontal/cover.avif" type="image/avif">
-      <source srcset="/media/journal/vertikal-i-gorizontal/cover.webp" type="image/webp">
-      <img class="journal-card__img" src="/media/journal/vertikal-i-gorizontal/cover.jpg" alt="Два монитора с одним кадром в разных соотношениях сторон"
+      <source srcset="../media/journal/vertikal-i-gorizontal/cover.avif" type="image/avif">
+      <source srcset="../media/journal/vertikal-i-gorizontal/cover.webp" type="image/webp">
+      <img class="journal-card__img" src="../media/journal/vertikal-i-gorizontal/cover.jpg" alt="Два монитора с одним кадром в разных соотношениях сторон"
            loading="lazy" decoding="async" width="1600" height="900">
     </picture>
   </a>
   <p class="journal-card__date"><time datetime="2025-11-25">25 ноября 2025</time></p>
-  <h3><a class="journal-card__title" href="/journal/vertikal-i-gorizontal/">Вертикаль и горизонталь: не только про поворот камеры</a></h3>
+  <h3><a class="journal-card__title" href="../journal/vertikal-i-gorizontal/">Вертикаль и горизонталь: не только про поворот камеры</a></h3>
   <p class="journal-card__excerpt">Формат меняет не композицию, а способ смотреть. Почему нельзя просто обрезать 16:9 до 9:16.</p>
 </article>
 
@@ -225,7 +225,7 @@
     </div>
 
     <form class="lead-form" data-lead-form method="post" novalidate
-      action="/api/lead.php"
+      action="../api/lead.php"
       data-success-title="Заявка отправлена"
       data-success-text="Свяжемся в течение рабочего дня. Если нужно быстрее — напишите в Telegram."
       data-error-text="Не удалось отправить. Попробуйте ещё раз или напишите нам в Telegram."
@@ -277,7 +277,7 @@
   <label class="consent">
     <input class="consent__box" name="consent" type="checkbox" value="1" required>
     <span>Согласен на обработку персональных данных
-      и принимаю <a href="/privacy/">политику конфиденциальности</a></span>
+      и принимаю <a href="../privacy/">политику конфиденциальности</a></span>
   </label>
 
   <button class="btn btn--primary btn--wide" type="submit" data-submit>
@@ -297,7 +297,7 @@
   <footer class="site-footer">
   <div class="wrap site-footer__inner">
     <div>
-      <a class="logo" href="/">
+      <a class="logo" href="../">
         <span class="logo__mark" aria-hidden="true"></span>Keyframe
       </a>
       <p class="slug site-footer__meta">
@@ -308,15 +308,15 @@
 
     <nav class="site-footer__nav" aria-label="Навигация в подвале">
       
-      <a class="site-nav__link" href="/services/">Направления</a>
+      <a class="site-nav__link" href="../services/">Направления</a>
       
-      <a class="site-nav__link" href="/works/">Работы</a>
+      <a class="site-nav__link" href="../works/">Работы</a>
       
-      <a class="site-nav__link" href="/about/">О студии</a>
+      <a class="site-nav__link" href="../about/">О студии</a>
       
-      <a class="site-nav__link" href="/journal/">Журнал</a>
+      <a class="site-nav__link" href="../journal/">Журнал</a>
       
-      <a class="site-nav__link" href="/contacts/">Контакты</a>
+      <a class="site-nav__link" href="../contacts/">Контакты</a>
       
     </nav>
 
@@ -330,13 +330,13 @@
 
     <p class="site-footer__legal">
       © 2026 Keyframe. ИП Заглушкин З. З..
-      <a href="/privacy/">Политика обработки персональных данных</a>
+      <a href="../privacy/">Политика обработки персональных данных</a>
     </p>
   </div>
 </footer>
 
 </div>
 
-<script defer src="/assets/script.js"></script>
+<script defer src="../assets/script.js"></script>
 </body>
 </html>

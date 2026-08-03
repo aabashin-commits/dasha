@@ -20,20 +20,20 @@
   <meta name="twitter:description" content="Связаться со студией Keyframe: hello@keyframe.example, Telegram @keyframe_studio. Москва.">
   <meta name="twitter:image" content="https://keyframe.example/media/og/default.jpg">
 
-  <link rel="icon" href="/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../favicon/favicon.svg" type="image/svg+xml">
   <meta name="theme-color" content="#0A0B0C">
 
   <!-- Кириллические начертания основного текста и заголовков: они нужны
        для первого экрана, остальное подтянется по font-display:swap -->
-  <link rel="preload" href="/fonts/golos-text-400-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/golos-text-400-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Один блокирующий стиль, и это осознанно.
        Схема «критический инлайном + остальное отложенно» была собрана
        и замерена: FCP улучшился на 0,7 с, но CLS вырос с 0,019 до 0,159 —
        страница перерисовывалась, когда доезжал отложенный файл.
        При 6 КБ в gzip блокировка рендера не является узким местом. -->
-  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="../assets/style.css">
 
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://keyframe.example/#organization","name":"Keyframe","legalName":"ИП Заглушкин З. З.","url":"https://keyframe.example","description":"Студия видеопродакшна: Reels, съёмка событий, документальное кино и фильмы-воспоминания.","email":"hello@keyframe.example","telephone":"+7 900 000-00-00","address":{"@type":"PostalAddress","addressLocality":"Москва","streetAddress":"Москва, наб. Заглушечная, 1"},"sameAs":["https://t.me/keyframe_studio","https://vk.com/keyframe_studio","https://behance.net/keyframe_studio"]},{"@type":"WebSite","@id":"https://keyframe.example/#website","url":"https://keyframe.example","name":"Keyframe","inLanguage":"ru-RU","publisher":{"@id":"https://keyframe.example/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://keyframe.example/"},{"@type":"ListItem","position":2,"name":"Контакты","item":"https://keyframe.example/contacts/"}]},{"@type":"LocalBusiness","@id":"https://keyframe.example/#localbusiness","name":"Keyframe","image":"https://keyframe.example/media/og/default.jpg","url":"https://keyframe.example","email":"hello@keyframe.example","telephone":"+7 900 000-00-00","address":{"@type":"PostalAddress","addressLocality":"Москва","streetAddress":"Москва, наб. Заглушечная, 1"},"openingHours":"Пн–Пт, 10:00–19:00"}]}</script>
 </head>
@@ -65,25 +65,25 @@
 <div class="shell">
   <header class="site-header">
   <div class="wrap site-header__inner">
-    <a class="logo" href="/" aria-label="Keyframe — на главную">
+    <a class="logo" href="../" aria-label="Keyframe — на главную">
       <span class="logo__mark" aria-hidden="true"></span>Keyframe
     </a>
 
     <nav class="site-nav" aria-label="Основная навигация">
       
-      <a class="site-nav__link" href="/services/">Направления</a>
+      <a class="site-nav__link" href="../services/">Направления</a>
       
-      <a class="site-nav__link" href="/works/">Работы</a>
+      <a class="site-nav__link" href="../works/">Работы</a>
       
-      <a class="site-nav__link" href="/about/">О студии</a>
+      <a class="site-nav__link" href="../about/">О студии</a>
       
-      <a class="site-nav__link" href="/journal/">Журнал</a>
+      <a class="site-nav__link" href="../journal/">Журнал</a>
       
-      <a class="site-nav__link" href="/contacts/">Контакты</a>
+      <a class="site-nav__link" href="../contacts/">Контакты</a>
       
     </nav>
 
-    <a class="btn btn--primary site-header__cta" href="/contacts/">Обсудить проект</a>
+    <a class="btn btn--primary site-header__cta" href="../contacts/">Обсудить проект</a>
 
     <button class="burger" type="button" data-burger
             aria-expanded="false" aria-controls="menu" aria-label="Открыть меню">
@@ -99,15 +99,15 @@
 <div class="menu" id="menu" data-menu>
   <nav class="menu__list" aria-label="Мобильная навигация">
     
-    <a class="menu__link" href="/services/">Направления</a>
+    <a class="menu__link" href="../services/">Направления</a>
     
-    <a class="menu__link" href="/works/">Работы</a>
+    <a class="menu__link" href="../works/">Работы</a>
     
-    <a class="menu__link" href="/about/">О студии</a>
+    <a class="menu__link" href="../about/">О студии</a>
     
-    <a class="menu__link" href="/journal/">Журнал</a>
+    <a class="menu__link" href="../journal/">Журнал</a>
     
-    <a class="menu__link" href="/contacts/">Контакты</a>
+    <a class="menu__link" href="../contacts/">Контакты</a>
     
   </nav>
   <p class="slug menu__footer">
@@ -123,7 +123,7 @@
   <nav class="breadcrumbs" aria-label="Хлебные крошки">
   
   
-  <a class="breadcrumbs__link" href="/">Главная</a>
+  <a class="breadcrumbs__link" href="../">Главная</a>
   <span class="breadcrumbs__sep" aria-hidden="true">/</span>
   
   
@@ -225,7 +225,7 @@
     </div>
 
     <form class="lead-form" data-lead-form method="post" novalidate
-      action="/api/lead.php"
+      action="../api/lead.php"
       data-success-title="Заявка отправлена"
       data-success-text="Свяжемся в течение рабочего дня. Если нужно быстрее — напишите в Telegram."
       data-error-text="Не удалось отправить. Попробуйте ещё раз или напишите нам в Telegram."
@@ -277,7 +277,7 @@
   <label class="consent">
     <input class="consent__box" name="consent" type="checkbox" value="1" required>
     <span>Согласен на обработку персональных данных
-      и принимаю <a href="/privacy/">политику конфиденциальности</a></span>
+      и принимаю <a href="../privacy/">политику конфиденциальности</a></span>
   </label>
 
   <button class="btn btn--primary btn--wide" type="submit" data-submit>
@@ -297,7 +297,7 @@
   <footer class="site-footer">
   <div class="wrap site-footer__inner">
     <div>
-      <a class="logo" href="/">
+      <a class="logo" href="../">
         <span class="logo__mark" aria-hidden="true"></span>Keyframe
       </a>
       <p class="slug site-footer__meta">
@@ -308,15 +308,15 @@
 
     <nav class="site-footer__nav" aria-label="Навигация в подвале">
       
-      <a class="site-nav__link" href="/services/">Направления</a>
+      <a class="site-nav__link" href="../services/">Направления</a>
       
-      <a class="site-nav__link" href="/works/">Работы</a>
+      <a class="site-nav__link" href="../works/">Работы</a>
       
-      <a class="site-nav__link" href="/about/">О студии</a>
+      <a class="site-nav__link" href="../about/">О студии</a>
       
-      <a class="site-nav__link" href="/journal/">Журнал</a>
+      <a class="site-nav__link" href="../journal/">Журнал</a>
       
-      <a class="site-nav__link" href="/contacts/">Контакты</a>
+      <a class="site-nav__link" href="../contacts/">Контакты</a>
       
     </nav>
 
@@ -330,13 +330,13 @@
 
     <p class="site-footer__legal">
       © 2026 Keyframe. ИП Заглушкин З. З..
-      <a href="/privacy/">Политика обработки персональных данных</a>
+      <a href="../privacy/">Политика обработки персональных данных</a>
     </p>
   </div>
 </footer>
 
 </div>
 
-<script defer src="/assets/script.js"></script>
+<script defer src="../assets/script.js"></script>
 </body>
 </html>

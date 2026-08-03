@@ -20,20 +20,20 @@
   <meta name="twitter:description" content="Reels, съёмка событий, документальное кино и фильмы-воспоминания. Форматы, сроки и стоимость каждого направления.">
   <meta name="twitter:image" content="https://keyframe.example/media/og/default.jpg">
 
-  <link rel="icon" href="/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../favicon/favicon.svg" type="image/svg+xml">
   <meta name="theme-color" content="#0A0B0C">
 
   <!-- Кириллические начертания основного текста и заголовков: они нужны
        для первого экрана, остальное подтянется по font-display:swap -->
-  <link rel="preload" href="/fonts/golos-text-400-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/golos-text-400-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Один блокирующий стиль, и это осознанно.
        Схема «критический инлайном + остальное отложенно» была собрана
        и замерена: FCP улучшился на 0,7 с, но CLS вырос с 0,019 до 0,159 —
        страница перерисовывалась, когда доезжал отложенный файл.
        При 6 КБ в gzip блокировка рендера не является узким местом. -->
-  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="../assets/style.css">
 
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://keyframe.example/#organization","name":"Keyframe","legalName":"ИП Заглушкин З. З.","url":"https://keyframe.example","description":"Студия видеопродакшна: Reels, съёмка событий, документальное кино и фильмы-воспоминания.","email":"hello@keyframe.example","telephone":"+7 900 000-00-00","address":{"@type":"PostalAddress","addressLocality":"Москва","streetAddress":"Москва, наб. Заглушечная, 1"},"sameAs":["https://t.me/keyframe_studio","https://vk.com/keyframe_studio","https://behance.net/keyframe_studio"]},{"@type":"WebSite","@id":"https://keyframe.example/#website","url":"https://keyframe.example","name":"Keyframe","inLanguage":"ru-RU","publisher":{"@id":"https://keyframe.example/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://keyframe.example/"},{"@type":"ListItem","position":2,"name":"Направления","item":"https://keyframe.example/services/"}]}]}</script>
 </head>
@@ -65,25 +65,25 @@
 <div class="shell">
   <header class="site-header">
   <div class="wrap site-header__inner">
-    <a class="logo" href="/" aria-label="Keyframe — на главную">
+    <a class="logo" href="../" aria-label="Keyframe — на главную">
       <span class="logo__mark" aria-hidden="true"></span>Keyframe
     </a>
 
     <nav class="site-nav" aria-label="Основная навигация">
       
-      <a class="site-nav__link" href="/services/">Направления</a>
+      <a class="site-nav__link" href="../services/">Направления</a>
       
-      <a class="site-nav__link" href="/works/">Работы</a>
+      <a class="site-nav__link" href="../works/">Работы</a>
       
-      <a class="site-nav__link" href="/about/">О студии</a>
+      <a class="site-nav__link" href="../about/">О студии</a>
       
-      <a class="site-nav__link" href="/journal/">Журнал</a>
+      <a class="site-nav__link" href="../journal/">Журнал</a>
       
-      <a class="site-nav__link" href="/contacts/">Контакты</a>
+      <a class="site-nav__link" href="../contacts/">Контакты</a>
       
     </nav>
 
-    <a class="btn btn--primary site-header__cta" href="/contacts/">Обсудить проект</a>
+    <a class="btn btn--primary site-header__cta" href="../contacts/">Обсудить проект</a>
 
     <button class="burger" type="button" data-burger
             aria-expanded="false" aria-controls="menu" aria-label="Открыть меню">
@@ -99,15 +99,15 @@
 <div class="menu" id="menu" data-menu>
   <nav class="menu__list" aria-label="Мобильная навигация">
     
-    <a class="menu__link" href="/services/">Направления</a>
+    <a class="menu__link" href="../services/">Направления</a>
     
-    <a class="menu__link" href="/works/">Работы</a>
+    <a class="menu__link" href="../works/">Работы</a>
     
-    <a class="menu__link" href="/about/">О студии</a>
+    <a class="menu__link" href="../about/">О студии</a>
     
-    <a class="menu__link" href="/journal/">Журнал</a>
+    <a class="menu__link" href="../journal/">Журнал</a>
     
-    <a class="menu__link" href="/contacts/">Контакты</a>
+    <a class="menu__link" href="../contacts/">Контакты</a>
     
   </nav>
   <p class="slug menu__footer">
@@ -123,7 +123,7 @@
   <nav class="breadcrumbs" aria-label="Хлебные крошки">
   
   
-  <a class="breadcrumbs__link" href="/">Главная</a>
+  <a class="breadcrumbs__link" href="../">Главная</a>
   <span class="breadcrumbs__sep" aria-hidden="true">/</span>
   
   
@@ -151,7 +151,7 @@
     <!-- Нумерации 01–04 здесь нет: направления параллельны, а не последовательны.
      Вместо номера — глиф соотношения сторон в истинной пропорции и
      хронометраж, то есть то, что клиент действительно сравнивает. -->
-<a class="service-card" href="/services/reels/">
+<a class="service-card" href="../services/reels/">
   <span class="service-card__format">
     <span class="service-card__glyph glyph-9-16" aria-hidden="true"></span>
     <span class="service-card__spec">9:16 · 15–60 сек</span>
@@ -174,7 +174,7 @@
     <!-- Нумерации 01–04 здесь нет: направления параллельны, а не последовательны.
      Вместо номера — глиф соотношения сторон в истинной пропорции и
      хронометраж, то есть то, что клиент действительно сравнивает. -->
-<a class="service-card" href="/services/event-production/">
+<a class="service-card" href="../services/event-production/">
   <span class="service-card__format">
     <span class="service-card__glyph glyph-16-9" aria-hidden="true"></span>
     <span class="service-card__spec">16:9 · 3–5 мин</span>
@@ -197,7 +197,7 @@
     <!-- Нумерации 01–04 здесь нет: направления параллельны, а не последовательны.
      Вместо номера — глиф соотношения сторон в истинной пропорции и
      хронометраж, то есть то, что клиент действительно сравнивает. -->
-<a class="service-card" href="/services/documentary/">
+<a class="service-card" href="../services/documentary/">
   <span class="service-card__format">
     <span class="service-card__glyph glyph-2-39-1" aria-hidden="true"></span>
     <span class="service-card__spec">2.39:1 · 20–40 мин</span>
@@ -220,7 +220,7 @@
     <!-- Нумерации 01–04 здесь нет: направления параллельны, а не последовательны.
      Вместо номера — глиф соотношения сторон в истинной пропорции и
      хронометраж, то есть то, что клиент действительно сравнивает. -->
-<a class="service-card" href="/services/memory-films/">
+<a class="service-card" href="../services/memory-films/">
   <span class="service-card__format">
     <span class="service-card__glyph glyph-1-66-1" aria-hidden="true"></span>
     <span class="service-card__spec">1.66:1 · 5–12 мин</span>
@@ -285,20 +285,20 @@
       </p>
       <h2 class="h2 section-head__title">Как это выглядит на практике</h2>
     </div>
-    <a class="btn" href="/works/">Все работы <span class="btn__arrow" aria-hidden="true">→</span></a>
+    <a class="btn" href="../works/">Все работы <span class="btn__arrow" aria-hidden="true">→</span></a>
   </div>
 
   <div class="works reveal">
     
-    <a class="work-card pos-1" href="/works/doroga-v-teriberku/" data-work-service="documentary">
+    <a class="work-card pos-1" href="../works/doroga-v-teriberku/" data-work-service="documentary">
   <span class="work-card__media ratio-2-39-1">
     <picture>
-      <source type="image/avif" srcset="/media/works/doroga-v-teriberku/poster.avif 480w, /media/works/doroga-v-teriberku/poster.avif 800w, /media/works/doroga-v-teriberku/poster.avif 1200w, /media/works/doroga-v-teriberku/poster.avif 1600w"
+      <source type="image/avif" srcset="../media/works/doroga-v-teriberku/poster.avif 480w, ../media/works/doroga-v-teriberku/poster.avif 800w, ../media/works/doroga-v-teriberku/poster.avif 1200w, ../media/works/doroga-v-teriberku/poster.avif 1600w"
               sizes="(min-width: 1100px) 40vw, (min-width: 760px) 50vw, 100vw">
 
-      <source type="image/webp" srcset="/media/works/doroga-v-teriberku/poster-480.webp 480w, /media/works/doroga-v-teriberku/poster-800.webp 800w, /media/works/doroga-v-teriberku/poster-1200.webp 1200w, /media/works/doroga-v-teriberku/poster.webp 1600w"
+      <source type="image/webp" srcset="../media/works/doroga-v-teriberku/poster-480.webp 480w, ../media/works/doroga-v-teriberku/poster-800.webp 800w, ../media/works/doroga-v-teriberku/poster-1200.webp 1200w, ../media/works/doroga-v-teriberku/poster.webp 1600w"
               sizes="(min-width: 1100px) 40vw, (min-width: 760px) 50vw, 100vw">
-      <img class="work-card__img" src="/media/works/doroga-v-teriberku/poster.jpg" srcset="/media/works/doroga-v-teriberku/poster-480.jpg 480w, /media/works/doroga-v-teriberku/poster-800.jpg 800w, /media/works/doroga-v-teriberku/poster-1200.jpg 1200w, /media/works/doroga-v-teriberku/poster.jpg 1600w"
+      <img class="work-card__img" src="../media/works/doroga-v-teriberku/poster.jpg" srcset="../media/works/doroga-v-teriberku/poster-480.jpg 480w, ../media/works/doroga-v-teriberku/poster-800.jpg 800w, ../media/works/doroga-v-teriberku/poster-1200.jpg 1200w, ../media/works/doroga-v-teriberku/poster.jpg 1600w"
            sizes="(min-width: 1100px) 40vw, (min-width: 760px) 50vw, 100vw"
            alt="Дорога в Териберку — кадр из работы"
            loading="lazy" decoding="async"
@@ -314,15 +314,15 @@
 </a>
 
     
-    <a class="work-card pos-2" href="/works/smena-na-rubinshteyna/" data-work-service="reels">
+    <a class="work-card pos-2" href="../works/smena-na-rubinshteyna/" data-work-service="reels">
   <span class="work-card__media ratio-9-16">
     <picture>
-      <source type="image/avif" srcset="/media/works/smena-na-rubinshteyna/poster.avif 480w, /media/works/smena-na-rubinshteyna/poster.avif 800w, /media/works/smena-na-rubinshteyna/poster.avif 1200w, /media/works/smena-na-rubinshteyna/poster.avif 1600w"
+      <source type="image/avif" srcset="../media/works/smena-na-rubinshteyna/poster.avif 480w, ../media/works/smena-na-rubinshteyna/poster.avif 800w, ../media/works/smena-na-rubinshteyna/poster.avif 1200w, ../media/works/smena-na-rubinshteyna/poster.avif 1600w"
               sizes="(min-width: 1100px) 40vw, (min-width: 760px) 50vw, 100vw">
 
-      <source type="image/webp" srcset="/media/works/smena-na-rubinshteyna/poster-480.webp 480w, /media/works/smena-na-rubinshteyna/poster-800.webp 800w, /media/works/smena-na-rubinshteyna/poster-1200.webp 1200w, /media/works/smena-na-rubinshteyna/poster.webp 1600w"
+      <source type="image/webp" srcset="../media/works/smena-na-rubinshteyna/poster-480.webp 480w, ../media/works/smena-na-rubinshteyna/poster-800.webp 800w, ../media/works/smena-na-rubinshteyna/poster-1200.webp 1200w, ../media/works/smena-na-rubinshteyna/poster.webp 1600w"
               sizes="(min-width: 1100px) 40vw, (min-width: 760px) 50vw, 100vw">
-      <img class="work-card__img" src="/media/works/smena-na-rubinshteyna/poster.jpg" srcset="/media/works/smena-na-rubinshteyna/poster-480.jpg 480w, /media/works/smena-na-rubinshteyna/poster-800.jpg 800w, /media/works/smena-na-rubinshteyna/poster-1200.jpg 1200w, /media/works/smena-na-rubinshteyna/poster.jpg 1600w"
+      <img class="work-card__img" src="../media/works/smena-na-rubinshteyna/poster.jpg" srcset="../media/works/smena-na-rubinshteyna/poster-480.jpg 480w, ../media/works/smena-na-rubinshteyna/poster-800.jpg 800w, ../media/works/smena-na-rubinshteyna/poster-1200.jpg 1200w, ../media/works/smena-na-rubinshteyna/poster.jpg 1600w"
            sizes="(min-width: 1100px) 40vw, (min-width: 760px) 50vw, 100vw"
            alt="Смена на Рубинштейна — кадр из работы"
            loading="lazy" decoding="async"
@@ -338,15 +338,15 @@
 </a>
 
     
-    <a class="work-card pos-3" href="/works/noch-premiery/" data-work-service="event-production">
+    <a class="work-card pos-3" href="../works/noch-premiery/" data-work-service="event-production">
   <span class="work-card__media ratio-16-9">
     <picture>
-      <source type="image/avif" srcset="/media/works/noch-premiery/poster.avif 480w, /media/works/noch-premiery/poster.avif 800w, /media/works/noch-premiery/poster.avif 1200w, /media/works/noch-premiery/poster.avif 1600w"
+      <source type="image/avif" srcset="../media/works/noch-premiery/poster.avif 480w, ../media/works/noch-premiery/poster.avif 800w, ../media/works/noch-premiery/poster.avif 1200w, ../media/works/noch-premiery/poster.avif 1600w"
               sizes="(min-width: 1100px) 40vw, (min-width: 760px) 50vw, 100vw">
 
-      <source type="image/webp" srcset="/media/works/noch-premiery/poster-480.webp 480w, /media/works/noch-premiery/poster-800.webp 800w, /media/works/noch-premiery/poster-1200.webp 1200w, /media/works/noch-premiery/poster.webp 1600w"
+      <source type="image/webp" srcset="../media/works/noch-premiery/poster-480.webp 480w, ../media/works/noch-premiery/poster-800.webp 800w, ../media/works/noch-premiery/poster-1200.webp 1200w, ../media/works/noch-premiery/poster.webp 1600w"
               sizes="(min-width: 1100px) 40vw, (min-width: 760px) 50vw, 100vw">
-      <img class="work-card__img" src="/media/works/noch-premiery/poster.jpg" srcset="/media/works/noch-premiery/poster-480.jpg 480w, /media/works/noch-premiery/poster-800.jpg 800w, /media/works/noch-premiery/poster-1200.jpg 1200w, /media/works/noch-premiery/poster.jpg 1600w"
+      <img class="work-card__img" src="../media/works/noch-premiery/poster.jpg" srcset="../media/works/noch-premiery/poster-480.jpg 480w, ../media/works/noch-premiery/poster-800.jpg 800w, ../media/works/noch-premiery/poster-1200.jpg 1200w, ../media/works/noch-premiery/poster.jpg 1600w"
            sizes="(min-width: 1100px) 40vw, (min-width: 760px) 50vw, 100vw"
            alt="Ночь премьеры — кадр из работы"
            loading="lazy" decoding="async"
@@ -362,15 +362,15 @@
 </a>
 
     
-    <a class="work-card pos-4" href="/works/utro-v-masterskoy/" data-work-service="reels">
+    <a class="work-card pos-4" href="../works/utro-v-masterskoy/" data-work-service="reels">
   <span class="work-card__media ratio-9-16">
     <picture>
-      <source type="image/avif" srcset="/media/works/utro-v-masterskoy/poster.avif 480w, /media/works/utro-v-masterskoy/poster.avif 800w, /media/works/utro-v-masterskoy/poster.avif 1200w, /media/works/utro-v-masterskoy/poster.avif 1600w"
+      <source type="image/avif" srcset="../media/works/utro-v-masterskoy/poster.avif 480w, ../media/works/utro-v-masterskoy/poster.avif 800w, ../media/works/utro-v-masterskoy/poster.avif 1200w, ../media/works/utro-v-masterskoy/poster.avif 1600w"
               sizes="(min-width: 1100px) 40vw, (min-width: 760px) 50vw, 100vw">
 
-      <source type="image/webp" srcset="/media/works/utro-v-masterskoy/poster-480.webp 480w, /media/works/utro-v-masterskoy/poster-800.webp 800w, /media/works/utro-v-masterskoy/poster-1200.webp 1200w, /media/works/utro-v-masterskoy/poster.webp 1600w"
+      <source type="image/webp" srcset="../media/works/utro-v-masterskoy/poster-480.webp 480w, ../media/works/utro-v-masterskoy/poster-800.webp 800w, ../media/works/utro-v-masterskoy/poster-1200.webp 1200w, ../media/works/utro-v-masterskoy/poster.webp 1600w"
               sizes="(min-width: 1100px) 40vw, (min-width: 760px) 50vw, 100vw">
-      <img class="work-card__img" src="/media/works/utro-v-masterskoy/poster.jpg" srcset="/media/works/utro-v-masterskoy/poster-480.jpg 480w, /media/works/utro-v-masterskoy/poster-800.jpg 800w, /media/works/utro-v-masterskoy/poster-1200.jpg 1200w, /media/works/utro-v-masterskoy/poster.jpg 1600w"
+      <img class="work-card__img" src="../media/works/utro-v-masterskoy/poster.jpg" srcset="../media/works/utro-v-masterskoy/poster-480.jpg 480w, ../media/works/utro-v-masterskoy/poster-800.jpg 800w, ../media/works/utro-v-masterskoy/poster-1200.jpg 1200w, ../media/works/utro-v-masterskoy/poster.jpg 1600w"
            sizes="(min-width: 1100px) 40vw, (min-width: 760px) 50vw, 100vw"
            alt="Утро в мастерской краснодеревщика, который двадцать лет не пускал к себе камеру — кадр из работы"
            loading="lazy" decoding="async"
@@ -386,15 +386,15 @@
 </a>
 
     
-    <a class="work-card pos-5" href="/works/posledniy-svet/" data-work-service="memory-films">
+    <a class="work-card pos-5" href="../works/posledniy-svet/" data-work-service="memory-films">
   <span class="work-card__media ratio-1-66-1">
     <picture>
-      <source type="image/avif" srcset="/media/works/posledniy-svet/poster.avif 480w, /media/works/posledniy-svet/poster.avif 800w, /media/works/posledniy-svet/poster.avif 1200w, /media/works/posledniy-svet/poster.avif 1600w"
+      <source type="image/avif" srcset="../media/works/posledniy-svet/poster.avif 480w, ../media/works/posledniy-svet/poster.avif 800w, ../media/works/posledniy-svet/poster.avif 1200w, ../media/works/posledniy-svet/poster.avif 1600w"
               sizes="(min-width: 1100px) 40vw, (min-width: 760px) 50vw, 100vw">
 
-      <source type="image/webp" srcset="/media/works/posledniy-svet/poster-480.webp 480w, /media/works/posledniy-svet/poster-800.webp 800w, /media/works/posledniy-svet/poster-1200.webp 1200w, /media/works/posledniy-svet/poster.webp 1600w"
+      <source type="image/webp" srcset="../media/works/posledniy-svet/poster-480.webp 480w, ../media/works/posledniy-svet/poster-800.webp 800w, ../media/works/posledniy-svet/poster-1200.webp 1200w, ../media/works/posledniy-svet/poster.webp 1600w"
               sizes="(min-width: 1100px) 40vw, (min-width: 760px) 50vw, 100vw">
-      <img class="work-card__img" src="/media/works/posledniy-svet/poster.jpg" srcset="/media/works/posledniy-svet/poster-480.jpg 480w, /media/works/posledniy-svet/poster-800.jpg 800w, /media/works/posledniy-svet/poster-1200.jpg 1200w, /media/works/posledniy-svet/poster.jpg 1600w"
+      <img class="work-card__img" src="../media/works/posledniy-svet/poster.jpg" srcset="../media/works/posledniy-svet/poster-480.jpg 480w, ../media/works/posledniy-svet/poster-800.jpg 800w, ../media/works/posledniy-svet/poster-1200.jpg 1200w, ../media/works/posledniy-svet/poster.jpg 1600w"
            sizes="(min-width: 1100px) 40vw, (min-width: 760px) 50vw, 100vw"
            alt="Последний свет — кадр из работы"
            loading="lazy" decoding="async"
@@ -410,15 +410,15 @@
 </a>
 
     
-    <a class="work-card pos-6" href="/works/sborka-sezona/" data-work-service="event-production">
+    <a class="work-card pos-6" href="../works/sborka-sezona/" data-work-service="event-production">
   <span class="work-card__media ratio-16-9">
     <picture>
-      <source type="image/avif" srcset="/media/works/sborka-sezona/poster.avif 480w, /media/works/sborka-sezona/poster.avif 800w, /media/works/sborka-sezona/poster.avif 1200w, /media/works/sborka-sezona/poster.avif 1600w"
+      <source type="image/avif" srcset="../media/works/sborka-sezona/poster.avif 480w, ../media/works/sborka-sezona/poster.avif 800w, ../media/works/sborka-sezona/poster.avif 1200w, ../media/works/sborka-sezona/poster.avif 1600w"
               sizes="(min-width: 1100px) 40vw, (min-width: 760px) 50vw, 100vw">
 
-      <source type="image/webp" srcset="/media/works/sborka-sezona/poster-480.webp 480w, /media/works/sborka-sezona/poster-800.webp 800w, /media/works/sborka-sezona/poster-1200.webp 1200w, /media/works/sborka-sezona/poster.webp 1600w"
+      <source type="image/webp" srcset="../media/works/sborka-sezona/poster-480.webp 480w, ../media/works/sborka-sezona/poster-800.webp 800w, ../media/works/sborka-sezona/poster-1200.webp 1200w, ../media/works/sborka-sezona/poster.webp 1600w"
               sizes="(min-width: 1100px) 40vw, (min-width: 760px) 50vw, 100vw">
-      <img class="work-card__img" src="/media/works/sborka-sezona/poster.jpg" srcset="/media/works/sborka-sezona/poster-480.jpg 480w, /media/works/sborka-sezona/poster-800.jpg 800w, /media/works/sborka-sezona/poster-1200.jpg 1200w, /media/works/sborka-sezona/poster.jpg 1600w"
+      <img class="work-card__img" src="../media/works/sborka-sezona/poster.jpg" srcset="../media/works/sborka-sezona/poster-480.jpg 480w, ../media/works/sborka-sezona/poster-800.jpg 800w, ../media/works/sborka-sezona/poster-1200.jpg 1200w, ../media/works/sborka-sezona/poster.jpg 1600w"
            sizes="(min-width: 1100px) 40vw, (min-width: 760px) 50vw, 100vw"
            alt="Сборка сезона — кадр из работы"
            loading="lazy" decoding="async"
@@ -462,7 +462,7 @@
     </div>
 
     <form class="lead-form" data-lead-form method="post" novalidate
-      action="/api/lead.php"
+      action="../api/lead.php"
       data-success-title="Заявка отправлена"
       data-success-text="Свяжемся в течение рабочего дня. Если нужно быстрее — напишите в Telegram."
       data-error-text="Не удалось отправить. Попробуйте ещё раз или напишите нам в Telegram."
@@ -514,7 +514,7 @@
   <label class="consent">
     <input class="consent__box" name="consent" type="checkbox" value="1" required>
     <span>Согласен на обработку персональных данных
-      и принимаю <a href="/privacy/">политику конфиденциальности</a></span>
+      и принимаю <a href="../privacy/">политику конфиденциальности</a></span>
   </label>
 
   <button class="btn btn--primary btn--wide" type="submit" data-submit>
@@ -534,7 +534,7 @@
   <footer class="site-footer">
   <div class="wrap site-footer__inner">
     <div>
-      <a class="logo" href="/">
+      <a class="logo" href="../">
         <span class="logo__mark" aria-hidden="true"></span>Keyframe
       </a>
       <p class="slug site-footer__meta">
@@ -545,15 +545,15 @@
 
     <nav class="site-footer__nav" aria-label="Навигация в подвале">
       
-      <a class="site-nav__link" href="/services/">Направления</a>
+      <a class="site-nav__link" href="../services/">Направления</a>
       
-      <a class="site-nav__link" href="/works/">Работы</a>
+      <a class="site-nav__link" href="../works/">Работы</a>
       
-      <a class="site-nav__link" href="/about/">О студии</a>
+      <a class="site-nav__link" href="../about/">О студии</a>
       
-      <a class="site-nav__link" href="/journal/">Журнал</a>
+      <a class="site-nav__link" href="../journal/">Журнал</a>
       
-      <a class="site-nav__link" href="/contacts/">Контакты</a>
+      <a class="site-nav__link" href="../contacts/">Контакты</a>
       
     </nav>
 
@@ -567,13 +567,13 @@
 
     <p class="site-footer__legal">
       © 2026 Keyframe. ИП Заглушкин З. З..
-      <a href="/privacy/">Политика обработки персональных данных</a>
+      <a href="../privacy/">Политика обработки персональных данных</a>
     </p>
   </div>
 </footer>
 
 </div>
 
-<script defer src="/assets/script.js"></script>
+<script defer src="../assets/script.js"></script>
 </body>
 </html>
